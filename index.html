@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F8F6FD;
-  --glass:rgba(255,255,255,.75);
-  --glass-card:rgba(255,255,255,.88);
-  --text:#241E38;
-  --mute:#716B88;
+  --bg:#FBF9FF;
+  --glass:rgba(255,255,255,.82);
+  --glass-card:rgba(255,255,255,.92);
+  --text:#2A2340;
+  --mute:#75708A;
   --line:rgba(255,255,255,.95);
-  --border-subtle:rgba(122,92,255,.16);
+  --border-subtle:rgba(122,92,255,.18);
   --paper:#F6F0E4;
   --pline:#E2D8C3;
   --ptext:#1B2A26;
@@ -22,20 +22,17 @@
   --accent:#7A5CFF;
   --accent-pink:#FF7EB0;
   --ring-bg:rgba(122,92,255,.15);
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
 }
 
 [data-theme="dark"]{
-  --bg:#120E22;
-  --glass:rgba(26,20,50,.72);
-  --glass-card:rgba(34,26,64,.88);
+  --bg:#141026;
+  --glass:rgba(28,22,54,.85);
+  --glass-card:rgba(34,26,66,.94);
   --text:#F3EFFF;
   --mute:#A59EC0;
-  --line:rgba(255,255,255,.12);
-  --border-subtle:rgba(183,166,255,.2);
-  --ring-bg:rgba(255,255,255,.1);
+  --line:rgba(255,255,255,.14);
+  --border-subtle:rgba(183,166,255,.22);
+  --ring-bg:rgba(255,255,255,.12);
 }
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -49,43 +46,37 @@ body{
   transition:background .3s,color .3s;
 }
 
-/* REALISTIC STUDY ROOM BLUR BACKDROP */
+/* STUDY ROOM TEXTURED BACKDROP (NO EXTERNAL LOAD FAILURE) */
 .room-bg{
   position:fixed;
   inset:0;
   z-index:0;
   background:
-    radial-gradient(circle at 10% 20%, rgba(255,228,240,.6) 0%, transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(220,215,255,.6) 0%, transparent 45%),
-    linear-gradient(135deg, rgba(251,249,255,.88), rgba(253,235,243,.82)),
-    url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  filter:blur(22px);
-  transform:scale(1.08);
+    radial-gradient(circle at 15% 20%, rgba(255,210,230,.5) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(215,205,255,.55) 0%, transparent 50%),
+    linear-gradient(180deg, #F8F6FF 0%, #FFF5F8 40%, #F5F7FF 100%);
   pointer-events:none;
 }
 [data-theme="dark"] .room-bg{
   background:
-    radial-gradient(circle at 10% 20%, rgba(122,92,255,.2) 0%, transparent 45%),
-    linear-gradient(135deg, rgba(18,14,34,.92), rgba(26,18,48,.9)),
-    url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    radial-gradient(circle at 15% 20%, rgba(122,92,255,.25) 0%, transparent 45%),
+    linear-gradient(180deg, #141026 0%, #1A1333 100%);
 }
 
-/* AURORA BLOBS */
-.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.42;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.5;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
 .b1{width:360px;height:360px;background:#7EDCC4;top:-70px;left:-70px}
 .b2{width:400px;height:400px;background:#B7A6FF;top:150px;right:-100px;animation-delay:-4s}
-.b3{width:340px;height:340px;background:#FFC2A6;bottom:-80px;left:25%;animation-delay:-8s}
 @keyframes float{50%{transform:translate(35px,-45px) scale(1.1)}}
 
 .wrap{position:relative;z-index:1;max-width:1060px;margin:auto;padding:0 20px 110px}
-.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:24px;box-shadow:0 12px 34px rgba(122,92,255,.09)}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;box-shadow:0 12px 34px rgba(122,92,255,.1)}
 
-/* LOGO & GRADIENT */
+/* LOGO */
 .logo{font-family:Poppins,sans-serif;font-weight:700;font-size:24px}
 .grad{background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:bg 5s linear infinite}
 @keyframes bg{to{background-position:200%}}
 
-/* FULLSCREEN LOGIN GATEWAY */
+/* 1. INITIAL FULLSCREEN LOGIN POPUP */
 #loginScreen{
   position:fixed;
   inset:0;
@@ -93,8 +84,8 @@ body{
   display:grid;
   place-items:center;
   padding:20px;
-  background:rgba(18,14,34,.65);
-  backdrop-filter:blur(20px);
+  background:rgba(18,14,34,.72);
+  backdrop-filter:blur(18px);
 }
 .login-box{
   width:100%;
@@ -103,7 +94,7 @@ body{
   background:var(--glass-card);
   border:1px solid var(--line);
   border-radius:32px;
-  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  box-shadow:0 25px 60px rgba(0,0,0,.35);
   text-align:center;
 }
 .auth-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:18px 0}
@@ -123,7 +114,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0
 .icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--text);font-size:16px;cursor:pointer;display:grid;place-items:center}
 select.level-box{background:var(--glass);border:1px solid var(--line);padding:8px 14px;border-radius:12px;font:600 13px Poppins;color:var(--text);outline:none;cursor:pointer}
 
-/* 1. TOP TIMER & BREAK BAR */
+/* 2. TOP TIMER & BREAK BAR (SABSE UPAR) */
 .top-timer-card{padding:22px 26px;border-radius:26px;margin:10px 0 24px}
 .timer-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .timer-display{font:800 clamp(40px,7vw,62px) Poppins;color:var(--accent);letter-spacing:1px;line-height:1}
@@ -131,11 +122,11 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
 /* BUTTONS */
-.btn{position:relative;border:0;border-radius:14px;padding:12px 24px;font:600 14px Poppins;cursor:pointer;color:#fff;background:linear-gradient(120deg,#7A5CFF,#FF7EB0);box-shadow:0 8px 20px rgba(122,92,255,.32)}
+.btn{border:0;border-radius:14px;padding:12px 24px;font:600 14px Poppins;cursor:pointer;color:#fff;background:linear-gradient(120deg,#7A5CFF,#FF7EB0);box-shadow:0 8px 20px rgba(122,92,255,.32)}
 .btn.o{background:var(--glass);color:var(--text);box-shadow:none;border:1px solid var(--line)}
 .btn.red{background:var(--red);box-shadow:0 6px 16px rgba(228,87,46,.32)}
 
-/* 2. TARGETS & PLANNER */
+/* 3. TARGETS & PLANNER (USKE NICHE) */
 .targets-box{padding:24px;border-radius:26px;margin-bottom:26px}
 .targets-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .task-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--glass-card);border:1px solid var(--border-subtle);border-radius:16px;cursor:pointer}
@@ -143,11 +134,9 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .task-box{width:22px;height:22px;border-radius:7px;border:2px solid var(--accent);display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700}
 .task-row.done .task-box{background:var(--accent)}
 
-/* 3. PEHLE WALA EXACT PHONE PROGRESS CARD */
+/* 4. EXACT PEHLE WALA PHONE PROGRESS CARD */
 .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin:30px 0}
 .phone{width:280px;margin:auto;padding:20px 16px;border-radius:36px}
-.float{animation:bob 5s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-12px)}}
 .ring{position:relative;width:115px;height:115px;margin:8px auto}
 .ring svg{transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
 .ring .bgc{stroke:var(--ring-bg)}
@@ -157,33 +146,32 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .flame{display:inline-block;animation:flick 1.2s infinite alternate}
 @keyframes flick{to{transform:scale(1.2) rotate(-8deg)}}
 
-/* 4. LEDGER PAPER (STRICT EVALUATOR) */
+/* 5. LEDGER PAPER (STRICT EVALUATOR) */
 .paper{width:100%;max-width:360px;margin:auto;background:var(--paper);color:var(--ptext);border:8px solid var(--green);border-radius:28px;padding:18px;background-image:repeating-linear-gradient(transparent 0 25px,var(--pline) 25px 26px);box-shadow:0 20px 40px rgba(15,59,51,.18)}
 .paper h3{color:var(--green);font-size:16px;margin:0}
 .q{font-size:12px;color:#5E6B66;margin:4px 0 8px}
 .ans{font-size:14px;line-height:26px;margin:0}
 .ans .fix{display:none;font-family:Caveat,cursive;font-size:20px;color:var(--red);font-weight:700}
 .checked .w{color:var(--red);text-decoration:line-through;text-decoration-thickness:2px}
-.checked .fix{display:inline;animation:pop .4s both}
-@keyframes pop{from{opacity:0;transform:translateY(-6px) rotate(-6deg)}}
+.checked .fix{display:inline}
 .score{display:none;margin-top:12px;background:var(--green);color:#F6F0E4;border-radius:12px;padding:10px;font-size:13px;text-align:center;font-weight:700}
-.checked+.score{display:block;animation:pop .4s .4s both}
+.checked+.score{display:block}
 .note{font-family:Caveat,cursive;color:var(--red);font-size:18px;display:none;margin-top:4px}
 .checked~.note{display:block}
 
-/* 5. AI TEACHER MENTOR */
+/* 6. AI TEACHER MENTOR */
 .ai-box{padding:22px;border-radius:26px;margin-bottom:26px}
 .ai-chat{display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto;padding-right:4px}
 .msg{padding:9px 13px;border-radius:13px;font-size:13px;max-width:85%}
 .msg.bot{background:var(--glass-card);border:1px solid var(--border-subtle);align-self:flex-start}
 .msg.user{background:var(--accent);color:#fff;align-self:flex-end}
 
-/* 6. BOTTOM DESCRIPTIVE PARAGRAPHS */
+/* 7. BOTTOM PHILOSOPHY PARAGRAPHS */
 .philosophy-card{padding:26px;border-radius:26px;margin-top:30px}
 .philosophy-card h3{font-family:Poppins;font-size:20px;margin:0 0 10px}
 .philosophy-card p{color:var(--mute);font-size:14.5px;line-height:1.65;margin:0 0 12px}
 
-/* BOTTOM DOCK */
+/* DOCK */
 .app-dock{
   position:fixed;
   bottom:16px;
@@ -202,16 +190,13 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .dock-item{background:none;border:0;display:flex;flex-direction:column;align-items:center;font:600 11px Poppins;color:var(--mute);cursor:pointer;gap:2px}
 .dock-item.active{color:var(--accent)}
 
-.conf{position:fixed;top:-20px;width:9px;height:13px;z-index:999999;animation:fall 1.8s linear forwards;pointer-events:none}
-@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
-
 @media(max-width:768px){.targets-grid,.hero-split{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="room-bg"></div>
-<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="blob b1"></div><div class="blob b2"></div>
 
 <!-- 1. FULLSCREEN LOGIN SCREEN -->
 <div id="loginScreen">
@@ -265,7 +250,7 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 </div>
 
 <!-- 2. MAIN APPLICATION -->
-<div class="wrap" id="mainApp" style="opacity:0;transition:opacity .5s ease">
+<div class="wrap" id="mainApp">
   <!-- NAV -->
   <nav>
     <div class="logo"><span class="grad">Dheeti</span></div>
@@ -349,7 +334,7 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
   <!-- STEP 3: PEHLE WALA EXACT PROGRESS CARD + STRICT RED INK CHECK -->
   <div class="hero-split">
     <!-- ORIGINAL PROGRESS CARD -->
-    <div class="phone glass float">
+    <div class="phone glass">
       <small style="color:var(--mute)" id="welcomeName">Hi Maitri 👋</small>
       <h3 style="font-size:16px;margin:2px 0 4px">Aaj ka progress</h3>
       <div class="ring">
@@ -457,17 +442,12 @@ function unlockApp(){
   if(name) document.getElementById('welcomeName').innerText = `Hi ${name} 👋`;
 
   const loginScreen = document.getElementById('loginScreen');
-  const mainApp = document.getElementById('mainApp');
-
-  loginScreen.style.transition = 'opacity .4s ease, transform .4s ease';
+  loginScreen.style.transition = 'opacity .35s ease';
   loginScreen.style.opacity = '0';
-  loginScreen.style.transform = 'scale(0.96)';
 
   setTimeout(() => {
     loginScreen.style.display = 'none';
-    mainApp.style.opacity = '1';
-    party();
-  }, 400);
+  }, 350);
 }
 
 // SPRINT TIMER & BREAKS
@@ -501,7 +481,6 @@ function toggleTimer(){
         clearInterval(timerInterval);
         isRunning = false;
         btn.innerText = 'Completed! 🎉';
-        party();
         return;
       }
       timeLeft--;
@@ -565,21 +544,8 @@ function sendAIQuestion(){
 }
 
 // STRICT RED INK EVALUATOR
-function chk(){ document.getElementById('ans').classList.add('checked'); party(); }
+function chk(){ document.getElementById('ans').classList.add('checked'); }
 function rst(){ document.getElementById('ans').classList.remove('checked'); }
-
-function party(){
-  const colors = ['#7A5CFF','#FF7EB0','#7EDCC4','#FFC2A6','#B7A6FF'];
-  for(let i=0; i<35; i++){
-    const d = document.createElement('div');
-    d.className = 'conf';
-    d.style.left = Math.random() * 100 + 'vw';
-    d.style.background = colors[i % colors.length];
-    d.style.animationDelay = Math.random() * .5 + 's';
-    document.body.appendChild(d);
-    setTimeout(() => d.remove(), 2200);
-  }
-}
 
 // LEVEL & NAVIGATION
 function updateLevel(val){
