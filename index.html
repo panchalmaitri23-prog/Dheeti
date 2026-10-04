@@ -1,360 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>धृति • Dheeti – CA Revision Sanctuary</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<title>Dheeti – Aurora Hybrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg-gradient: linear-gradient(135deg, #FFF0F5 0%, #FDEBF3 35%, #F4EEFF 70%, #EBF4FF 100%);
-  --rose-primary: #D84A75;
-  --rose-deep: #9F224E;
-  --rose-glow: rgba(216, 74, 117, 0.18);
-  --pink-surface: rgba(255, 255, 255, 0.78);
-  --pink-border: rgba(229, 150, 180, 0.35);
-  --text-main: #2A1B28;
-  --text-muted: #7E6577;
-  --ledger-red: #D9383A;
-  --aurora-lav: #9A77FF;
-  --aurora-gold: #F7A35C;
-  --card-radius: 20px;
-}
-
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body {
-  margin: 0;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  color: var(--text-main);
-  background: var(--bg-gradient);
-  min-height: 100vh;
-  line-height: 1.45;
-  padding: 24px 16px 80px;
-}
-
-.wrap { max-width: 940px; margin: auto; }
-.cursive { font-family: 'Caveat', cursive; color: var(--rose-primary); font-size: 26px; }
-
-/* HEADER */
-.header { text-align: center; margin-bottom: 28px; }
-.header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(34px, 5.5vw, 56px);
-  margin: 4px 0 8px;
-  color: var(--rose-deep);
-  letter-spacing: -0.5px;
-}
-.header h1 span { color: var(--aurora-lav); font-style: italic; }
-.header p { color: var(--text-muted); font-size: 15px; margin: 0 auto; max-width: 520px; }
-
-/* LEVEL SELECTOR */
-.level-bar {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 22px 0;
-}
-.lvl-pill {
-  border: 1px solid var(--pink-border);
-  background: var(--pink-surface);
-  color: var(--text-muted);
-  padding: 8px 18px;
-  border-radius: 99px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(8px);
-}
-.lvl-pill.active {
-  background: var(--rose-primary);
-  color: #fff;
-  border-color: var(--rose-primary);
-  box-shadow: 0 6px 16px var(--rose-glow);
-}
-
-/* CARDS */
-.glass-box {
-  background: var(--pink-surface);
-  border: 1px solid var(--pink-border);
-  border-radius: var(--card-radius);
-  padding: 20px;
-  box-shadow: 0 14px 34px rgba(186, 75, 120, 0.08);
-  backdrop-filter: blur(12px);
-  margin-bottom: 20px;
-}
-
-/* COUNTDOWN & METRICS */
-.top-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.metric-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.metric-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #FFE1ED, #F3E8FF);
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  color: var(--rose-primary);
-  flex-shrink: 0;
-}
-.metric-card b { display: block; font-size: 22px; color: var(--rose-deep); }
-.metric-card span { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-
-/* SUBJECT & CHECKLIST MODULES */
-.sec-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0 14px;
-}
-.sec-title h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  color: var(--text-main);
-  margin: 0;
-}
-.prog-label { font-size: 13px; font-weight: 700; color: var(--rose-primary); }
-
-.task-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #fff;
-  border: 1px solid var(--pink-border);
-  border-radius: 15px;
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.task-item:hover { transform: translateY(-2px); border-color: var(--rose-primary); }
-.task-item.done {
-  opacity: 0.55;
-  text-decoration: line-through;
-  background: #FFF7FA;
-}
-.check-circle {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 2px solid #E5A4BD;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  color: transparent;
-  font-weight: 800;
-  font-size: 12px;
-  transition: all 0.2s;
-}
-.task-item.done .check-circle {
-  background: var(--rose-primary);
-  border-color: var(--rose-primary);
-  color: #fff;
-}
-.task-info b { display: block; font-size: 14px; color: var(--text-main); }
-.task-info small { color: var(--text-muted); font-size: 12px; }
-.badge {
-  margin-left: auto;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 99px;
-  background: #FFE8F1;
-  color: var(--rose-primary);
-}
-
-/* FOCUS TIMER ACTION */
-.timer-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px dashed var(--pink-border);
-}
-.btn-rose {
-  border: 0;
-  background: linear-gradient(135deg, var(--rose-primary), var(--rose-deep));
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 14px;
-  font-weight: 700;
-  font-size: 13px;
-  box-shadow: 0 8px 18px var(--rose-glow);
-  transition: transform 0.15s;
-}
-.btn-rose:active { transform: scale(0.97); }
+:root{--bg:#FBF9FF;--glass:rgba(255,255,255,.62);--text:#2A2340;--mute:#75708A;--line:rgba(255,255,255,.9);--paper:#F6F0E4;--pline:#E2D8C3;--ptext:#1B2A26;--red:#E4572E;--green:#0F3B33;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171327;--glass:rgba(255,255,255,.08);--text:#F1EDFF;--mute:#A9A3C4;--line:rgba(255,255,255,.15)}}
+:root[data-theme="dark"]{--bg:#171327;--glass:rgba(255,255,255,.08);--text:#F1EDFF;--mute:#A9A3C4;--line:rgba(255,255,255,.15)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;line-height:1.5;padding-bottom:40px}
+h1,h2,h3{font-family:Poppins,sans-serif;margin:0}
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.5;z-index:0;animation:float 14s ease-in-out infinite}
+.b1{width:360px;height:360px;background:#7EDCC4;top:-80px;left:-80px}
+.b2{width:400px;height:400px;background:#B7A6FF;top:140px;right:-120px;animation-delay:-4s}
+.b3{width:320px;height:320px;background:#FFC2A6;bottom:-100px;left:30%;animation-delay:-8s}
+@keyframes float{50%{transform:translate(40px,-50px) scale(1.12)}}
+.wrap{position:relative;z-index:1;max-width:1050px;margin:auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-family:Poppins;font-weight:700;font-size:22px}
+.grad{background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:bg 5s linear infinite}
+@keyframes bg{to{background-position:200%}}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:22px;box-shadow:0 10px 30px rgba(122,92,255,.12)}
+.btn{position:relative;overflow:hidden;border:0;border-radius:14px;padding:14px 24px;font:600 15px Poppins,sans-serif;cursor:pointer;color:#fff;background:linear-gradient(120deg,#7A5CFF,#FF7EB0);box-shadow:0 8px 20px rgba(122,92,255,.35);transition:transform .2s}
+.btn:hover{transform:translateY(-3px)}.btn:active{transform:scale(.97)}
+.btn::after{content:"";position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:shine 3s infinite}
+@keyframes shine{60%,100%{left:130%}}
+.btn.o{background:var(--glass);color:var(--text);box-shadow:none;border:1px solid var(--line)}.btn.o::after{display:none}
+.btn.red{background:var(--red);box-shadow:0 4px 0 #A83A18}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:24px 0 30px}
+.hero h1{font-size:clamp(32px,6vw,52px);line-height:1.1}
+.hero p{color:var(--mute);font-size:17px;max-width:470px}
+.tag{display:inline-block;padding:6px 14px;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:14px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.phone{width:270px;margin:auto;padding:18px 15px;border-radius:36px}
+.float{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px)}}
+.ring{position:relative;width:110px;height:110px;margin:8px auto}
+.ring svg{transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
+.ring .bgc{stroke:rgba(122,92,255,.15)}
+.ring .fg{stroke:url(#g);stroke-dasharray:314;stroke-dashoffset:314;animation:fill 2s .4s forwards}
+@keyframes fill{to{stroke-dashoffset:88}}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 22px Poppins}
+.mini{padding:10px 12px;border-radius:14px;margin-top:8px;font-size:12px;display:flex;justify-content:space-between}
+.flame{display:inline-block;animation:flick 1s infinite alternate}
+@keyframes flick{to{transform:scale(1.25) rotate(-6deg)}}
+section{padding:30px 0}
+h2{font-size:27px;margin-bottom:6px}.sub{color:var(--mute);margin:0 0 20px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.paper{width:100%;max-width:340px;margin:auto;background:var(--paper);color:var(--ptext);border:8px solid var(--green);border-radius:30px;padding:16px;background-image:repeating-linear-gradient(transparent 0 25px,var(--pline) 25px 26px);box-shadow:0 20px 40px rgba(15,59,51,.2)}
+.paper h3{color:var(--green);font-size:16px}
+.q{font-size:12px;color:#5E6B66;margin:4px 0 8px}
+.ans{font-size:14px;line-height:26px;margin:0}
+.ans .w{position:relative;transition:all .5s}
+.ans .fix{display:none;font-family:Caveat,cursive;font-size:19px;color:var(--red);font-weight:600}
+.checked .w{color:var(--red);text-decoration:line-through;text-decoration-thickness:2px}
+.checked .fix{display:inline;animation:pop .5s both}
+@keyframes pop{from{opacity:0;transform:translateY(-6px) rotate(-6deg)}}
+.score{display:none;margin-top:10px;background:var(--green);color:#F6F0E4;border-radius:12px;padding:10px;font-size:13px;text-align:center}
+.checked+.score{display:block;animation:pop .5s .6s both}
+.tick{color:#1c9a6b;font-weight:700}
+.note{font-family:Caveat,cursive;color:var(--red);font-size:18px;display:none}
+.checked~.note{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.card{padding:20px;transition:transform .3s}.card:hover{transform:translateY(-8px)}
+.card h3{font-size:16px;margin:8px 0 4px}.card p{margin:0;color:var(--mute);font-size:14px}
+.conf{position:fixed;top:-20px;width:10px;height:14px;z-index:9;animation:fall 1.8s linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
+.rv{opacity:0;transform:translateY(30px);transition:all .8s}.rv.in{opacity:1;transform:none}
+select.level-box{background:var(--glass);border:1px solid var(--line);padding:8px 14px;border-radius:12px;font:600 13px Poppins,sans-serif;color:var(--text);outline:none;cursor:pointer}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0}
+@media(max-width:760px){.hero,.split{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ring .fg{stroke-dashoffset:88}}
 </style>
 </head>
 <body>
-
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
 <div class="wrap">
-  <!-- HEADER -->
-  <div class="header">
-    <div class="cursive">धृति • The Revision Sanctuary</div>
-    <h1>Dheeti <span>Revision</span></h1>
-    <p>Calm, structured, and exam-oriented revision designed for Chartered Accountancy aspirants.</p>
-    
-    <!-- LEVEL PILLS -->
-    <div class="level-bar">
-      <button class="lvl-pill" onclick="setLevel(this, 'Foundation')">Foundation</button>
-      <button class="lvl-pill active" onclick="setLevel(this, 'Intermediate')">Intermediate</button>
-      <button class="lvl-pill" onclick="setLevel(this, 'Final')">Final</button>
-    </div>
+<nav>
+  <div class="logo"><span class="grad">Dheeti</span></div>
+  <select class="level-box" onchange="updateLevel(this.value)">
+    <option value="Foundation">CA Foundation</option>
+    <option value="Inter">CA Intermediate</option>
+    <option value="Final">CA Final</option>
+  </select>
+</nav>
+
+<div class="hero">
+ <div>
+  <span class="tag glass" id="levelTag">✨ CA Foundation Mode</span>
+  <h1>Padhai <span class="grad">soft</span>, checking <span style="color:var(--red)">strict</span>.</h1>
+  <p>Home aur planner fresh pastel look mein. Answer check karte waqt ICAI-style ledger paper aur red ink correction.</p>
+  <div class="row">
+    <button class="btn" onclick="party()">Start Revision 🚀</button>
+    <a href="#demo" style="text-decoration:none"><button class="btn o">Try Check Answer ↓</button></a>
   </div>
-
-  <!-- METRIC & COUNTDOWN OVERVIEW -->
-  <div class="top-grid">
-    <div class="glass-box metric-card">
-      <div class="metric-icon">⏳</div>
-      <div>
-        <b id="countdownTimer">25:00</b>
-        <span>LDR Focus Sprint</span>
-      </div>
-    </div>
-    <div class="glass-box metric-card">
-      <div class="metric-icon">🎯</div>
-      <div>
-        <b id="completionRate">0%</b>
-        <span>Revision Progress (Pass 1)</span>
-      </div>
-    </div>
+ </div>
+ <div class="phone glass float">
+  <small style="color:var(--mute)">Hi Maitri 👋</small>
+  <h3 style="font-size:16px" id="todayProgressTitle">Aaj ka progress</h3>
+  <div class="ring">
+    <svg width="110" height="110">
+      <defs><linearGradient id="g"><stop offset="0" stop-color="#7A5CFF"/><stop offset="1" stop-color="#FF7EB0"/></linearGradient></defs>
+      <circle class="bgc" cx="55" cy="55" r="50"/>
+      <circle class="fg" cx="55" cy="55" r="50"/>
+    </svg>
+    <b>72%</b>
   </div>
-
-  <!-- REVISION CHECKLIST -->
-  <div class="glass-box">
-    <div class="sec-title">
-      <h2 id="subjectHeading">Corporate & Other Laws</h2>
-      <span class="prog-label" id="taskCount">0 of 4 Completed</span>
-    </div>
-
-    <div id="moduleList">
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="check-circle">✓</div>
-        <div class="task-info">
-          <b>Sec 96–105: Annual General Meeting & Quorum Rules</b>
-          <small>Notice periods, proxies, and voting rights (LDR Trap list)</small>
-        </div>
-        <span class="badge">Pass 1 Due</span>
-      </div>
-
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="check-circle">✓</div>
-        <div class="task-info">
-          <b>Sec 123–127: Declaration & Payment of Dividend</b>
-          <small>Timelines, unpaid dividend account, penalty provisions</small>
-        </div>
-        <span class="badge">Pass 2</span>
-      </div>
-
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="check-circle">✓</div>
-        <div class="task-info">
-          <b>Sec 139–148: Appointment & Removal of Auditors</b>
-          <small>Rotations, disqualifications (Sec 141), CARO 2020 links</small>
-        </div>
-        <span class="badge">High Priority</span>
-      </div>
-
-      <div class="task-item" onclick="toggleTask(this)">
-        <div class="check-circle">✓</div>
-        <div class="task-info">
-          <b>ICAI Past Exam MCQs & Case Scenario Digest</b>
-          <small>May & November RTP tricky questions review</small>
-        </div>
-        <span class="badge">MCQ Drill</span>
-      </div>
-    </div>
-
-    <!-- TIMER ACTION BAR -->
-    <div class="timer-bar">
-      <div>
-        <b style="display:block;font-size:14px;color:var(--rose-deep)">Distraction-Free Sprint Block</b>
-        <small style="color:var(--text-muted)">25-minute Pomodoro study sprint with ledger recall</small>
-      </div>
-      <button class="btn-rose" id="timerButton" onclick="toggleTimer()">Start Sprint</button>
-    </div>
-  </div>
+  <div class="mini glass"><span id="task1">📘 Paper 1: Accounting Basics</span><b>✓</b></div>
+  <div class="mini glass" style="background:linear-gradient(120deg,rgba(255,194,166,.6),rgba(255,158,196,.5))"><span><span class="flame">🔥</span> 12 day streak</span><b>Keep going</b></div>
+ </div>
 </div>
 
+<section id="demo" class="rv split">
+ <div>
+  <h2>Red Ink <span class="grad">Check Answer</span></h2>
+  <p class="sub">Yahan design Ledger style mein badal jaata hai: parchment paper, green border, red pen se correction. Button dabao aur dekho.</p>
+  <button class="btn red" id="cb" onclick="chk()">Check Answer ✍️</button>
+  <button class="btn o" onclick="rst()" style="margin-left:6px">Reset</button>
+ </div>
+ <div class="paper">
+  <h3 id="paperQTitle">Practice · Q3</h3>
+  <div class="q" id="paperQSub">AS 10 · PPE cost · 4 marks</div>
+  <p class="ans" id="ans">Cost of PPE includes purchase price, <span class="w">selling expenses</span><span class="fix"> import duty</span>, and <span class="w">interest on loan always</span><span class="fix"> directly attributable costs</span><span class="tick"> ✓</span></p>
+  <div class="score">Score: 2 / 4 · Working notes zaroor likho!</div>
+  <div class="note">← "selling expenses" cost mein nahi aate</div>
+ </div>
+</section>
+
+<section class="rv">
+ <h2>Kahan kya use hoga</h2>
+ <p class="sub">Har jagah alag mood, ek hi app mein.</p>
+ <div class="grid">
+  <div class="card glass"><div style="font-size:26px">🏠</div><h3>Home, Planner, Streak</h3><p>Aurora pastel glass look.</p></div>
+  <div class="card glass"><div style="font-size:26px">🃏</div><h3>Flashcards</h3><p>Aurora soft colors, flip effect.</p></div>
+  <div class="card glass" style="background:#F6F0E4;color:#1B2A26"><div style="font-size:26px">📒</div><h3 style="color:#0F3B33">Check Answer</h3><p style="color:#5E6B66">Ledger paper aur red ink.</p></div>
+  <div class="card glass"><div style="font-size:26px">🌙</div><h3>Dark Mode</h3><p>Raat ki padhai ke liye.</p></div>
+ </div>
+</section>
+<footer>Design concept · Dheeti (Aurora Hybrid)</footer>
+</div>
 <script>
-// Checkbox & Progress Calculation
-function toggleTask(element) {
-  element.classList.toggle('done');
-  updateProgress();
-}
-
-function updateProgress() {
-  const allTasks = document.querySelectorAll('.task-item').length;
-  const doneTasks = document.querySelectorAll('.task-item.done').length;
-  const percentage = allTasks === 0 ? 0 : Math.round((doneTasks / allTasks) * 100);
-
-  document.getElementById('completionRate').innerText = percentage + '%';
-  document.getElementById('taskCount').innerText = `${doneTasks} of ${allTasks} Completed`;
-}
-
-// Level Pill Switcher
-function setLevel(pill, levelName) {
-  document.querySelectorAll('.lvl-pill').forEach(btn => btn.classList.remove('active'));
-  pill.classList.add('active');
-  const heading = document.getElementById('subjectHeading');
-  
-  if (levelName === 'Foundation') heading.innerText = 'Business Laws & Quantitative Aptitude';
-  else if (levelName === 'Intermediate') heading.innerText = 'Corporate & Other Laws';
-  else if (levelName === 'Final') heading.innerText = 'Corporate and Economic Laws (Paper 4)';
-  
-  // Reset completed status on level toggle
-  document.querySelectorAll('.task-item').forEach(task => task.classList.remove('done'));
-  updateProgress();
-}
-
-// Pomodoro Timer Logic
-let timerRunning = false;
-let timerId = null;
-let duration = 25 * 60;
-
-function toggleTimer() {
-  const btn = document.getElementById('timerButton');
-  const display = document.getElementById('countdownTimer');
-
-  if (timerRunning) {
-    clearInterval(timerId);
-    timerRunning = false;
-    btn.innerText = 'Resume Sprint';
+function updateLevel(val){
+  document.getElementById('levelTag').textContent = '✨ CA ' + val + ' Mode';
+  if(val === 'Foundation'){
+    document.getElementById('task1').textContent = '📘 Paper 1: Accounting Basics';
+  } else if(val === 'Inter'){
+    document.getElementById('task1').textContent = '📘 Adv. Accounting Ch 8';
   } else {
-    timerRunning = true;
-    btn.innerText = 'Pause Sprint';
-    timerId = setInterval(() => {
-      if (duration <= 0) {
-        clearInterval(timerId);
-        timerRunning = false;
-        btn.innerText = 'Sprint Completed 🌿';
-        display.innerText = '00:00';
-        return;
-      }
-      duration--;
-      const min = Math.floor(duration / 60);
-      const sec = String(duration % 60).padStart(2, '0');
-      display.innerText = `${String(min).padStart(2, '0')}:${sec}`;
-    }, 1000);
+    document.getElementById('task1').textContent = '📘 Paper 1: Financial Reporting';
   }
 }
-
-// Initial calc
-updateProgress();
+function chk(){document.getElementById('ans').classList.add('checked');party()}
+function rst(){document.getElementById('ans').classList.remove('checked')}
+function party(){var c=['#7A5CFF','#FF7EB0','#7EDCC4','#FFC2A6','#B7A6FF'];for(var i=0;i<40;i++){var d=document.createElement('div');d.className='conf';d.style.left=Math.random()*100+'vw';d.style.background=c[i%5];d.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(d);setTimeout(function(x){x.remove()},2600,d)}}
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.15});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
 </script>
-
 </body>
 </html>
