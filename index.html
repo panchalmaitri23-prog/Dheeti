@@ -7,12 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FBF9FF;
-  --glass:rgba(255,255,255,.68);
-  --glass-card:rgba(255,255,255,.82);
-  --text:#2A2340;
-  --mute:#75708A;
-  --line:rgba(255,255,255,.9);
+  --bg:#F8F6FD;
+  --glass:rgba(255,255,255,.75);
+  --glass-card:rgba(255,255,255,.88);
+  --text:#241E38;
+  --mute:#716B88;
+  --line:rgba(255,255,255,.95);
   --border-subtle:rgba(122,92,255,.16);
   --paper:#F6F0E4;
   --pline:#E2D8C3;
@@ -28,9 +28,9 @@
 }
 
 [data-theme="dark"]{
-  --bg:#141026;
+  --bg:#120E22;
   --glass:rgba(26,20,50,.72);
-  --glass-card:rgba(32,25,60,.88);
+  --glass-card:rgba(34,26,64,.88);
   --text:#F3EFFF;
   --mute:#A59EC0;
   --line:rgba(255,255,255,.12);
@@ -49,40 +49,43 @@ body{
   transition:background .3s,color .3s;
 }
 
-/* REALISTIC STUDY ROOM BLURRED BACKGROUND */
+/* REALISTIC STUDY ROOM BLUR BACKDROP */
 .room-bg{
   position:fixed;
   inset:0;
   z-index:0;
   background:
-    linear-gradient(135deg, rgba(251,249,255,.86), rgba(253,235,243,.82)),
-    url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  filter:blur(18px);
-  transform:scale(1.06);
+    radial-gradient(circle at 10% 20%, rgba(255,228,240,.6) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(220,215,255,.6) 0%, transparent 45%),
+    linear-gradient(135deg, rgba(251,249,255,.88), rgba(253,235,243,.82)),
+    url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  filter:blur(22px);
+  transform:scale(1.08);
   pointer-events:none;
 }
 [data-theme="dark"] .room-bg{
   background:
-    linear-gradient(135deg, rgba(20,16,38,.88), rgba(28,20,52,.86)),
-    url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    radial-gradient(circle at 10% 20%, rgba(122,92,255,.2) 0%, transparent 45%),
+    linear-gradient(135deg, rgba(18,14,34,.92), rgba(26,18,48,.9)),
+    url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
 }
 
 /* AURORA BLOBS */
-.blob{position:fixed;border-radius:50%;filter:blur(75px);opacity:.48;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.42;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
 .b1{width:360px;height:360px;background:#7EDCC4;top:-70px;left:-70px}
 .b2{width:400px;height:400px;background:#B7A6FF;top:150px;right:-100px;animation-delay:-4s}
 .b3{width:340px;height:340px;background:#FFC2A6;bottom:-80px;left:25%;animation-delay:-8s}
 @keyframes float{50%{transform:translate(35px,-45px) scale(1.1)}}
 
-.wrap{position:relative;z-index:1;max-width:1060px;margin:auto;padding:0 20px 100px}
-.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;box-shadow:0 12px 34px rgba(122,92,255,.1)}
+.wrap{position:relative;z-index:1;max-width:1060px;margin:auto;padding:0 20px 110px}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:24px;box-shadow:0 12px 34px rgba(122,92,255,.09)}
 
-/* ORIGINAL LOGO & GRADIENT */
+/* LOGO & GRADIENT */
 .logo{font-family:Poppins,sans-serif;font-weight:700;font-size:24px}
 .grad{background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:bg 5s linear infinite}
 @keyframes bg{to{background-position:200%}}
 
-/* FULLSCREEN INITIAL LOGIN MODAL */
+/* FULLSCREEN LOGIN GATEWAY */
 #loginScreen{
   position:fixed;
   inset:0;
@@ -90,8 +93,8 @@ body{
   display:grid;
   place-items:center;
   padding:20px;
-  background:rgba(18,14,34,.6);
-  backdrop-filter:blur(18px);
+  background:rgba(18,14,34,.65);
+  backdrop-filter:blur(20px);
 }
 .login-box{
   width:100%;
@@ -120,7 +123,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0
 .icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--text);font-size:16px;cursor:pointer;display:grid;place-items:center}
 select.level-box{background:var(--glass);border:1px solid var(--line);padding:8px 14px;border-radius:12px;font:600 13px Poppins;color:var(--text);outline:none;cursor:pointer}
 
-/* 1. TOP TIMER & BREAK BAR (SABSE UPAR) */
+/* 1. TOP TIMER & BREAK BAR */
 .top-timer-card{padding:22px 26px;border-radius:26px;margin:10px 0 24px}
 .timer-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .timer-display{font:800 clamp(40px,7vw,62px) Poppins;color:var(--accent);letter-spacing:1px;line-height:1}
@@ -132,7 +135,7 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .btn.o{background:var(--glass);color:var(--text);box-shadow:none;border:1px solid var(--line)}
 .btn.red{background:var(--red);box-shadow:0 6px 16px rgba(228,87,46,.32)}
 
-/* 2. TARGETS & PLANNER (USKE NICHE) */
+/* 2. TARGETS & PLANNER */
 .targets-box{padding:24px;border-radius:26px;margin-bottom:26px}
 .targets-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .task-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--glass-card);border:1px solid var(--border-subtle);border-radius:16px;cursor:pointer}
@@ -175,7 +178,7 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .msg.bot{background:var(--glass-card);border:1px solid var(--border-subtle);align-self:flex-start}
 .msg.user{background:var(--accent);color:#fff;align-self:flex-end}
 
-/* 6. BOTTOM DESCRIPTIVE PARAGRAPHS (SABSE NICHE) */
+/* 6. BOTTOM DESCRIPTIVE PARAGRAPHS */
 .philosophy-card{padding:26px;border-radius:26px;margin-top:30px}
 .philosophy-card h3{font-family:Poppins;font-size:20px;margin:0 0 10px}
 .philosophy-card p{color:var(--mute);font-size:14.5px;line-height:1.65;margin:0 0 12px}
