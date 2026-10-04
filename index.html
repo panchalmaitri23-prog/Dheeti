@@ -1,871 +1,232 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dheeti – The Revision Sanctuary</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ind:#2B2A92;--vio:#6B4DF0;--vio2:#8A6CFF;--ink:#1F1D55;--mu:#6E7098;--lav:#EEF0FF;--lav2:#E3E6FF;--ln:#E3E5F7;--card:#fff;--grn:#22B573;--org:#FF9A3D;--pink:#F2557F;--blue:#4A7BFF;--teal:#1FAE8D}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,#E9ECFF 0,#F4F0FF 22%,#F1F4FF 55%,#EAF1FF 100%);line-height:1.45;overflow-x:hidden}
+button{font-family:inherit;cursor:pointer}
+.W{max-width:1180px;margin:auto;padding:0 20px}
+.hand{font-family:Caveat,cursive;color:var(--vio);font-weight:700}
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { RevisionProvider, useRevision } from './context/RevisionContext';
-import { ActiveTab } from './types';
-import { CommandCenter } from './components/CommandCenter';
-import { RevisionEngineView } from './components/RevisionEngineView';
-import { ActiveRecallView } from './components/ActiveRecallView';
-import { ExamSimulatorView } from './components/ExamSimulatorView';
-import { MistakeVaultView } from './components/MistakeVaultView';
-import { AnalyticsView } from './components/AnalyticsView';
-import { CAInteractiveArena } from './components/CAInteractiveArena';
-import { FocusZenLayout } from './components/FocusZenLayout';
-import { AdaptiveSessionModal } from './components/AdaptiveSessionModal';
-import { CycleSwitcherModal } from './components/CycleSwitcherModal';
-import { DesignStudioDrawer } from './components/DesignStudioDrawer';
-import { LaunchReadyModal } from './components/LaunchReadyModal';
-import { SovereignSanctuaryView } from './components/SovereignSanctuaryView';
-import { AuroraHybridView } from './components/AuroraHybridView';
-import { RtpMtpPyqVault } from './components/RtpMtpPyqVault';
-import { DheetiLogo } from './components/DheetiLogo';
-import { GlobalPomodoroWidget } from './components/GlobalPomodoroWidget';
-import { PWAInstallButton } from './components/PWAInstallButton';
-import {
-  Menu,
-  X,
-  Sparkles,
-  CheckCircle2,
-  Palette,
-  Rocket,
-  Sun,
-  Moon,
-  LayoutDashboard,
-  BrainCircuit,
-  Zap,
-  BookOpenCheck,
-  Flame,
-  LineChart,
-  ChevronRight,
-  RotateCcw,
-  Sliders,
-  Calendar,
-  Library,
-  RefreshCw,
-  Play,
-  Smartphone,
-} from 'lucide-react';
+/* HERO */
+.hero{position:relative;text-align:center;padding:32px 0 16px}
+.hero h1{font:800 clamp(32px,5.6vw,54px)/1.1 Fraunces,serif;margin:12px 0 8px;letter-spacing:-1px;color:var(--ink)}
+.hero h1 span{color:var(--vio)}
+.hero p{max-width:640px;margin:0 auto 16px;color:var(--mu);font-size:16px}
+.tags{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;margin:16px auto;max-width:900px}
+.tags span{font:700 12px 'Plus Jakarta Sans';color:var(--ind);display:flex;flex-direction:column;align-items:center;gap:2px}
+.tags i{font-style:normal;font-size:20px}
 
-/* =========================================================================
-   1. UNIFIED TOPNAV COMPONENT (Full-Width SaaS TopBar Header)
-   ========================================================================= */
-interface HeaderActionProps {
-  onOpenCycleModal: () => void;
-  onOpenDesignDrawer: () => void;
-  onOpenLaunchModal: () => void;
-}
+/* PHONE SHOWCASE */
+.phone-showcase{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:24px auto}
+.ph{position:relative;width:316px;height:640px;border-radius:42px;background:#0E0E22;padding:9px;box-shadow:0 26px 50px rgba(60,50,160,.28),inset 0 0 0 2px #2b2b4a;flex:none}
+.ph::before{content:"";position:absolute;top:13px;left:50%;width:84px;height:20px;margin-left:-42px;background:#000;border-radius:14px;z-index:20}
+.sc{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:linear-gradient(180deg,#F1EFFF,#fff 30%)}
+.sbar{position:absolute;top:0;left:0;right:0;height:34px;padding:11px 22px 0;display:flex;justify-content:space-between;font:700 11px 'Plus Jakarta Sans';z-index:15;color:var(--ink)}
+.bd{position:absolute;top:38px;left:0;right:0;bottom:62px;overflow-y:auto;padding:8px 14px 12px;scrollbar-width:none}
+.bd::-webkit-scrollbar{display:none}
 
-const AppTopNav: React.FC<HeaderActionProps> = ({
-  onOpenCycleModal,
-  onOpenDesignDrawer,
-  onOpenLaunchModal,
-}) => {
-  const { activeTab, setActiveTab, activeCycle, openExamModal, focusStreakDays, showToast, themeMode, setThemeMode } = useRevision();
+.nv{position:absolute;left:0;right:0;bottom:0;height:62px;background:#fff;border-top:1px solid var(--ln);display:flex;justify-content:space-around;align-items:center;padding:0 4px;z-index:15}
+.nv button{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;font:600 9.5px 'Plus Jakarta Sans';color:#8D90B3;width:56px}
+.nv button.on{color:var(--vio)}
 
-  const navItems: { id: ActiveTab; label: string; symbol: string }[] = [
-    { id: 'aurora-hybrid', label: 'Aurora Hybrid', symbol: '✨' },
-    { id: 'sanctuary-studio', label: 'Dheeti Sanctuary', symbol: '💎' },
-    { id: 'command-center', label: 'Command Center', symbol: '⌂' },
-    { id: 'rtp-mtp-pyq', label: 'RTP · MTP · PYQ', symbol: '📚' },
-    { id: 'ca-interactive-arena', label: 'Case Arena', symbol: '⚖' },
-    { id: 'revision-engine', label: 'Revision Engine', symbol: '◈' },
-    { id: 'active-recall', label: 'Active Recall', symbol: '⚡' },
-    { id: 'exam-simulator', label: 'Exam Simulator', symbol: '◫' },
-    { id: 'mistake-vault', label: 'Mistake Vault', symbol: '◌' },
-    { id: 'analytics', label: 'Analytics', symbol: '◉' },
-  ];
+.card{background:#fff;border:1px solid var(--ln);border-radius:16px;padding:12px;box-shadow:0 6px 14px rgba(107,77,240,.07);margin-bottom:10px}
+.hd{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.hd b{font:800 18px Fraunces,serif;color:var(--ind);flex:1}
+.fi{display:flex;align-items:center;gap:10px;padding:9px;border-radius:13px;background:#fff;border:1px solid var(--ln);margin-bottom:7px;cursor:pointer;transition:background .2s}
+.fi:hover{background:#FAF9FF}
+.fi .t{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;flex:none}
+.fi div b{display:block;font-size:11.5px}.fi div small{color:var(--mu);font-size:10px}
+.fi .p{margin-left:auto;width:24px;height:24px;border-radius:50%;background:var(--vio);color:#fff;border:0;font-size:11px}
+.fi.done{opacity:.6;text-decoration:line-through}
+.fi.done .p{background:var(--grn)}
 
-  return (
-    <header className="sticky top-0 z-40 bg-[var(--panel)]/95 backdrop-blur-md border-b-2 border-[var(--line)] px-4 lg:px-8 py-2.5 transition-colors mb-6 shadow-xs">
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-4">
-        {/* Left: Brand Lockup & Active Cycle Badge */}
-        <div className="flex items-center gap-3.5 shrink-0">
-          <div
-            onClick={() => setActiveTab('command-center')}
-            className="flex items-center gap-2.5 cursor-pointer group select-none"
-            title="Dheeti Command Center"
-          >
-            <DheetiLogo size={36} withGlow={true} />
-            <div className="flex flex-col justify-center">
-              {/* Row 1: Brand Name & Sanskrit Badge */}
-              <div className="flex items-center gap-1.5 leading-none">
-                <span className="font-extrabold text-[17px] text-[var(--text)] tracking-tight leading-none">
-                  Dheeti
-                </span>
-                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#8b7cff]/20 text-[#a594ff] border border-[#8b7cff]/30 leading-none">
-                  धीति
-                </span>
-              </div>
-              {/* Row 2: Clean Subline on next line, perfectly aligned */}
-              <span className="block text-[8.5px] font-mono font-bold text-[var(--muted)] tracking-[1.4px] uppercase mt-1 leading-none">
-                WISDOM &amp; REVISION OS
-              </span>
-            </div>
-          </div>
+.o1{background:#FFEBD6}.o2{background:#E3EBFF}.o3{background:#FFE1EA}.o4{background:#DFF6EE}
+.bt{border:0;color:#fff;background:linear-gradient(135deg,#7C5CFF,#5B3FE0);border-radius:11px;padding:9px 14px;font:700 11px 'Plus Jakarta Sans';box-shadow:0 8px 16px rgba(91,63,224,.35)}
+.bt.f{width:100%;padding:11px;font-size:12px;border-radius:12px;margin-top:8px}
 
-          {/* Active CA Cycle Badge */}
-          <button
-            onClick={onOpenCycleModal}
-            className="hidden sm:flex items-center gap-1.5 h-8.5 px-3 rounded-full border border-[var(--line)] bg-[var(--panel2)] hover:border-[var(--violet)] text-xs text-[var(--text)] ml-1 transition-colors shadow-xs cursor-pointer"
-            title="Change Active Study Cycle"
-          >
-            <span className="w-2 h-2 rounded-full bg-[var(--cyan)]" />
-            <span className="font-bold text-[var(--violet)]">{activeCycle.level}</span>
-            <span className="text-[var(--muted)]">·</span>
-            <span className="text-xs truncate max-w-[120px]">{activeCycle.name}</span>
-          </button>
-        </div>
+/* DESKTOP DASHBOARD */
+.br{background:#fff;border-radius:22px;border:1px solid var(--ln);box-shadow:0 30px 60px rgba(60,50,160,.14);overflow:hidden;margin:32px 0 40px}
+.bar{height:30px;background:#F3F4FC;display:flex;gap:6px;align-items:center;padding:0 14px}
+.bar i{width:10px;height:10px;border-radius:50%;background:#FF6B6B}.bar i:nth-child(2){background:#FFC857}.bar i:nth-child(3){background:#34D399}
+.dsh{display:grid;grid-template-columns:200px 1fr;min-height:360px}
+.sd{background:linear-gradient(180deg,#F6F5FF,#fff);padding:14px;border-right:1px solid var(--ln);font-size:12px}
+.sd b{display:block;font:800 16px Fraunces,serif;color:var(--ind);margin-bottom:14px}
+.sd a{display:flex;gap:8px;padding:8px 10px;border-radius:11px;color:var(--mu);font-weight:600;text-decoration:none;margin-bottom:4px}
+.sd a.on{background:var(--lav2);color:var(--vio)}
+.mn{padding:18px;background:linear-gradient(180deg,#F6F5FF,#fff 30%)}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:14px}
+.pl div{background:#fff;border:1px solid var(--ln);border-radius:13px;padding:12px;font-size:11px;color:var(--mu)}
+.pl b{display:block;font-size:18px;color:var(--ink);margin-top:4px}
+</style>
+</head>
+<body>
 
-        {/* Center: Navigation Tabs */}
-        <nav className="hidden lg:flex items-center gap-1 bg-[var(--panel2)] p-1 rounded-xl border border-[var(--line)] shadow-xs">
-          {navItems.map((item) => {
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                className={`h-7.5 px-3 rounded-lg text-xs font-semibold flex items-center transition-all cursor-pointer ${
-                  isActive
-                    ? 'bg-[var(--panel)] text-[var(--text)] shadow-xs font-bold border border-[var(--line)]/50'
-                    : 'text-[var(--muted)] hover:text-[var(--text)]'
-                }`}
-              >
-                <span className="mr-1 text-[var(--violet)]">{item.symbol}</span>
-                {item.label}
-              </button>
-            );
-          })}
-        </nav>
-
-        {/* Right: Action Tools - Properly aligned with unified optical height */}
-        <div className="flex items-center gap-2 shrink-0">
-          {/* Revision Streak Counter Pill */}
-          <div
-            onClick={() => showToast(`🔥 ${focusStreakDays}-day Revision Streak active! Consistency is your ultimate competitive edge.`)}
-            className="h-8.5 flex items-center gap-1.5 px-3 rounded-xl border-2 border-amber-500 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white text-xs font-black cursor-pointer transition-all shadow-md shadow-amber-500/25 select-none hover:brightness-110 active:scale-95 ring-2 ring-amber-400/40"
-            title={`${focusStreakDays} Consecutive Days of Revision · Tap for discipline quote`}
-          >
-            <Flame className="w-4 h-4 text-white fill-amber-200 animate-pulse drop-shadow-sm" />
-            <span className="font-mono text-sm font-black text-white">{focusStreakDays}</span>
-            <span className="text-[10px] uppercase font-black tracking-wider text-amber-100 hidden xl:inline">Streak</span>
-          </div>
-
-          {/* Global Pomodoro Widget */}
-          <div className="hidden md:flex items-center h-8.5">
-            <GlobalPomodoroWidget />
-          </div>
-
-          {/* Direct Dark / Light Mode Switcher - Clean Modern Icon */}
-          <button
-            onClick={() => {
-              const nextTheme = themeMode === 'clean-light' ? 'neon-cyber' : 'clean-light';
-              setThemeMode(nextTheme);
-            }}
-            className={`w-8.5 h-8.5 rounded-xl border-2 flex items-center justify-center transition-all duration-200 cursor-pointer select-none active:scale-90 shadow-sm ${
-              themeMode === 'clean-light'
-                ? 'border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md'
-                : 'border-[var(--line)] bg-[var(--panel)] text-amber-300 hover:border-amber-400/60 hover:bg-[var(--panel2)] hover:shadow-md'
-            }`}
-            title={`Switch to ${themeMode === 'clean-light' ? 'Dark Mode' : 'Light Mode'}`}
-            aria-label="Toggle Light and Dark Mode"
-          >
-            {themeMode === 'clean-light' ? (
-              <Moon className="w-4 h-4 text-slate-800 fill-slate-800 transition-transform duration-300 hover:-rotate-12" />
-            ) : (
-              <Sun className="w-4 h-4 text-amber-400 fill-amber-400/20 transition-transform duration-300 hover:rotate-45" />
-            )}
-          </button>
-
-          {/* Quick Previews & Customizer Button */}
-          <button
-            onClick={onOpenDesignDrawer}
-            className="h-8.5 flex items-center gap-1.5 px-3 rounded-xl border border-[var(--line)] bg-[var(--panel2)] hover:border-[var(--violet)] text-xs text-[var(--text)] font-semibold transition-all shadow-xs cursor-pointer"
-            title="Open Colors, Themes & Layouts Preview Drawer"
-          >
-            <Palette className="w-3.5 h-3.5 text-[var(--violet)]" />
-            <span className="hidden xl:inline">Themes</span>
-          </button>
-
-          {/* Quick Adaptive Burst */}
-          <button
-            onClick={() => openExamModal()}
-            className="h-8.5 flex items-center gap-1.5 px-3.5 rounded-xl bg-gradient-to-r from-[#7668ff] to-[#a05fff] text-white text-xs font-semibold hover:brightness-110 active:scale-95 transition-all shadow-md shadow-[#7668ff]/20 cursor-pointer"
-          >
-            <span>Quick Burst</span>
-          </button>
-
-          {/* Launch Modal */}
-          <button
-            onClick={onOpenLaunchModal}
-            className="h-8.5 flex items-center gap-1.5 px-3.5 rounded-xl bg-gradient-to-r from-[#6366f1] via-[#8b7cff] to-[#4de1d0] text-white text-xs font-bold shadow-md shadow-[#6366f1]/25 hover:brightness-110 active:scale-95 transition-all uppercase tracking-wide cursor-pointer"
-            title="Verify & Launch Live"
-          >
-            <Rocket className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">Launch</span>
-          </button>
-        </div>
-      </div>
-    </header>
-  );
-};
-
-/* =========================================================================
-   2. UNIFIED TOPHEADER COMPONENT (Workspace Title & Aligned Header Bar)
-   ========================================================================= */
-const AppTopHeader: React.FC<HeaderActionProps> = ({
-  onOpenCycleModal,
-  onOpenDesignDrawer,
-  onOpenLaunchModal,
-}) => {
-  const { activeTab, activeCycle, themeMode, setThemeMode, recalculatePlan, openExamModal, showToast, focusStreakDays } = useRevision();
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-
-  useEffect(() => {
-    const handler = (e: any) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-    };
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
-  }, []);
-
-  const handleInstallClick = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const choiceResult = await deferredPrompt.userChoice;
-      if (choiceResult.outcome === 'accepted') {
-        showToast('🎉 dheeti app added to your home screen!');
-      }
-      setDeferredPrompt(null);
-    } else {
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (isMobile) {
-        showToast('📱 Tap browser menu (⋮ or Share) ➔ "Add to Home screen" to install dheeti!');
-      } else {
-        showToast('💻 In Chrome/Edge: click the Install icon (⊕) in address bar to install dheeti!');
-      }
-    }
-  };
-
-  const getTitleAndSub = () => {
-    switch (activeTab) {
-      case 'aurora-hybrid':
-        return {
-          title: 'Dheeti – Aurora Hybrid',
-          subtitle: 'Padhai soft, checking strict: Pastel glass planner + ICAI ledger paper & red ink.',
-        };
-      case 'sanctuary-studio':
-        return {
-          title: 'Dheeti Sovereign Studio',
-          subtitle: 'Active Recall Sanctuary: Focus Interval, Curated Vault, 3D Flashcard, and Ledger Corrections.',
-        };
-      case 'command-center':
-        return {
-          title: 'Command Center',
-          subtitle: `Adaptive revision schedule dynamically tuned for ${activeCycle.level} actual recall performance.`,
-        };
-      case 'ca-interactive-arena':
-        return {
-          title: 'Case Study Arena',
-          subtitle: 'ICAI step-marking matrix, working note checklists, and live mistake taxonomy.',
-        };
-      case 'revision-engine':
-        return {
-          title: 'Revision Engine',
-          subtitle: `Priority matrix & decay velocity calibrated for ${activeCycle.level}.`,
-        };
-      case 'active-recall':
-        return {
-          title: 'Active Recall Burst',
-          subtitle: 'High-frequency concept interrogation with immediate ICAI standard feedback.',
-        };
-      case 'exam-simulator':
-        return {
-          title: 'Exam Simulator',
-          subtitle: `Timed mock examination with integrated ${activeCycle.level} standard marking scheme.`,
-        };
-      case 'mistake-vault':
-        return {
-          title: 'Mistake Vault (Red-Ink)',
-          subtitle: 'Persistent archive of concept failures, traps, and remediated rules.',
-        };
-      case 'analytics':
-        return {
-          title: 'Recall Analytics',
-          subtitle: 'Forgetting curves, retention velocity, and mastery trajectory.',
-        };
-      default:
-        return {
-          title: 'Dheeti OS',
-          subtitle: 'Chartered Accountancy Cognitive Revision Operating System.',
-        };
-    }
-  };
-
-  const { title, subtitle } = getTitleAndSub();
-
-  return (
-    <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-2 transition-colors">
-      <div>
-        <div className="flex items-center gap-2 mb-1">
-          <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase tracking-wider bg-[var(--violet)]/15 text-[var(--violet)]">
-            {activeCycle.level}
-          </span>
-          <span className="text-xs text-[var(--muted)]">· {activeCycle.cycleCode}</span>
-        </div>
-        <h1 className="text-2xl font-bold text-[var(--text)] tracking-tight">{title}</h1>
-        <p className="text-sm text-[var(--muted)] mt-0.5">{subtitle}</p>
-      </div>
-
-      <div className="flex items-center gap-2.5 flex-wrap">
-        {/* Revision Streak Counter Pill */}
-        <div
-          onClick={() => showToast(`🔥 ${focusStreakDays}-day Revision Streak active! Consistency is your ultimate competitive edge.`)}
-          className="h-9 flex items-center gap-1.5 px-3.5 rounded-xl border-2 border-amber-500 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white text-xs font-black cursor-pointer transition-all shadow-md shadow-amber-500/25 select-none hover:brightness-110 active:scale-95 ring-2 ring-amber-400/40"
-          title={`${focusStreakDays} Consecutive Days of Revision · Tap for discipline quote`}
-        >
-          <Flame className="w-4 h-4 text-white fill-amber-200 animate-pulse drop-shadow-sm" />
-          <span className="font-mono text-sm font-black text-white">{focusStreakDays}</span>
-          <span className="text-[10px] uppercase font-black tracking-wider text-amber-100 hidden sm:inline">Streak</span>
-        </div>
-
-        {/* Global Persistent Pomodoro Timer */}
-        <div className="flex items-center h-9">
-          <GlobalPomodoroWidget />
-        </div>
-
-        {/* Direct Dark / Light Mode Switcher - Icon Only (Clean & Modern) */}
-        <button
-          onClick={() => {
-            const nextTheme = themeMode === 'clean-light' ? 'neon-cyber' : 'clean-light';
-            setThemeMode(nextTheme);
-          }}
-          className={`w-9 h-9 rounded-xl border-2 flex items-center justify-center transition-all duration-200 cursor-pointer select-none active:scale-90 shadow-sm ${
-            themeMode === 'clean-light'
-              ? 'border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md'
-              : 'border-[var(--line)] bg-[var(--panel)] text-amber-300 hover:border-amber-400/60 hover:bg-[var(--panel2)] hover:shadow-md'
-          }`}
-          title={`Switch to ${themeMode === 'clean-light' ? 'Dark Mode' : 'Light Mode'}`}
-          aria-label="Toggle Light and Dark Mode"
-        >
-          {themeMode === 'clean-light' ? (
-            <Moon className="w-4 h-4 text-slate-800 fill-slate-800 transition-transform duration-300 hover:-rotate-12" />
-          ) : (
-            <Sun className="w-4 h-4 text-amber-400 fill-amber-400/20 transition-transform duration-300 hover:rotate-45" />
-          )}
-        </button>
-
-        {/* 1-Tap PWA Install Button */}
-        <PWAInstallButton />
-
-        {/* Design Previews Button */}
-        <button
-          onClick={onOpenDesignDrawer}
-          className="h-9 flex items-center gap-1.5 px-3 rounded-xl border border-[var(--line)] bg-[var(--panel)] text-[var(--text)] text-xs font-semibold hover:border-[var(--violet)] hover:text-[var(--violet)] transition-colors shadow-sm cursor-pointer"
-          title="Switch Themes and Layouts"
-        >
-          <Palette className="w-3.5 h-3.5 text-[var(--violet)]" />
-          <span>Themes</span>
-        </button>
-
-        {/* Study Cycle Picker */}
-        <button
-          onClick={onOpenCycleModal}
-          className="h-9 flex items-center gap-1.5 px-3 rounded-xl border border-[var(--line)] bg-[var(--panel)] text-[var(--text)] text-xs hover:border-[var(--violet)]/50 transition-colors shadow-sm cursor-pointer"
-        >
-          <Calendar className="w-3.5 h-3.5 text-[var(--amber)]" />
-          <span className="font-semibold">{activeCycle.level}</span>
-        </button>
-
-        {/* Recalculate */}
-        <button
-          onClick={recalculatePlan}
-          className="h-9 flex items-center gap-1.5 px-3 rounded-xl border border-[var(--line)] bg-[var(--panel)] text-[var(--text)] text-xs hover:border-[var(--cyan)] hover:text-[var(--cyan)] transition-colors shadow-sm cursor-pointer"
-          title="Recalculate study queue from latest mistake log and recall scores"
-        >
-          <RefreshCw className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">Recalculate Queue</span>
-        </button>
-
-        {/* Quick Burst */}
-        <button
-          onClick={() => openExamModal()}
-          className="h-9 flex items-center gap-1.5 px-3.5 rounded-xl bg-gradient-to-r from-[#7668ff] to-[#a05fff] text-white text-xs font-semibold shadow-md shadow-[#7668ff]/20 hover:brightness-110 active:scale-95 transition-all cursor-pointer"
-        >
-          <Play className="w-3.5 h-3.5 fill-current" />
-          <span>Quick Burst</span>
-        </button>
-
-        {/* Install / Add to Home Screen App Shortcut Button */}
-        <button
-          onClick={handleInstallClick}
-          className="h-9 flex items-center gap-1.5 px-3 rounded-xl border border-[var(--cyan)]/40 bg-[var(--cyan)]/10 text-[var(--cyan)] text-xs font-bold hover:bg-[var(--cyan)]/20 transition-all shadow-sm cursor-pointer"
-          title="Add dheeti to Phone/Desktop Home Screen as an App"
-        >
-          <Smartphone className="w-3.5 h-3.5" />
-          <span>App Shortcut</span>
-        </button>
-
-        {/* Final Launch Button */}
-        <button
-          onClick={onOpenLaunchModal}
-          className="h-9 flex items-center gap-1.5 px-3.5 rounded-xl bg-gradient-to-r from-[#6366f1] via-[#8b7cff] to-[#4de1d0] text-white text-xs font-bold shadow-md shadow-[#6366f1]/25 hover:brightness-110 active:scale-95 transition-all uppercase tracking-wide cursor-pointer"
-        >
-          <Rocket className="w-3.5 h-3.5" />
-          <span>Launch Ready</span>
-        </button>
-      </div>
-    </header>
-  );
-};
-
-/* =========================================================================
-   3. UNIFIED SIDEBAR COMPONENT (Desktop & Mobile Drawer Dock)
-   ========================================================================= */
-const AppSidebar: React.FC<HeaderActionProps> = ({
-  onOpenCycleModal,
-  onOpenDesignDrawer,
-}) => {
-  const { activeTab, setActiveTab, activeCycle, resetToDefaults, themeMode, setThemeMode } = useRevision();
-
-  const primaryRevisionTracks: {
-    id: ActiveTab;
-    label: string;
-    sublabel: string;
-    symbol: string;
-    icon: React.ReactNode;
-  }[] = [
-    {
-      id: 'aurora-hybrid',
-      label: 'Aurora Hybrid',
-      sublabel: 'Padhai soft, checking strict',
-      symbol: '✨',
-      icon: <Sparkles className="w-4 h-4 text-[#FF7EB0]" />,
-    },
-    {
-      id: 'sanctuary-studio',
-      label: 'Dheeti Sanctuary',
-      sublabel: 'Matrix • Sanctum • Ledger',
-      symbol: '✨',
-      icon: <Sparkles className="w-4 h-4 text-[#8b7cff]" />,
-    },
-    {
-      id: 'command-center',
-      label: 'Command Center',
-      sublabel: 'Adaptive overview & debt',
-      symbol: '⌂',
-      icon: <LayoutDashboard className="w-4 h-4" />,
-    },
-    {
-      id: 'rtp-mtp-pyq',
-      label: 'RTP · MTP · PYQ Vault',
-      sublabel: '2018–2026 ICAI + Mix + Own',
-      symbol: '📚',
-      icon: <Library className="w-4 h-4 text-[#7A5CFF]" />,
-    },
-    {
-      id: 'ca-interactive-arena',
-      label: 'Case Study Arena',
-      sublabel: 'Step-marking & mistake vault',
-      symbol: '⚖',
-      icon: <BookOpenCheck className="w-4 h-4" />,
-    },
-    {
-      id: 'revision-engine',
-      label: 'Revision Engine',
-      sublabel: 'Algorithmic priority queue',
-      symbol: '◈',
-      icon: <BrainCircuit className="w-4 h-4" />,
-    },
-    {
-      id: 'active-recall',
-      label: 'Active Recall',
-      sublabel: 'Concept retrieval drills',
-      symbol: '⚡',
-      icon: <Zap className="w-4 h-4" />,
-    },
-    {
-      id: 'exam-simulator',
-      label: 'Exam Simulator',
-      sublabel: 'Timed ICAI diagnostic mock',
-      symbol: '◫',
-      icon: <BookOpenCheck className="w-4 h-4" />,
-    },
-    {
-      id: 'mistake-vault',
-      label: 'Mistake Vault',
-      sublabel: 'Red-ink error ledger',
-      symbol: '◌',
-      icon: <Flame className="w-4 h-4" />,
-    },
-    {
-      id: 'analytics',
-      label: 'Recall Analytics',
-      sublabel: 'Retention decay velocity',
-      symbol: '◉',
-      icon: <LineChart className="w-4 h-4" />,
-    },
-  ];
-
-  return (
-    <aside className="w-[245px] shrink-0 border-r border-[var(--line)] bg-[var(--panel)]/95 backdrop-blur-md p-4 flex flex-col justify-between sticky top-0 h-screen overflow-y-auto transition-colors">
-      <div>
-        {/* Clean Application Brand Lockup */}
-        <div
-          className="flex items-center gap-3 mb-6 cursor-pointer group select-none"
-          onClick={() => setActiveTab('command-center')}
-          title="Dheeti Command Center"
-        >
-          <DheetiLogo size={40} withGlow={true} />
-          <div className="flex flex-col justify-center">
-            <div className="flex items-center gap-1.5 leading-none">
-              <div className="font-extrabold text-[18px] text-[var(--text)] tracking-tight leading-none">
-                Dheeti
-              </div>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#8b7cff]/20 text-[#a594ff] border border-[#8b7cff]/30 leading-none">
-                धीति
-              </span>
-            </div>
-            <span className="block text-[8.5px] font-mono font-bold text-[var(--muted)] tracking-[1.4px] uppercase mt-1 leading-none">
-              WISDOM &amp; REVISION OS
-            </span>
-          </div>
-        </div>
-
-        {/* Primary Track Settings Pill */}
-        <div className="mb-4">
-          <button
-            onClick={onOpenCycleModal}
-            className="w-full flex items-center justify-between p-2.5 rounded-xl border border-[var(--line)] bg-[var(--panel2)] hover:border-[var(--violet)] text-xs text-[var(--text)] font-semibold transition-all group cursor-pointer"
-            title="Configure Active Revision Track"
-          >
-            <div className="flex items-center gap-2">
-              <Sliders className="w-3.5 h-3.5 text-[var(--violet)]" />
-              <span>Track: {activeCycle.level}</span>
-            </div>
-            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--violet)]/15 text-[var(--violet)] font-mono">
-              Change
-            </span>
-          </button>
-        </div>
-
-        {/* Navigation Track Items */}
-        <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--muted)] px-1 mb-2 font-semibold">
-          Revision Tracks
-        </div>
-
-        <nav className="grid gap-1.5">
-          {primaryRevisionTracks.map((item) => {
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center justify-between text-left px-3 py-2.5 rounded-xl transition-all duration-150 cursor-pointer ${
-                  isActive
-                    ? 'bg-[var(--panel2)] border border-[var(--line)] text-[var(--text)] font-semibold shadow-sm ring-1 ring-[var(--violet)]/30'
-                    : 'border border-transparent text-[var(--muted)] hover:bg-[var(--panel2)] hover:text-[var(--text)]'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className={`text-[13px] ${isActive ? 'text-[var(--violet)]' : 'text-[var(--muted)]'}`}>
-                    {item.symbol}
-                  </span>
-                  <div>
-                    <span className="text-xs font-semibold block leading-tight text-[var(--text)]">
-                      {item.label}
-                    </span>
-                    <span className="text-[10px] text-[var(--muted)] block leading-tight mt-0.5">
-                      {item.sublabel}
-                    </span>
-                  </div>
-                </div>
-                {isActive && <ChevronRight className="w-3.5 h-3.5 text-[var(--violet)] shrink-0 ml-1" />}
-              </button>
-            );
-          })}
-        </nav>
-      </div>
-
-      {/* Revision Track Setting Card & Workspace Control */}
-      <div className="pt-4 border-t border-[var(--line)] space-y-3">
-        {/* Active Track Settings Summary Card */}
-        <div
-          onClick={onOpenCycleModal}
-          className="p-3 border border-[var(--line)] rounded-[15px] bg-[var(--panel2)] hover:border-[var(--violet)]/50 transition-colors cursor-pointer group"
-        >
-          <div className="flex items-center justify-between text-[11px] text-[var(--muted)] mb-1">
-            <span className="font-medium">Active Track</span>
-            <span className="text-[10px] text-[var(--violet)] group-hover:underline">Settings</span>
-          </div>
-
-          <div className="font-bold text-xs text-[var(--text)] leading-snug">
-            {activeCycle.level}
-          </div>
-          <div className="text-[11px] text-[var(--muted)] truncate">
-            {activeCycle.name}
-          </div>
-
-          <div className="h-[6px] bg-[var(--line)] rounded-full overflow-hidden mt-2 mb-1.5">
-            <div
-              className="h-full bg-gradient-to-r from-[var(--violet)] to-[var(--cyan)] rounded-full transition-all duration-500"
-              style={{ width: `${activeCycle.progressPercent}%` }}
-            />
-          </div>
-          <div className="flex items-center justify-between text-[10px] text-[var(--muted)]">
-            <span>{activeCycle.progressPercent}% coverage</span>
-            <span className="text-[var(--cyan)] font-mono">{activeCycle.cycleCode}</span>
-          </div>
-        </div>
-
-        {/* Direct Light / Dark Mode Switcher */}
-        <div className="p-1 rounded-xl border-2 border-[var(--line)] bg-[var(--panel2)] flex items-center gap-1 shadow-sm">
-          <button
-            onClick={() => setThemeMode('clean-light')}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-xs font-black transition-all cursor-pointer ${
-              themeMode === 'clean-light'
-                ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md border border-amber-400 ring-1 ring-amber-300/40'
-                : 'text-[var(--muted)] hover:text-[var(--text)]'
-            }`}
-            title="Switch to Clean Light Day Mode"
-          >
-            <Sun className={`w-3.5 h-3.5 ${themeMode === 'clean-light' ? 'text-white fill-white' : 'text-amber-500 fill-amber-400'}`} />
-            <span>Light ☀️</span>
-          </button>
-          <button
-            onClick={() => setThemeMode(themeMode === 'clean-light' ? 'neon-cyber' : themeMode)}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-xs font-black transition-all cursor-pointer ${
-              themeMode !== 'clean-light'
-                ? 'bg-[var(--violet)] text-white shadow-md border border-violet-400 ring-1 ring-violet-300/40'
-                : 'text-[var(--text)] hover:text-[var(--violet)]'
-            }`}
-            title="Switch to Dark / Night Mode"
-          >
-            <Moon className={`w-3.5 h-3.5 ${themeMode !== 'clean-light' ? 'text-white fill-white' : 'text-amber-500 fill-amber-400'}`} />
-            <span>Dark 🌙</span>
-          </button>
-        </div>
-
-        {/* Visual Settings Drawer Trigger */}
-        <button
-          onClick={onOpenDesignDrawer}
-          className="w-full flex items-center justify-between p-2 rounded-xl border border-[var(--line)] bg-[var(--panel)] hover:border-[var(--violet)] text-xs text-[var(--muted)] hover:text-[var(--text)] transition-all font-medium cursor-pointer"
-        >
-          <div className="flex items-center gap-2">
-            <Palette className="w-3.5 h-3.5 text-[var(--violet)]" />
-            <span>Theme &amp; Layout</span>
-          </div>
-          <ChevronRight className="w-3 h-3 text-[var(--muted)]" />
-        </button>
-
-        {/* Clean Workspace Reset Action */}
-        <div className="flex items-center justify-between px-1 text-[11px] text-[var(--muted)] pt-1">
-          <button
-            onClick={resetToDefaults}
-            className="flex items-center gap-1.5 hover:text-[var(--text)] transition-colors py-0.5 cursor-pointer"
-            title="Reset workspace demo state"
-          >
-            <RotateCcw className="w-3 h-3" />
-            <span>Reset Demo</span>
-          </button>
-          <span className="text-[10px] font-mono text-[var(--green)]">CA Track Active</span>
-        </div>
-      </div>
-    </aside>
-  );
-};
-
-/* =========================================================================
-   4. MAIN MASTER LAYOUT CONTAINER (With Framer Motion Tab Transitions)
-   ========================================================================= */
-const MainLayout: React.FC = () => {
-  const { activeTab, layoutMode, toastMessage, themeMode, setThemeMode } = useRevision();
-  const [isCycleModalOpen, setIsCycleModalOpen] = useState(false);
-  const [isDesignDrawerOpen, setIsDesignDrawerOpen] = useState(false);
-  const [isLaunchModalOpen, setIsLaunchModalOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const isTopNavLayout = layoutMode === 'top-nav';
-  const isZenLayout = layoutMode === 'focus-zen';
-
-  return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-200">
-      {/* Top Navigation Mode */}
-      {isTopNavLayout && (
-        <AppTopNav
-          onOpenCycleModal={() => setIsCycleModalOpen(true)}
-          onOpenDesignDrawer={() => setIsDesignDrawerOpen(true)}
-          onOpenLaunchModal={() => setIsLaunchModalOpen(true)}
-        />
-      )}
-
-      <div className="flex flex-col md:flex-row relative">
-        {/* Mobile Top Bar (only when sidebar is active on desktop) */}
-        {!isTopNavLayout && (
-          <div className="md:hidden flex items-center justify-between p-4 bg-[var(--panel)] border-b-2 border-[var(--line)] sticky top-0 z-40">
-            <div className="flex items-center gap-2.5">
-              <DheetiLogo size={32} withGlow={true} />
-              <div className="flex flex-col">
-                <span className="font-extrabold text-sm tracking-tight text-[var(--text)] leading-none">Dheeti</span>
-                <span className="text-[8px] font-mono font-bold text-[var(--muted)] tracking-wider uppercase mt-0.5 leading-none">WISDOM &amp; REVISION OS</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              {/* Direct Light / Dark Mode Toggle Button for Mobile - Clean Icon Only */}
-              <button
-                onClick={() => {
-                  const nextTheme = themeMode === 'clean-light' ? 'neon-cyber' : 'clean-light';
-                  setThemeMode(nextTheme);
-                }}
-                className={`w-9 h-9 rounded-xl border-2 flex items-center justify-center transition-all duration-200 cursor-pointer select-none active:scale-90 shadow-sm ${
-                  themeMode === 'clean-light'
-                    ? 'border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md'
-                    : 'border-[var(--line)] bg-[var(--panel)] text-amber-300 hover:border-amber-400/60 hover:bg-[var(--panel2)] hover:shadow-md'
-                }`}
-                title={`Switch to ${themeMode === 'clean-light' ? 'Dark Mode' : 'Light Mode'}`}
-                aria-label="Toggle Light and Dark Mode"
-              >
-                {themeMode === 'clean-light' ? (
-                  <Moon className="w-4 h-4 text-slate-800 fill-slate-800 transition-transform duration-300 hover:-rotate-12" />
-                ) : (
-                  <Sun className="w-4 h-4 text-amber-400 fill-amber-400/20 transition-transform duration-300 hover:rotate-45" />
-                )}
-              </button>
-              <button
-                onClick={() => setIsDesignDrawerOpen(true)}
-                className="p-1.5 text-[var(--muted)] hover:text-[var(--text)] cursor-pointer"
-                title="Design Previews"
-              >
-                <Palette className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-1.5 text-[var(--muted)] hover:text-[var(--text)] cursor-pointer"
-              >
-                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Sidebar for Desktop (Classic Dock & Zen Modes) */}
-        {!isTopNavLayout && (
-          <div className="hidden md:block">
-            <AppSidebar
-              onOpenCycleModal={() => setIsCycleModalOpen(true)}
-              onOpenDesignDrawer={() => setIsDesignDrawerOpen(true)}
-              onOpenLaunchModal={() => setIsLaunchModalOpen(true)}
-            />
-          </div>
-        )}
-
-        {/* Mobile Sidebar Drawer */}
-        {!isTopNavLayout && isMobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex">
-            <div className="w-[260px] bg-[var(--panel)] h-full shadow-2xl relative">
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="absolute top-4 right-4 text-[var(--muted)] cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              <div onClick={() => setIsMobileMenuOpen(false)}>
-                <AppSidebar
-                  onOpenCycleModal={() => setIsCycleModalOpen(true)}
-                  onOpenDesignDrawer={() => setIsDesignDrawerOpen(true)}
-                  onOpenLaunchModal={() => setIsLaunchModalOpen(true)}
-                />
-              </div>
-            </div>
-            <div className="flex-1" onClick={() => setIsMobileMenuOpen(false)} />
-          </div>
-        )}
-
-        {/* Main Viewport Container */}
-        <main className="flex-1 p-4 md:p-7 max-w-[1360px] w-full mx-auto">
-          {!isTopNavLayout && (
-            <AppTopHeader
-              onOpenCycleModal={() => setIsCycleModalOpen(true)}
-              onOpenDesignDrawer={() => setIsDesignDrawerOpen(true)}
-              onOpenLaunchModal={() => setIsLaunchModalOpen(true)}
-            />
-          )}
-
-          {/* Conditional Zen layout mode vs standard tab views with subtle Framer Motion entry animations */}
-          <AnimatePresence mode="wait">
-            {isZenLayout && activeTab === 'command-center' ? (
-              <motion.div
-                key="focus-zen"
-                initial={{ opacity: 0, y: 8, filter: 'blur(2px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, y: -6, filter: 'blur(2px)' }}
-                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full"
-              >
-                <FocusZenLayout />
-              </motion.div>
-            ) : (
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 8, filter: 'blur(2px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, y: -6, filter: 'blur(2px)' }}
-                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full"
-              >
-                {activeTab === 'aurora-hybrid' && <AuroraHybridView />}
-                {activeTab === 'sanctuary-studio' && <SovereignSanctuaryView />}
-                {activeTab === 'command-center' && <CommandCenter />}
-                {activeTab === 'rtp-mtp-pyq' && <RtpMtpPyqVault />}
-                {activeTab === 'ca-interactive-arena' && <CAInteractiveArena />}
-                {activeTab === 'revision-engine' && <RevisionEngineView />}
-                {activeTab === 'active-recall' && <ActiveRecallView />}
-                {activeTab === 'exam-simulator' && <ExamSimulatorView />}
-                {activeTab === 'mistake-vault' && <MistakeVaultView />}
-                {activeTab === 'analytics' && <AnalyticsView />}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </main>
-      </div>
-
-      {/* Interactive Modals & Drawers */}
-      <AdaptiveSessionModal />
-      <CycleSwitcherModal
-        isOpen={isCycleModalOpen}
-        onClose={() => setIsCycleModalOpen(false)}
-      />
-      <DesignStudioDrawer
-        isOpen={isDesignDrawerOpen}
-        onClose={() => setIsDesignDrawerOpen(false)}
-        onOpenCycleModal={() => setIsCycleModalOpen(true)}
-        onOpenLaunchModal={() => setIsLaunchModalOpen(true)}
-      />
-      <LaunchReadyModal
-        isOpen={isLaunchModalOpen}
-        onClose={() => setIsLaunchModalOpen(false)}
-      />
-
-      {/* Floating Toast Notification */}
-      {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-[var(--panel)] border border-[var(--line)] text-[var(--text)] text-xs font-semibold rounded-xl shadow-2xl animate-in slide-in-from-bottom-3 duration-200">
-          <CheckCircle2 className="w-4 h-4 text-[var(--green)]" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
+<div class="W">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hand" style="font-size:26px;margin-bottom:4px">धृति • Steadfast Revision</div>
+    <h1>Dheeti — The <span>Revision Sanctuary</span></h1>
+    <p>A pure, high-focus revision ecosystem built specifically for <b>CA Aspirants</b>. Zero friction, structured recall, and calm progress.</p>
+    
+    <div class="tags">
+      <span><i>⚡</i>3-Pass Spaced Recall</span>
+      <span><i>⏳</i>LDR Speed Timers</span>
+      <span><i>🎯</i>RTP & MTP Evaluator</span>
+      <span><i>🌸</i>No-Distraction Interface</span>
     </div>
-  );
-};
+  </section>
 
-export default function App() {
-  return (
-    <RevisionProvider>
-      <MainLayout />
-    </RevisionProvider>
-  );
+  <!-- PHONE MOCKUP -->
+  <div class="phone-showcase">
+    <div class="ph">
+      <div class="sc">
+        <div class="sbar">
+          <span id="liveTime">09:41</span>
+          <span>5G 📶</span>
+        </div>
+        
+        <div class="bd">
+          <div class="hd">
+            <b>Dheeti</b>
+            <span style="font-size:11px;background:var(--lav2);color:var(--vio);padding:2px 8px;border-radius:10px;font-weight:700">CA Inter</span>
+          </div>
+
+          <div class="card">
+            <div style="font-size:11px;color:var(--mu);font-weight:700">TODAY'S TARGET</div>
+            <div style="font:800 15px Plus Jakarta Sans;margin:2px 0 8px">Corporate & Other Laws</div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--mu)">
+              <span>Chapter 7: Management & Admin</span>
+              <b id="progText">66%</b>
+            </div>
+            <div style="height:6px;background:var(--lav2);border-radius:10px;margin-top:6px;overflow:hidden">
+              <div id="progBar" style="width:66%;height:100%;background:var(--vio);transition:width .3s"></div>
+            </div>
+          </div>
+
+          <div style="font:800 12px Plus Jakarta Sans;margin:12px 0 6px">ACTIVE MODULES (TAP TO TICK)</div>
+
+          <div class="fi" onclick="toggleTask(this)">
+            <div class="t o1">📖</div>
+            <div>
+              <b>Sec 96–105 Meetings & Quorum</b>
+              <small>3 Core Rules • Pass 2 Due</small>
+            </div>
+            <button class="p">✓</button>
+          </div>
+
+          <div class="fi" onclick="toggleTask(this)">
+            <div class="t o2">⚖️</div>
+            <div>
+              <b>Sec 123–127 Declaration of Dividend</b>
+              <small>Penalty Table & Timelines</small>
+            </div>
+            <button class="p">→</button>
+          </div>
+
+          <div class="fi" onclick="toggleTask(this)">
+            <div class="t o4">🎯</div>
+            <div>
+              <b>ICAI Past Exam Trap Points</b>
+              <small>May 2024 & Nov 2024 MCQs</small>
+            </div>
+            <button class="p">→</button>
+          </div>
+
+          <button class="bt f" id="timerBtn" onclick="startTimer()">Start 25m Focus Block</button>
+        </div>
+
+        <div class="nv">
+          <button class="on"><i>🏠</i>Vault</button>
+          <button><i>⏱️</i>Sprint</button>
+          <button><i>🧠</i>Recall</button>
+          <button><i>👤</i>Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESKTOP DASHBOARD PREVIEW -->
+  <div class="br">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="dsh">
+      <div class="sd">
+        <b>Dheeti Sanctuary</b>
+        <a href="#" class="on">📚 Revision Vault</a>
+        <a href="#">⚡ Speed Tests</a>
+        <a href="#">🗓️ LDR Planner</a>
+        <a href="#">⚙️ Settings</a>
+      </div>
+      <div class="mn">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <h3 style="margin:0;font-size:18px">Revision Progress Overview</h3>
+            <span style="font-size:12px;color:var(--mu)">Direct Sync with ICAI Intermediate Syllabus</span>
+          </div>
+          <button class="bt" onclick="alert('New Subject Module added!')">+ Add Subject Module</button>
+        </div>
+
+        <div class="dg pl">
+          <div>Advanced Accounting<b>18 / 24 Ch.</b></div>
+          <div>Corporate Laws<b>10 / 11 Ch.</b></div>
+          <div>Cost & Mgmt Accounting<b>12 / 15 Ch.</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Live Time
+function updateClock() {
+  const d = new Date();
+  const h = String(d.getHours()).padStart(2, '0');
+  const m = String(d.getMinutes()).padStart(2, '0');
+  const el = document.getElementById('liveTime');
+  if(el) el.innerText = h + ":" + m;
 }
+setInterval(updateClock, 1000);
+updateClock();
+
+// Interactive Tasks
+function toggleTask(el) {
+  el.classList.toggle('done');
+  const all = document.querySelectorAll('.fi').length;
+  const done = document.querySelectorAll('.fi.done').length;
+  const pct = Math.round((done / all) * 100);
+  document.getElementById('progText').innerText = pct + '%';
+  document.getElementById('progBar').style.width = pct + '%';
+}
+
+// Interactive Pomodoro Timer
+let timerInterval = null;
+let seconds = 25 * 60;
+function startTimer() {
+  const btn = document.getElementById('timerBtn');
+  if(timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    btn.innerText = "Resume 25m Focus Block";
+    return;
+  }
+  timerInterval = setInterval(() => {
+    if(seconds <= 0) {
+      clearInterval(timerInterval);
+      btn.innerText = "Completed! Take a Break 🌿";
+      return;
+    }
+    seconds--;
+    const m = Math.floor(seconds / 60);
+    const s = String(seconds % 60).padStart(2, '0');
+    btn.innerText = `Focusing: ${m}:${s} (Tap to Pause)`;
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
