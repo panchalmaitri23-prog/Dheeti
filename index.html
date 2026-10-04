@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dheeti – CA Revision Sanctuary</title>
+<title>Dheeti – Aurora Hybrid CA Sanctuary</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FBF9FF;
-  --glass:rgba(255,255,255,.76);
-  --glass-card:rgba(255,255,255,.88);
+  --glass:rgba(255,255,255,.68);
+  --glass-card:rgba(255,255,255,.82);
   --text:#2A2340;
   --mute:#75708A;
   --line:rgba(255,255,255,.9);
@@ -28,9 +28,9 @@
 }
 
 [data-theme="dark"]{
-  --bg:#120E22;
-  --glass:rgba(24,18,44,.78);
-  --glass-card:rgba(30,24,54,.9);
+  --bg:#141026;
+  --glass:rgba(26,20,50,.72);
+  --glass-card:rgba(32,25,60,.88);
   --text:#F3EFFF;
   --mute:#A59EC0;
   --line:rgba(255,255,255,.12);
@@ -49,60 +49,62 @@ body{
   transition:background .3s,color .3s;
 }
 
-/* REALISTIC STUDY ROOM BLUR BACKGROUND */
-.room-backdrop{
+/* REALISTIC STUDY ROOM BLURRED BACKGROUND */
+.room-bg{
   position:fixed;
   inset:0;
   z-index:0;
   background:
-    linear-gradient(135deg, rgba(251,249,255,.84), rgba(253,235,243,.82)),
-    url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  filter:blur(14px);
-  transform:scale(1.04);
+    linear-gradient(135deg, rgba(251,249,255,.86), rgba(253,235,243,.82)),
+    url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  filter:blur(18px);
+  transform:scale(1.06);
   pointer-events:none;
 }
-[data-theme="dark"] .room-backdrop{
+[data-theme="dark"] .room-bg{
   background:
-    linear-gradient(135deg, rgba(18,14,34,.88), rgba(28,20,50,.86)),
-    url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    linear-gradient(135deg, rgba(20,16,38,.88), rgba(28,20,52,.86)),
+    url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
 }
 
 /* AURORA BLOBS */
-.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.42;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
-.b1{width:360px;height:360px;background:#7EDCC4;top:-60px;left:-60px}
-.b2{width:400px;height:400px;background:#B7A6FF;top:180px;right:-100px;animation-delay:-4s}
-@keyframes float{50%{transform:translate(35px,-40px) scale(1.08)}}
+.blob{position:fixed;border-radius:50%;filter:blur(75px);opacity:.48;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
+.b1{width:360px;height:360px;background:#7EDCC4;top:-70px;left:-70px}
+.b2{width:400px;height:400px;background:#B7A6FF;top:150px;right:-100px;animation-delay:-4s}
+.b3{width:340px;height:340px;background:#FFC2A6;bottom:-80px;left:25%;animation-delay:-8s}
+@keyframes float{50%{transform:translate(35px,-45px) scale(1.1)}}
 
-.wrap{position:relative;z-index:1;max-width:1080px;margin:auto;padding:0 20px 100px}
-.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;box-shadow:0 12px 34px rgba(122,92,255,.09)}
+.wrap{position:relative;z-index:1;max-width:1060px;margin:auto;padding:0 20px 100px}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;box-shadow:0 12px 34px rgba(122,92,255,.1)}
 
-/* FULLSCREEN INITIAL LOGIN SCREEN */
+/* ORIGINAL LOGO & GRADIENT */
+.logo{font-family:Poppins,sans-serif;font-weight:700;font-size:24px}
+.grad{background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:bg 5s linear infinite}
+@keyframes bg{to{background-position:200%}}
+
+/* FULLSCREEN INITIAL LOGIN MODAL */
 #loginScreen{
   position:fixed;
   inset:0;
-  z-index:9999;
+  z-index:99999;
   display:grid;
   place-items:center;
   padding:20px;
-  background:rgba(18,14,34,.55);
+  background:rgba(18,14,34,.6);
   backdrop-filter:blur(18px);
 }
 .login-box{
   width:100%;
-  max-width:420px;
-  padding:32px 26px;
+  max-width:410px;
+  padding:32px 24px;
   background:var(--glass-card);
   border:1px solid var(--line);
   border-radius:32px;
   box-shadow:0 25px 60px rgba(0,0,0,.25);
   text-align:center;
 }
-.login-box h2{font-family:Poppins;font-size:26px;margin:4px 0}
-.grad{background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:bg 5s linear infinite}
-@keyframes bg{to{background-position:200%}}
-
 .auth-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:18px 0}
-.auth-tab{background:var(--glass);border:1px solid var(--border-subtle);border-radius:12px;padding:8px 4px;font:600 11px Poppins;color:var(--mute);cursor:pointer}
+.auth-tab{background:var(--glass);border:1px solid var(--border-subtle);border-radius:12px;padding:8px 4px;font:600 11.5px Poppins;color:var(--mute);cursor:pointer}
 .auth-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .auth-view{display:none}
 .auth-view.active{display:block}
@@ -111,15 +113,14 @@ body{
 .pattern-grid{display:grid;grid-template-columns:repeat(3,46px);gap:18px;justify-content:center;margin:14px auto}
 .p-dot{width:46px;height:46px;border-radius:50%;background:var(--glass);border:2px solid var(--border-subtle);cursor:pointer;transition:.2s}
 .p-dot.sel{background:var(--accent);border-color:var(--accent)}
-
-.bio-finger{width:68px;height:68px;border-radius:50%;border:2px dashed var(--accent);margin:14px auto 8px;display:grid;place-items:center;font-size:32px;cursor:pointer}
+.bio-finger{width:68px;height:68px;border-radius:50%;border:2px dashed var(--accent);margin:12px auto 6px;display:grid;place-items:center;font-size:32px;cursor:pointer}
 
 /* NAV */
 nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;gap:12px}
 .icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--text);font-size:16px;cursor:pointer;display:grid;place-items:center}
 select.level-box{background:var(--glass);border:1px solid var(--line);padding:8px 14px;border-radius:12px;font:600 13px Poppins;color:var(--text);outline:none;cursor:pointer}
 
-/* TOP TIMER & SPRINT */
+/* 1. TOP TIMER & BREAK BAR (SABSE UPAR) */
 .top-timer-card{padding:22px 26px;border-radius:26px;margin:10px 0 24px}
 .timer-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .timer-display{font:800 clamp(40px,7vw,62px) Poppins;color:var(--accent);letter-spacing:1px;line-height:1}
@@ -127,11 +128,11 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
 /* BUTTONS */
-.btn{position:relative;border:0;border-radius:14px;padding:12px 22px;font:600 14px Poppins;cursor:pointer;color:#fff;background:linear-gradient(120deg,#7A5CFF,#FF7EB0);box-shadow:0 8px 20px rgba(122,92,255,.32)}
+.btn{position:relative;border:0;border-radius:14px;padding:12px 24px;font:600 14px Poppins;cursor:pointer;color:#fff;background:linear-gradient(120deg,#7A5CFF,#FF7EB0);box-shadow:0 8px 20px rgba(122,92,255,.32)}
 .btn.o{background:var(--glass);color:var(--text);box-shadow:none;border:1px solid var(--line)}
 .btn.red{background:var(--red);box-shadow:0 6px 16px rgba(228,87,46,.32)}
 
-/* TARGETS (UPAR) */
+/* 2. TARGETS & PLANNER (USKE NICHE) */
 .targets-box{padding:24px;border-radius:26px;margin-bottom:26px}
 .targets-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .task-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--glass-card);border:1px solid var(--border-subtle);border-radius:16px;cursor:pointer}
@@ -139,19 +140,25 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .task-box{width:22px;height:22px;border-radius:7px;border:2px solid var(--accent);display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700}
 .task-row.done .task-box{background:var(--accent)}
 
-/* AI TEACHER VIEW */
-.ai-box{padding:24px;border-radius:26px;margin-bottom:26px}
-.ai-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.ai-avatar{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-pink));display:grid;place-items:center;font-size:20px;color:#fff}
-.ai-chat{display:flex;flex-direction:column;gap:10px;max-height:260px;overflow-y:auto;padding-right:4px}
-.msg{padding:10px 14px;border-radius:14px;font-size:13px;max-width:85%}
-.msg.bot{background:var(--glass-card);border:1px solid var(--border-subtle);align-self:flex-start}
-.msg.user{background:var(--accent);color:#fff;align-self:flex-end}
-.ai-input-row{display:flex;gap:8px;margin-top:12px}
+/* 3. PEHLE WALA EXACT PHONE PROGRESS CARD */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin:30px 0}
+.phone{width:280px;margin:auto;padding:20px 16px;border-radius:36px}
+.float{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.ring{position:relative;width:115px;height:115px;margin:8px auto}
+.ring svg{transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
+.ring .bgc{stroke:var(--ring-bg)}
+.ring .fg{stroke:url(#g);stroke-dasharray:314;stroke-dashoffset:88;transition:stroke-dashoffset .5s ease}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 22px Poppins;color:var(--text)}
+.mini{padding:10px 12px;border-radius:14px;margin-top:8px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.flame{display:inline-block;animation:flick 1.2s infinite alternate}
+@keyframes flick{to{transform:scale(1.2) rotate(-8deg)}}
 
-/* LEDGER PAPER (STRICT EVALUATOR) */
-.split{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center;margin:30px 0}
-.paper{width:100%;max-width:370px;margin:auto;background:var(--paper);color:var(--ptext);border:8px solid var(--green);border-radius:26px;padding:18px;background-image:repeating-linear-gradient(transparent 0 25px,var(--pline) 25px 26px);box-shadow:0 20px 40px rgba(15,59,51,.16)}
+/* 4. LEDGER PAPER (STRICT EVALUATOR) */
+.paper{width:100%;max-width:360px;margin:auto;background:var(--paper);color:var(--ptext);border:8px solid var(--green);border-radius:28px;padding:18px;background-image:repeating-linear-gradient(transparent 0 25px,var(--pline) 25px 26px);box-shadow:0 20px 40px rgba(15,59,51,.18)}
+.paper h3{color:var(--green);font-size:16px;margin:0}
+.q{font-size:12px;color:#5E6B66;margin:4px 0 8px}
+.ans{font-size:14px;line-height:26px;margin:0}
 .ans .fix{display:none;font-family:Caveat,cursive;font-size:20px;color:var(--red);font-weight:700}
 .checked .w{color:var(--red);text-decoration:line-through;text-decoration-thickness:2px}
 .checked .fix{display:inline;animation:pop .4s both}
@@ -161,16 +168,19 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .note{font-family:Caveat,cursive;color:var(--red);font-size:18px;display:none;margin-top:4px}
 .checked~.note{display:block}
 
-/* BOTTOM SECTION: PROGRESS + PARAGRAPHS (NICHE) */
-.bottom-analytics{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center;margin-top:30px}
-.phone-bottom{padding:22px 18px;border-radius:32px;text-align:center}
-.ring{position:relative;width:120px;height:120px;margin:12px auto}
-.ring svg{transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
-.ring .bgc{stroke:var(--ring-bg)}
-.ring .fg{stroke:url(#g);stroke-dasharray:314;stroke-dashoffset:88;transition:stroke-dashoffset .5s ease}
-.ring b{position:absolute;inset:0;display:grid;place-items:center;font:800 24px Poppins;color:var(--text)}
+/* 5. AI TEACHER MENTOR */
+.ai-box{padding:22px;border-radius:26px;margin-bottom:26px}
+.ai-chat{display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto;padding-right:4px}
+.msg{padding:9px 13px;border-radius:13px;font-size:13px;max-width:85%}
+.msg.bot{background:var(--glass-card);border:1px solid var(--border-subtle);align-self:flex-start}
+.msg.user{background:var(--accent);color:#fff;align-self:flex-end}
 
-/* BOTTOM APP NAVIGATION DOCK */
+/* 6. BOTTOM DESCRIPTIVE PARAGRAPHS (SABSE NICHE) */
+.philosophy-card{padding:26px;border-radius:26px;margin-top:30px}
+.philosophy-card h3{font-family:Poppins;font-size:20px;margin:0 0 10px}
+.philosophy-card p{color:var(--mute);font-size:14.5px;line-height:1.65;margin:0 0 12px}
+
+/* BOTTOM DOCK */
 .app-dock{
   position:fixed;
   bottom:16px;
@@ -189,23 +199,23 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
 .dock-item{background:none;border:0;display:flex;flex-direction:column;align-items:center;font:600 11px Poppins;color:var(--mute);cursor:pointer;gap:2px}
 .dock-item.active{color:var(--accent)}
 
-.conf{position:fixed;top:-20px;width:9px;height:13px;z-index:99999;animation:fall 1.8s linear forwards;pointer-events:none}
+.conf{position:fixed;top:-20px;width:9px;height:13px;z-index:999999;animation:fall 1.8s linear forwards;pointer-events:none}
 @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
 
-@media(max-width:768px){.targets-grid,.split,.bottom-analytics{grid-template-columns:1fr}}
+@media(max-width:768px){.targets-grid,.hero-split{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<div class="room-backdrop"></div>
-<div class="blob b1"></div><div class="blob b2"></div>
+<div class="room-bg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
 
-<!-- 1. FULLSCREEN LOGIN GATEWAY (SHURU MEIN YEHI DIKHEGA) -->
+<!-- 1. FULLSCREEN LOGIN SCREEN -->
 <div id="loginScreen">
   <div class="login-box">
     <div style="font-size:28px">🌸</div>
-    <h2><span class="grad">Dheeti</span> Access</h2>
-    <small style="color:var(--mute)">Choose your authentication method to unlock your sanctuary</small>
+    <h2 style="font-family:Poppins;font-size:24px;margin:4px 0"><span class="grad">Dheeti</span> Sanctuary</h2>
+    <small style="color:var(--mute)">Authenticate to unlock your revision workspace</small>
 
     <div class="auth-nav">
       <div class="auth-tab active" onclick="switchLoginTab('pin', this)">🔢 PIN</div>
@@ -214,14 +224,14 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
       <div class="auth-tab" onclick="switchLoginTab('pwd', this)">🔑 Password</div>
     </div>
 
-    <!-- PIN -->
+    <!-- PIN VIEW -->
     <div class="auth-view active" id="tabPin">
       <input type="password" maxlength="4" class="input-field" placeholder="• • • •" style="text-align:center;letter-spacing:10px;font-size:22px">
     </div>
 
-    <!-- PATTERN -->
+    <!-- PATTERN VIEW -->
     <div class="auth-view" id="tabPattern">
-      <small style="display:block;margin-bottom:8px;color:var(--mute)">Connect any 4 dots to unlock</small>
+      <small style="display:block;margin-bottom:8px;color:var(--mute)">Connect 4 dots</small>
       <div class="pattern-grid">
         <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
         <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
@@ -235,13 +245,13 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
       </div>
     </div>
 
-    <!-- BIOMETRIC -->
+    <!-- BIOMETRIC VIEW -->
     <div class="auth-view" id="tabBio">
       <div class="bio-finger" onclick="verifyBio()">👆</div>
-      <small id="bioPrompt" style="color:var(--mute)">Tap sensor to scan fingerprint or Face ID</small>
+      <small id="bioPrompt" style="color:var(--mute)">Touch sensor for fingerprint / Face ID</small>
     </div>
 
-    <!-- PASSWORD -->
+    <!-- PASSWORD VIEW -->
     <div class="auth-view" id="tabPwd">
       <input type="text" class="input-field" id="loginName" placeholder="Aapka Naam" value="Maitri">
       <input type="password" class="input-field" placeholder="Enter Account Password">
@@ -251,11 +261,11 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
   </div>
 </div>
 
-<!-- 2. MAIN APPLICATION (AFTER LOGIN) -->
+<!-- 2. MAIN APPLICATION -->
 <div class="wrap" id="mainApp" style="opacity:0;transition:opacity .5s ease">
-  <!-- TOP NAV -->
+  <!-- NAV -->
   <nav>
-    <div style="font-family:Poppins;font-weight:800;font-size:24px"><span class="grad">Dheeti</span></div>
+    <div class="logo"><span class="grad">Dheeti</span></div>
     
     <div style="display:flex;align-items:center;gap:10px">
       <select class="level-box" onchange="updateLevel(this.value)">
@@ -263,11 +273,11 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
         <option value="Inter" selected>CA Intermediate</option>
         <option value="Final">CA Final</option>
       </select>
-      <button class="icon-btn" onclick="toggleTheme()">🌓</button>
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
     </div>
   </nav>
 
-  <!-- SMART TIMER & BREAK COMPONENT (UPAR) -->
+  <!-- STEP 1: TOP TIMER & BREAK (SABSE UPAR) -->
   <div class="top-timer-card glass" id="secSprint">
     <div class="timer-flex">
       <div>
@@ -278,7 +288,7 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
           <button class="mode-btn" onclick="setTimerMode('longBreak', 15, this)">🌿 Long Break (15m)</button>
         </div>
         <div class="timer-display" id="timeDisplay">25:00</div>
-        <small style="color:var(--mute)" id="timerStatusLabel">Pomodoro Focus Block • Stay steadfast</small>
+        <small style="color:var(--mute)" id="timerStatusLabel">Pomodoro sprint active • Calm & focused</small>
       </div>
 
       <div style="display:flex;gap:10px">
@@ -288,7 +298,7 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
     </div>
   </div>
 
-  <!-- TARGETS & SYLLABUS TRACKER (UPAR) -->
+  <!-- STEP 2: TARGETS & LDR PLANNER (UPAR) -->
   <div class="targets-box glass" id="secVault">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
       <div>
@@ -302,16 +312,16 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
       <div class="task-row done" onclick="toggleTask(this)">
         <div class="task-box">✓</div>
         <div>
-          <b>Corporate Law: Sec 96–105 (AGM & Quorum Rules)</b>
-          <small style="display:block;color:var(--mute)">Pass 2 • Notice, Proxies & Chairman trap points</small>
+          <b>Corporate Law: Sec 96–105 (AGM & Quorum)</b>
+          <small style="display:block;color:var(--mute)">Pass 2 • Notice, Proxy provisions & voting trap list</small>
         </div>
       </div>
 
       <div class="task-row done" onclick="toggleTask(this)">
         <div class="task-box">✓</div>
         <div>
-          <b>Adv. Accounting: AS 10 PPE Capitalization</b>
-          <small style="display:block;color:var(--mute)">Pass 2 • Subsequent Costs & Major Inspection rules</small>
+          <b>Adv. Accounting: AS 10 (PPE Valuation)</b>
+          <small style="display:block;color:var(--mute)">Pass 2 • Subsequent Cost Capitalization checks</small>
         </div>
       </div>
 
@@ -319,7 +329,7 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
         <div class="task-box">✓</div>
         <div>
           <b>Taxation: Section 16 GST Ineligible Credits</b>
-          <small style="display:block;color:var(--mute)">Pass 1 • Blocked credits under Sec 17(5) checklist</small>
+          <small style="display:block;color:var(--mute)">Pass 1 • Blocked credit rules Sec 17(5)</small>
         </div>
       </div>
 
@@ -327,97 +337,93 @@ select.level-box{background:var(--glass);border:1px solid var(--line);padding:8p
         <div class="task-box">✓</div>
         <div>
           <b>Costing: Standard Costing Variance Formulas</b>
-          <small style="display:block;color:var(--mute)">Pass 1 • Material Yield & Labour Idle Time rules</small>
+          <small style="display:block;color:var(--mute)">Pass 1 • Material & Labour Variance drills</small>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- AI TEACHER / DOUBT ASSISTANT -->
+  <!-- STEP 3: PEHLE WALA EXACT PROGRESS CARD + STRICT RED INK CHECK -->
+  <div class="hero-split">
+    <!-- ORIGINAL PROGRESS CARD -->
+    <div class="phone glass float">
+      <small style="color:var(--mute)" id="welcomeName">Hi Maitri 👋</small>
+      <h3 style="font-size:16px;margin:2px 0 4px">Aaj ka progress</h3>
+      <div class="ring">
+        <svg width="115" height="115">
+          <defs><linearGradient id="g"><stop offset="0" stop-color="#7A5CFF"/><stop offset="1" stop-color="#FF7EB0"/></linearGradient></defs>
+          <circle class="bgc" cx="57.5" cy="57.5" r="50"/>
+          <circle class="fg" id="progressRing" cx="57.5" cy="57.5" r="50"/>
+        </svg>
+        <b id="ringPct">50%</b>
+      </div>
+      <div class="mini glass"><span id="taskStatusHeadline">📘 Adv. Accounting Ch 8</span><b>✓</b></div>
+      <div class="mini glass" style="background:linear-gradient(120deg,rgba(255,194,166,.55),rgba(255,158,196,.45))">
+        <span><span class="flame">🔥</span> 12 day streak</span>
+        <b>Keep going</b>
+      </div>
+    </div>
+
+    <!-- STRICT RED INK EVALUATION -->
+    <div>
+      <div class="paper">
+        <h3>Practice · Q3</h3>
+        <div class="q">AS 10 · PPE cost · 4 marks</div>
+        <p class="ans" id="ans">Cost of PPE includes purchase price, <span class="w">selling expenses</span><span class="fix"> import duty</span>, and <span class="w">interest on loan always</span><span class="fix"> directly attributable costs</span><span style="color:#1c9a6b;font-weight:700"> ✓</span></p>
+        <div class="score">Score: 2 / 4 · Working notes zaroor likho!</div>
+        <div class="note">← "selling expenses" cost mein nahi aate</div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:14px">
+        <button class="btn red" onclick="chk()">Check Answer ✍️</button>
+        <button class="btn o" onclick="rst()">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: AI MENTOR / TEACHER -->
   <div class="ai-box glass" id="secTeacher">
-    <div class="ai-header">
-      <div class="ai-avatar">🤖</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-pink));display:grid;place-items:center;font-size:18px;color:#fff">🤖</div>
       <div>
-        <h3 style="margin:0;font-size:17px;font-family:Poppins">CA Dheeti AI Mentor</h3>
-        <small style="color:#22B573;font-weight:600">● Online • Ask case-law, formula traps & memory tricks</small>
+        <h3 style="margin:0;font-size:16px;font-family:Poppins">CA Dheeti AI Teacher</h3>
+        <small style="color:#22B573;font-weight:600">● Live doubt support & exam traps</small>
       </div>
     </div>
 
     <div class="ai-chat" id="chatStream">
       <div class="msg bot">
-        Namaste Maitri! Today's focus is on <b>Corporate Law AGM Quorum</b> and <b>AS 10 PPE</b>. Need an instant memory trick or RTP tricky question analysis?
+        Namaste Maitri! Today's session is focused on Corporate Law AGM rules & AS 10. Need an instant memory trick or past-exam trap point?
       </div>
     </div>
 
-    <div class="ai-input-row">
-      <input type="text" id="aiInput" class="input-field" style="margin:0" placeholder="Ask Dheeti AI anything about CA syllabus..." onkeydown="if(event.key==='Enter') sendAIQuestion()">
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <input type="text" id="aiInput" class="input-field" style="margin:0" placeholder="Type your doubt here..." onkeydown="if(event.key==='Enter') sendAIQuestion()">
       <button class="btn" onclick="sendAIQuestion()">Ask ⚡</button>
     </div>
   </div>
 
-  <!-- STRICT RED INK CHECK ANSWER (LEDGER MODE) -->
-  <section class="split" id="secRecall">
-    <div>
-      <h2 style="font-family:Poppins;font-size:24px;margin:0 0 6px">Strict Red Ink <span class="grad">Evaluator</span></h2>
-      <p style="color:var(--mute);font-size:14.5px;margin:0 0 16px">ICAI examiner marking standard: authentic ledger parchment paper, green frame and red-ink strike corrections.</p>
-      <button class="btn red" onclick="chk()">Check Answer ✍️</button>
-      <button class="btn o" onclick="rst()" style="margin-left:6px">Reset</button>
-    </div>
-
-    <div class="paper">
-      <h3 style="color:var(--green);font-size:16px;margin:0">Practice · Q3</h3>
-      <div style="font-size:12px;color:#5E6B66;margin:4px 0 8px">AS 10 · PPE Cost Capitalization · 4 Marks</div>
-      <p class="ans" id="ans" style="font-size:14px;line-height:26px;margin:0">Cost of PPE includes purchase price, <span class="w">selling expenses</span><span class="fix"> import duty</span>, and <span class="w">interest on loan always</span><span class="fix"> directly attributable costs</span><span style="color:#1c9a6b;font-weight:700"> ✓</span></p>
-      <div class="score">Score: 2 / 4 · Working notes zaroor likho!</div>
-      <div class="note">← "selling expenses" capital cost me add nahi hoti</div>
-    </div>
-  </section>
-
-  <!-- BOTTOM SECTION: PROGRESS VISUAL + REVISION PARAGRAPHS (NICHE) -->
-  <div class="bottom-analytics" id="secProfile">
-    <div class="phone-bottom glass">
-      <small style="color:var(--mute)" id="welcomeName">Hi Maitri 👋</small>
-      <h3 style="font-size:15px;margin:2px 0 6px">Daily Completion</h3>
-      
-      <div class="ring">
-        <svg width="120" height="120">
-          <defs><linearGradient id="g"><stop offset="0" stop-color="#7A5CFF"/><stop offset="1" stop-color="#FF7EB0"/></linearGradient></defs>
-          <circle class="bgc" cx="60" cy="60" r="50"/>
-          <circle class="fg" id="progressRing" cx="60" cy="60" r="50"/>
-        </svg>
-        <b id="ringPct">50%</b>
-      </div>
-
-      <div style="padding:10px 12px;border-radius:14px;background:linear-gradient(120deg,rgba(255,194,166,.5),rgba(255,158,196,.45));font-size:12px;display:flex;justify-content:space-between;align-items:center">
-        <span>🔥 14 day streak</span>
-        <b>Consistent!</b>
-      </div>
-    </div>
-
-    <!-- REVISION PHILOSOPHY PARAGRAPHS -->
-    <div class="glass" style="padding:24px;border-radius:26px">
-      <h3 style="font-family:Poppins;font-size:20px;margin:0 0 10px">The Dheeti Revision Sanctuary</h3>
-      <p style="color:var(--mute);font-size:14.5px;line-height:1.65;margin:0 0 12px">
-        Chartered Accountancy is not about cramming once—it is about steadfast consistency (धृति) over spaced iterations. Dheeti strips out social noise, offering structured timer intervals at the top and real-time target completion.
-      </p>
-      <p style="color:var(--mute);font-size:14.5px;line-height:1.65;margin:0">
-        Checking is kept intentionally strict using the classic double-ruled ledger parchment so you face zero surprises in actual ICAI answer evaluation.
-      </p>
-    </div>
+  <!-- STEP 5: BOTTOM REVISION PARAGRAPHS (SABSE NICHE) -->
+  <div class="philosophy-card glass" id="secProfile">
+    <h3>The Dheeti Revision Philosophy</h3>
+    <p>
+      Padhai soft, checking strict. CA examinations demand sustained patience and spaced iterations (धृति). By placing sprint timers and high-yield targets at the very top, cognitive fatigue is minimized while daily momentum stays intact.
+    </p>
+    <p>
+      The classical double-ruled green ledger and red ink corrections simulate rigorous ICAI evaluation, ensuring your exam-day presentation leaves zero room for error.
+    </p>
   </div>
 
-  <footer style="text-align:center;color:var(--mute);font-size:13px;padding:40px 0 30px">
+  <footer style="text-align:center;color:var(--mute);font-size:13px;padding:34px 0 20px">
     धृति • Dheeti – The Revision Sanctuary
   </footer>
 </div>
 
-<!-- BOTTOM APP NAVIGATION DOCK -->
+<!-- BOTTOM DOCK NAVIGATION -->
 <div class="app-dock">
-  <button class="dock-item active" onclick="scrollToSec('secVault', this)"><span>📚</span>Vault</button>
-  <button class="dock-item" onclick="scrollToSec('secSprint', this)"><span>⏱️</span>Sprint</button>
+  <button class="dock-item active" onclick="scrollToSec('secSprint', this)"><span>⏱️</span>Sprint</button>
+  <button class="dock-item" onclick="scrollToSec('secVault', this)"><span>📚</span>Targets</button>
   <button class="dock-item" onclick="scrollToSec('secTeacher', this)"><span>🤖</span>AI Mentor</button>
-  <button class="dock-item" onclick="scrollToSec('secRecall', this)"><span>✍️</span>Recall</button>
-  <button class="dock-item" onclick="scrollToSec('secProfile', this)"><span>👤</span>Profile</button>
+  <button class="dock-item" onclick="scrollToSec('secProfile', this)"><span>👤</span>Sanctuary</button>
 </div>
 
 <script>
@@ -461,7 +467,7 @@ function unlockApp(){
   }, 400);
 }
 
-// TOP SPRINT TIMER
+// SPRINT TIMER & BREAKS
 let timerInterval = null;
 let currentDuration = 25 * 60;
 let timeLeft = currentDuration;
@@ -491,7 +497,7 @@ function toggleTimer(){
       if(timeLeft <= 0){
         clearInterval(timerInterval);
         isRunning = false;
-        btn.innerText = 'Sprint Completed! 🎉';
+        btn.innerText = 'Completed! 🎉';
         party();
         return;
       }
@@ -533,7 +539,7 @@ function updateProgress(){
   document.getElementById('progressRing').style.strokeDashoffset = offset;
 }
 
-// AI TEACHER CHAT
+// AI TEACHER
 function sendAIQuestion(){
   const input = document.getElementById('aiInput');
   const txt = input.value.trim();
@@ -549,27 +555,13 @@ function sendAIQuestion(){
   setTimeout(() => {
     const bMsg = document.createElement('div');
     bMsg.className = 'msg bot';
-    bMsg.innerHTML = `<b>ICAI Examiner Tip:</b> For <i>"${txt}"</i>, ensure you quote the correct section number, mention exact statutory timelines, and avoid adding speculative selling overheads in cost!`;
+    bMsg.innerHTML = `<b>ICAI Examiner Tip:</b> For <i>"${txt}"</i>, keep statutory timelines exact and write working notes clearly to secure full step marks!`;
     chat.appendChild(bMsg);
     chat.scrollTop = chat.scrollHeight;
   }, 700);
 }
 
-// LEVEL SWITCHER
-function updateLevel(val){
-  document.getElementById('levelTag').textContent = '✨ CA ' + val + ' Mode';
-  document.getElementById('plannerHeading').textContent = 'Today\'s CA ' + val + ' High-Yield Targets';
-}
-
-// DOCK SCROLL
-function scrollToSec(id, btn){
-  document.querySelectorAll('.dock-item').forEach(d => d.classList.remove('active'));
-  btn.classList.add('active');
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth'});
-}
-
-// STRICT RED INK EVALUATION
+// STRICT RED INK EVALUATOR
 function chk(){ document.getElementById('ans').classList.add('checked'); party(); }
 function rst(){ document.getElementById('ans').classList.remove('checked'); }
 
@@ -584,6 +576,22 @@ function party(){
     document.body.appendChild(d);
     setTimeout(() => d.remove(), 2200);
   }
+}
+
+// LEVEL & NAVIGATION
+function updateLevel(val){
+  document.getElementById('levelTag').textContent = '✨ CA ' + val + ' Mode';
+  document.getElementById('plannerHeading').textContent = 'Today\'s CA ' + val + ' High-Yield Targets';
+  if(val === 'Foundation') document.getElementById('taskStatusHeadline').innerText = '📘 Accounting Basics';
+  else if(val === 'Inter') document.getElementById('taskStatusHeadline').innerText = '📘 Adv. Accounting Ch 8';
+  else document.getElementById('taskStatusHeadline').innerText = '📘 Financial Reporting Ind AS';
+}
+
+function scrollToSec(id, btn){
+  document.querySelectorAll('.dock-item').forEach(d => d.classList.remove('active'));
+  btn.classList.add('active');
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth'});
 }
 
 function toggleTheme(){
