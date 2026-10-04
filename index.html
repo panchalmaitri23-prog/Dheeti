@@ -6,27 +6,26 @@
 <title>Dheeti – The Revision Sanctuary</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ind:#2B2A92;--vio:#6B4DF0;--vio2:#8A6CFF;--ink:#1F1D55;--mu:#6E7098;--lav:#EEF0FF;--lav2:#E3E6FF;--ln:#E3E5F7;--card:#fff;--grn:#22B573;--org:#FF9A3D;--pink:#F2557F;--blue:#4A7BFF;--teal:#1FAE8D}
+:root{--ind:#2B2A92;--vio:#6B4DF0;--vio2:#8A6CFF;--ink:#1F1D55;--mu:#6E7098;--lav:#EEF0FF;--lav2:#E3E6FF;--ln:#E3E5F7;--card:#fff;--grn:#22B573;--org:#FF9A3D;--pink:#F2557F;--blue:#4A7BFF;--teal:#1FAE8D;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,#E9ECFF 0,#F4F0FF 22%,#F1F4FF 55%,#EAF1FF 100%);line-height:1.45;overflow-x:hidden}
 button{font-family:inherit;cursor:pointer}
 .W{max-width:1180px;margin:auto;padding:0 20px}
 .hand{font-family:Caveat,cursive;color:var(--vio);font-weight:700}
-
-/* HERO */
-.hero{position:relative;text-align:center;padding:32px 0 16px}
-.hero h1{font:800 clamp(32px,5.6vw,54px)/1.1 Fraunces,serif;margin:12px 0 8px;letter-spacing:-1px;color:var(--ink)}
+.hero{position:relative;text-align:center;padding:36px 0 16px;overflow:hidden}
+.hero h1{font:800 clamp(32px,5.6vw,56px)/1.1 Fraunces,serif;margin:12px 0 8px;letter-spacing:-1px;color:var(--ink)}
 .hero h1 span{color:var(--vio)}
-.hero p{max-width:640px;margin:0 auto 16px;color:var(--mu);font-size:16px}
+.hero p{max-width:640px;margin:0 auto 18px;color:var(--mu);font-size:16px}
 .tags{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;margin:16px auto;max-width:900px}
 .tags span{font:700 12px 'Plus Jakarta Sans';color:var(--ind);display:flex;flex-direction:column;align-items:center;gap:2px}
 .tags i{font-style:normal;font-size:20px}
 
-/* PHONE SHOWCASE */
-.phone-showcase{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:24px auto}
-.ph{position:relative;width:316px;height:640px;border-radius:42px;background:#0E0E22;padding:9px;box-shadow:0 26px 50px rgba(60,50,160,.28),inset 0 0 0 2px #2b2b4a;flex:none}
-.ph::before{content:"";position:absolute;top:13px;left:50%;width:84px;height:20px;margin-left:-42px;background:#000;border-radius:14px;z-index:20}
-.sc{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:linear-gradient(180deg,#F1EFFF,#fff 30%)}
+/* PHONE FRAME */
+.phone-showcase{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:30px auto}
+.ph{position:relative;width:310px;height:630px;border-radius:40px;background:#0E0E22;padding:9px;box-shadow:0 26px 50px rgba(60,50,160,.3),inset 0 0 0 2px #2b2b4a;flex:none}
+.ph::before{content:"";position:absolute;top:13px;left:50%;width:84px;height:22px;margin-left:-42px;background:#000;border-radius:14px;z-index:20}
+.sc{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:linear-gradient(180deg,#F1EFFF,#fff 30%)}
 .sbar{position:absolute;top:0;left:0;right:0;height:34px;padding:11px 22px 0;display:flex;justify-content:space-between;font:700 11px 'Plus Jakarta Sans';z-index:15;color:var(--ink)}
 .bd{position:absolute;top:38px;left:0;right:0;bottom:62px;overflow-y:auto;padding:8px 14px 12px;scrollbar-width:none}
 .bd::-webkit-scrollbar{display:none}
@@ -38,23 +37,20 @@ button{font-family:inherit;cursor:pointer}
 .card{background:#fff;border:1px solid var(--ln);border-radius:16px;padding:12px;box-shadow:0 6px 14px rgba(107,77,240,.07);margin-bottom:10px}
 .hd{display:flex;align-items:center;gap:7px;margin-bottom:8px}
 .hd b{font:800 18px Fraunces,serif;color:var(--ind);flex:1}
-.fi{display:flex;align-items:center;gap:10px;padding:9px;border-radius:13px;background:#fff;border:1px solid var(--ln);margin-bottom:7px;cursor:pointer;transition:background .2s}
-.fi:hover{background:#FAF9FF}
+.fi{display:flex;align-items:center;gap:10px;padding:8px;border-radius:13px;background:#fff;border:1px solid var(--ln);margin-bottom:7px}
 .fi .t{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;flex:none}
 .fi div b{display:block;font-size:11.5px}.fi div small{color:var(--mu);font-size:10px}
 .fi .p{margin-left:auto;width:24px;height:24px;border-radius:50%;background:var(--vio);color:#fff;border:0;font-size:11px}
-.fi.done{opacity:.6;text-decoration:line-through}
-.fi.done .p{background:var(--grn)}
-
 .o1{background:#FFEBD6}.o2{background:#E3EBFF}.o3{background:#FFE1EA}.o4{background:#DFF6EE}
-.bt{border:0;color:#fff;background:linear-gradient(135deg,#7C5CFF,#5B3FE0);border-radius:11px;padding:9px 14px;font:700 11px 'Plus Jakarta Sans';box-shadow:0 8px 16px rgba(91,63,224,.35)}
-.bt.f{width:100%;padding:11px;font-size:12px;border-radius:12px;margin-top:8px}
 
-/* DESKTOP DASHBOARD */
-.br{background:#fff;border-radius:22px;border:1px solid var(--ln);box-shadow:0 30px 60px rgba(60,50,160,.14);overflow:hidden;margin:32px 0 40px}
+.bt{border:0;color:#fff;background:linear-gradient(135deg,#7C5CFF,#5B3FE0);border-radius:11px;padding:9px 14px;font:700 11px 'Plus Jakarta Sans';box-shadow:0 8px 16px rgba(91,63,224,.35)}
+.bt.f{width:100%;padding:10px;font-size:12px;border-radius:12px;margin-top:6px}
+
+/* DASHBOARD MINI VIEW */
+.br{background:#fff;border-radius:22px;border:1px solid var(--ln);box-shadow:0 30px 60px rgba(60,50,160,.16);overflow:hidden;margin:30px 0}
 .bar{height:30px;background:#F3F4FC;display:flex;gap:6px;align-items:center;padding:0 14px}
 .bar i{width:10px;height:10px;border-radius:50%;background:#FF6B6B}.bar i:nth-child(2){background:#FFC857}.bar i:nth-child(3){background:#34D399}
-.dsh{display:grid;grid-template-columns:200px 1fr;min-height:360px}
+.dsh{display:grid;grid-template-columns:200px 1fr;min-height:380px}
 .sd{background:linear-gradient(180deg,#F6F5FF,#fff);padding:14px;border-right:1px solid var(--ln);font-size:12px}
 .sd b{display:block;font:800 16px Fraunces,serif;color:var(--ind);margin-bottom:14px}
 .sd a{display:flex;gap:8px;padding:8px 10px;border-radius:11px;color:var(--mu);font-weight:600;text-decoration:none;margin-bottom:4px}
@@ -68,9 +64,9 @@ button{font-family:inherit;cursor:pointer}
 <body>
 
 <div class="W">
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero">
-    <div class="hand" style="font-size:26px;margin-bottom:4px">धृति • Steadfast Revision</div>
+    <div class="hand" style="font-size:24px;margin-bottom:4px">धृति • Steadfast Revision</div>
     <h1>Dheeti — The <span>Revision Sanctuary</span></h1>
     <p>A pure, high-focus revision ecosystem built specifically for <b>CA Aspirants</b>. Zero friction, structured recall, and calm progress.</p>
     
@@ -82,12 +78,13 @@ button{font-family:inherit;cursor:pointer}
     </div>
   </section>
 
-  <!-- PHONE MOCKUP -->
+  <!-- APP INTERACTIVE SHELL -->
   <div class="phone-showcase">
+    <!-- MOBILE PHONE VIEW -->
     <div class="ph">
       <div class="sc">
         <div class="sbar">
-          <span id="liveTime">09:41</span>
+          <span>9:41</span>
           <span>5G 📶</span>
         </div>
         
@@ -102,16 +99,16 @@ button{font-family:inherit;cursor:pointer}
             <div style="font:800 15px Plus Jakarta Sans;margin:2px 0 8px">Corporate & Other Laws</div>
             <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--mu)">
               <span>Chapter 7: Management & Admin</span>
-              <b id="progText">66%</b>
+              <b>75%</b>
             </div>
             <div style="height:6px;background:var(--lav2);border-radius:10px;margin-top:6px;overflow:hidden">
-              <div id="progBar" style="width:66%;height:100%;background:var(--vio);transition:width .3s"></div>
+              <div style="width:75%;height:100%;background:var(--vio)"></div>
             </div>
           </div>
 
-          <div style="font:800 12px Plus Jakarta Sans;margin:12px 0 6px">ACTIVE MODULES (TAP TO TICK)</div>
+          <div style="font:800 12px Plus Jakarta Sans;margin:12px 0 6px">ACTIVE MODULES</div>
 
-          <div class="fi" onclick="toggleTask(this)">
+          <div class="fi">
             <div class="t o1">📖</div>
             <div>
               <b>Sec 96–105 Meetings & Quorum</b>
@@ -120,7 +117,7 @@ button{font-family:inherit;cursor:pointer}
             <button class="p">✓</button>
           </div>
 
-          <div class="fi" onclick="toggleTask(this)">
+          <div class="fi">
             <div class="t o2">⚖️</div>
             <div>
               <b>Sec 123–127 Declaration of Dividend</b>
@@ -129,7 +126,7 @@ button{font-family:inherit;cursor:pointer}
             <button class="p">→</button>
           </div>
 
-          <div class="fi" onclick="toggleTask(this)">
+          <div class="fi">
             <div class="t o4">🎯</div>
             <div>
               <b>ICAI Past Exam Trap Points</b>
@@ -138,7 +135,7 @@ button{font-family:inherit;cursor:pointer}
             <button class="p">→</button>
           </div>
 
-          <button class="bt f" id="timerBtn" onclick="startTimer()">Start 25m Focus Block</button>
+          <button class="bt f">Start 25m Focus Block</button>
         </div>
 
         <div class="nv">
@@ -163,12 +160,12 @@ button{font-family:inherit;cursor:pointer}
         <a href="#">⚙️ Settings</a>
       </div>
       <div class="mn">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
           <div>
             <h3 style="margin:0;font-size:18px">Revision Progress Overview</h3>
             <span style="font-size:12px;color:var(--mu)">Direct Sync with ICAI Intermediate Syllabus</span>
           </div>
-          <button class="bt" onclick="alert('New Subject Module added!')">+ Add Subject Module</button>
+          <button class="bt">+ Add Subject Module</button>
         </div>
 
         <div class="dg pl">
@@ -180,53 +177,6 @@ button{font-family:inherit;cursor:pointer}
     </div>
   </div>
 </div>
-
-<script>
-// Live Time
-function updateClock() {
-  const d = new Date();
-  const h = String(d.getHours()).padStart(2, '0');
-  const m = String(d.getMinutes()).padStart(2, '0');
-  const el = document.getElementById('liveTime');
-  if(el) el.innerText = h + ":" + m;
-}
-setInterval(updateClock, 1000);
-updateClock();
-
-// Interactive Tasks
-function toggleTask(el) {
-  el.classList.toggle('done');
-  const all = document.querySelectorAll('.fi').length;
-  const done = document.querySelectorAll('.fi.done').length;
-  const pct = Math.round((done / all) * 100);
-  document.getElementById('progText').innerText = pct + '%';
-  document.getElementById('progBar').style.width = pct + '%';
-}
-
-// Interactive Pomodoro Timer
-let timerInterval = null;
-let seconds = 25 * 60;
-function startTimer() {
-  const btn = document.getElementById('timerBtn');
-  if(timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    btn.innerText = "Resume 25m Focus Block";
-    return;
-  }
-  timerInterval = setInterval(() => {
-    if(seconds <= 0) {
-      clearInterval(timerInterval);
-      btn.innerText = "Completed! Take a Break 🌿";
-      return;
-    }
-    seconds--;
-    const m = Math.floor(seconds / 60);
-    const s = String(seconds % 60).padStart(2, '0');
-    btn.innerText = `Focusing: ${m}:${s} (Tap to Pause)`;
-  }, 1000);
-}
-</script>
 
 </body>
 </html>
