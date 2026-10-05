@@ -3,39 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dheeti – Aurora Hybrid CA Sanctuary</title>
+<title>Dheeti – Aurora Hybrid Revision Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='100' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%237A5CFF'/%3E%3Cstop offset='50%25' stop-color='%23A855F7'/%3E%3Cstop offset='100%25' stop-color='%23FF7EB0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='28' fill='url(%23g)'/%3E%3Crect x='24' y='23' width='9' height='54' rx='4.5' fill='%23FFFFFF'/%3E%3Cpath d='M28 23 H50 C69 23, 78 35, 78 50 C78 65, 69 77, 50 77 H28 V68 H49 C61 68, 68 60, 68 50 C68 40, 61 32, 49 32 H28 Z' fill='%23FFFFFF' fill-opacity='0.92'/%3E%3Cpath d='M52 42 Q52 50 44 50 Q52 50 52 58 Q52 50 60 50 Q52 50 52 42 Z' fill='%237EDCC4'/%3E%3C/svg%3E" />
+
 <style>
 :root{
   --bg:#FBF9FF;
-  --glass:rgba(255,255,255,.82);
-  --glass-card:rgba(255,255,255,.92);
+  --glass:rgba(255,255,255,.68);
   --text:#2A2340;
   --mute:#75708A;
-  --line:rgba(255,255,255,.95);
-  --border-subtle:rgba(122,92,255,.18);
+  --line:rgba(255,255,255,.9);
   --paper:#F6F0E4;
   --pline:#E2D8C3;
   --ptext:#1B2A26;
   --red:#E4572E;
   --green:#0F3B33;
-  --accent:#7A5CFF;
-  --accent-pink:#FF7EB0;
-  --ring-bg:rgba(122,92,255,.15);
 }
-
-[data-theme="dark"]{
-  --bg:#141026;
-  --glass:rgba(28,22,54,.85);
-  --glass-card:rgba(34,26,66,.94);
-  --text:#F3EFFF;
-  --mute:#A59EC0;
-  --line:rgba(255,255,255,.14);
-  --border-subtle:rgba(183,166,255,.22);
-  --ring-bg:rgba(255,255,255,.12);
+:root[data-theme="dark"]{
+  --bg:#171327;
+  --glass:rgba(255,255,255,.08);
+  --text:#F1EDFF;
+  --mute:#A9A3C4;
+  --line:rgba(255,255,255,.15);
 }
-
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box}
 body{
   margin:0;
   background:var(--bg);
@@ -43,532 +37,455 @@ body{
   font-family:Inter,system-ui,sans-serif;
   overflow-x:hidden;
   line-height:1.5;
+  padding-bottom:60px;
   transition:background .3s,color .3s;
 }
+h1,h2,h3,h4{font-family:Poppins,sans-serif;margin:0}
 
-/* STUDY ROOM TEXTURED BACKDROP (NO EXTERNAL LOAD FAILURE) */
-.room-bg{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255,210,230,.5) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(215,205,255,.55) 0%, transparent 50%),
-    linear-gradient(180deg, #F8F6FF 0%, #FFF5F8 40%, #F5F7FF 100%);
+/* Ambient Blobs */
+.blob{position:fixed;border-radius:50%;filter:blur(75px);opacity:.5;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
+.b1{width:380px;height:380px;background:#7EDCC4;top:-80px;left:-80px}
+.b2{width:420px;height:420px;background:#B7A6FF;top:140px;right:-120px;animation-delay:-4s}
+.b3{width:340px;height:340px;background:#FFC2A6;bottom:-100px;left:30%;animation-delay:-8s}
+@keyframes float{50%{transform:translate(40px,-50px) scale(1.12)}}
+
+.wrap{position:relative;z-index:1;max-width:1060px;margin:auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+
+/* Unique Dheeti Vector Logo Container */
+.logo-box{
+  position:relative;
+  width:46px;
+  height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:transform .25s ease;
+}
+.logo-box:hover{transform:scale(1.06)}
+.logo-glow{
+  position:absolute;
+  inset:-4px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#7A5CFF 0%,#FF7EB0 50%,#7EDCC4 100%);
+  opacity:0.75;
+  filter:blur(8px);
   pointer-events:none;
 }
-[data-theme="dark"] .room-bg{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(122,92,255,.25) 0%, transparent 45%),
-    linear-gradient(180deg, #141026 0%, #1A1333 100%);
+
+.grad{
+  background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  background-size:200%;
+  animation:bg 5s linear infinite;
 }
-
-.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.5;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
-.b1{width:360px;height:360px;background:#7EDCC4;top:-70px;left:-70px}
-.b2{width:400px;height:400px;background:#B7A6FF;top:150px;right:-100px;animation-delay:-4s}
-@keyframes float{50%{transform:translate(35px,-45px) scale(1.1)}}
-
-.wrap{position:relative;z-index:1;max-width:1060px;margin:auto;padding:0 20px 110px}
-.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;box-shadow:0 12px 34px rgba(122,92,255,.1)}
-
-/* LOGO */
-.logo{font-family:Poppins,sans-serif;font-weight:700;font-size:24px}
-.grad{background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:bg 5s linear infinite}
 @keyframes bg{to{background-position:200%}}
 
-/* 1. INITIAL FULLSCREEN LOGIN POPUP */
-#loginScreen{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  display:grid;
-  place-items:center;
-  padding:20px;
-  background:rgba(18,14,34,.72);
-  backdrop-filter:blur(18px);
-}
-.login-box{
-  width:100%;
-  max-width:410px;
-  padding:32px 24px;
-  background:var(--glass-card);
+.glass{
+  background:var(--glass);
   border:1px solid var(--line);
-  border-radius:32px;
-  box-shadow:0 25px 60px rgba(0,0,0,.35);
-  text-align:center;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-radius:24px;
+  box-shadow:0 10px 30px rgba(122,92,255,.12);
 }
-.auth-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:18px 0}
-.auth-tab{background:var(--glass);border:1px solid var(--border-subtle);border-radius:12px;padding:8px 4px;font:600 11.5px Poppins;color:var(--mute);cursor:pointer}
-.auth-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.auth-view{display:none}
-.auth-view.active{display:block}
-.input-field{width:100%;padding:13px 15px;border-radius:14px;border:1px solid var(--line);background:var(--glass);color:var(--text);font:inherit;margin-bottom:12px;outline:none}
 
-.pattern-grid{display:grid;grid-template-columns:repeat(3,46px);gap:18px;justify-content:center;margin:14px auto}
-.p-dot{width:46px;height:46px;border-radius:50%;background:var(--glass);border:2px solid var(--border-subtle);cursor:pointer;transition:.2s}
-.p-dot.sel{background:var(--accent);border-color:var(--accent)}
-.bio-finger{width:68px;height:68px;border-radius:50%;border:2px dashed var(--accent);margin:12px auto 6px;display:grid;place-items:center;font-size:32px;cursor:pointer}
-
-/* NAV */
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;gap:12px}
-.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--text);font-size:16px;cursor:pointer;display:grid;place-items:center}
-select.level-box{background:var(--glass);border:1px solid var(--line);padding:8px 14px;border-radius:12px;font:600 13px Poppins;color:var(--text);outline:none;cursor:pointer}
-
-/* 2. TOP TIMER & BREAK BAR (SABSE UPAR) */
-.top-timer-card{padding:22px 26px;border-radius:26px;margin:10px 0 24px}
-.timer-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.timer-display{font:800 clamp(40px,7vw,62px) Poppins;color:var(--accent);letter-spacing:1px;line-height:1}
-.mode-btn{border:1px solid var(--border-subtle);background:var(--glass);color:var(--mute);padding:6px 14px;border-radius:99px;font:600 12px Poppins;cursor:pointer}
-.mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-
-/* BUTTONS */
-.btn{border:0;border-radius:14px;padding:12px 24px;font:600 14px Poppins;cursor:pointer;color:#fff;background:linear-gradient(120deg,#7A5CFF,#FF7EB0);box-shadow:0 8px 20px rgba(122,92,255,.32)}
+.btn{
+  position:relative;
+  overflow:hidden;
+  border:0;
+  border-radius:14px;
+  padding:13px 22px;
+  font:600 14px Poppins,sans-serif;
+  cursor:pointer;
+  color:#fff;
+  background:linear-gradient(120deg,#7A5CFF,#FF7EB0);
+  box-shadow:0 8px 20px rgba(122,92,255,.35);
+  transition:transform .2s,box-shadow .2s;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(122,92,255,.45)}
+.btn:active{transform:scale(.97)}
+.btn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-70%;
+  width:50%;
+  height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);
+  transform:skewX(-20deg);
+  animation:shine 3s infinite;
+}
+@keyframes shine{60%,100%{left:130%}}
 .btn.o{background:var(--glass);color:var(--text);box-shadow:none;border:1px solid var(--line)}
-.btn.red{background:var(--red);box-shadow:0 6px 16px rgba(228,87,46,.32)}
+.btn.o::after{display:none}
+.btn.red{background:var(--red);box-shadow:0 4px 0 #A83A18}
 
-/* 3. TARGETS & PLANNER (USKE NICHE) */
-.targets-box{padding:24px;border-radius:26px;margin-bottom:26px}
-.targets-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.task-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--glass-card);border:1px solid var(--border-subtle);border-radius:16px;cursor:pointer}
-.task-row.done{opacity:.55;text-decoration:line-through}
-.task-box{width:22px;height:22px;border-radius:7px;border:2px solid var(--accent);display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700}
-.task-row.done .task-box{background:var(--accent)}
+/* Hero Section */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:24px 0 36px}
+.hero h1{font-size:clamp(34px,5vw,52px);line-height:1.12}
+.hero p{color:var(--mute);font-size:17px;max-width:480px;margin:16px 0}
+.tag{display:inline-block;padding:6px 16px;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:14px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
 
-/* 4. EXACT PEHLE WALA PHONE PROGRESS CARD */
-.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin:30px 0}
-.phone{width:280px;margin:auto;padding:20px 16px;border-radius:36px}
-.ring{position:relative;width:115px;height:115px;margin:8px auto}
-.ring svg{transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
-.ring .bgc{stroke:var(--ring-bg)}
-.ring .fg{stroke:url(#g);stroke-dasharray:314;stroke-dashoffset:88;transition:stroke-dashoffset .5s ease}
-.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 22px Poppins;color:var(--text)}
-.mini{padding:10px 12px;border-radius:14px;margin-top:8px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
-.flame{display:inline-block;animation:flick 1.2s infinite alternate}
-@keyframes flick{to{transform:scale(1.2) rotate(-8deg)}}
+/* Phone Widget */
+.phone{width:290px;margin:auto;padding:22px;border-radius:36px}
+.float{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px)}}
+.ring{position:relative;width:110px;height:110px;margin:12px auto}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
+.ring .bgc{stroke:rgba(122,92,255,.15)}
+.ring .fg{stroke:url(#g);stroke-dasharray:314;stroke-dashoffset:314;animation:fill 2s .4s forwards}
+@keyframes fill{to{stroke-dashoffset:88}}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 22px Poppins}
+.mini{padding:10px 12px;border-radius:14px;margin-top:10px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.flame{display:inline-block;animation:flick 1s infinite alternate}
+@keyframes flick{to{transform:scale(1.25) rotate(-6deg)}}
 
-/* 5. LEDGER PAPER (STRICT EVALUATOR) */
-.paper{width:100%;max-width:360px;margin:auto;background:var(--paper);color:var(--ptext);border:8px solid var(--green);border-radius:28px;padding:18px;background-image:repeating-linear-gradient(transparent 0 25px,var(--pline) 25px 26px);box-shadow:0 20px 40px rgba(15,59,51,.18)}
-.paper h3{color:var(--green);font-size:16px;margin:0}
-.q{font-size:12px;color:#5E6B66;margin:4px 0 8px}
+/* Interactive Ledger Section */
+section{padding:38px 0;border-top:1px solid var(--line)}
+h2{font-size:28px;margin-bottom:6px}
+.sub{color:var(--mute);margin:0 0 20px;font-size:15px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.paper{
+  width:100%;
+  max-width:440px;
+  margin:auto;
+  background:var(--paper);
+  color:var(--ptext);
+  border:8px solid var(--green);
+  border-radius:30px;
+  padding:22px;
+  background-image:repeating-linear-gradient(transparent 0 25px,var(--pline) 25px 26px);
+  box-shadow:0 20px 40px rgba(15,59,51,.22);
+}
+.paper h3{color:var(--green);font-size:16px}
+.q{font-size:12px;color:#5E6B66;margin:4px 0 10px}
 .ans{font-size:14px;line-height:26px;margin:0}
+.ans .w{position:relative;transition:all .5s}
 .ans .fix{display:none;font-family:Caveat,cursive;font-size:20px;color:var(--red);font-weight:700}
-.checked .w{color:var(--red);text-decoration:line-through;text-decoration-thickness:2px}
-.checked .fix{display:inline}
-.score{display:none;margin-top:12px;background:var(--green);color:#F6F0E4;border-radius:12px;padding:10px;font-size:13px;text-align:center;font-weight:700}
-.checked+.score{display:block}
-.note{font-family:Caveat,cursive;color:var(--red);font-size:18px;display:none;margin-top:4px}
+.checked .w{color:var(--red);text-decoration:line-through;text-decoration-thickness:2.5px}
+.checked .fix{display:inline;animation:pop .5s both}
+@keyframes pop{from{opacity:0;transform:translateY(-6px) rotate(-6deg)}}
+.score{display:none;margin-top:12px;background:var(--green);color:#F6F0E4;border-radius:12px;padding:10px 14px;font-size:13px;text-align:center;font-weight:600}
+.checked+.score{display:block;animation:pop .5s .4s both}
+.tick{color:#1c9a6b;font-weight:700}
+.note{font-family:Caveat,cursive;color:var(--red);font-size:19px;font-weight:600;display:none;margin-top:10px}
 .checked~.note{display:block}
 
-/* 6. AI TEACHER MENTOR */
-.ai-box{padding:22px;border-radius:26px;margin-bottom:26px}
-.ai-chat{display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto;padding-right:4px}
-.msg{padding:9px 13px;border-radius:13px;font-size:13px;max-width:85%}
-.msg.bot{background:var(--glass-card);border:1px solid var(--border-subtle);align-self:flex-start}
-.msg.user{background:var(--accent);color:#fff;align-self:flex-end}
-
-/* 7. BOTTOM PHILOSOPHY PARAGRAPHS */
-.philosophy-card{padding:26px;border-radius:26px;margin-top:30px}
-.philosophy-card h3{font-family:Poppins;font-size:20px;margin:0 0 10px}
-.philosophy-card p{color:var(--mute);font-size:14.5px;line-height:1.65;margin:0 0 12px}
-
-/* DOCK */
-.app-dock{
-  position:fixed;
-  bottom:16px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:99;
+/* 3D Flashcard */
+.card-scene{width:100%;max-width:620px;margin:auto;min-height:230px;cursor:pointer;perspective:1000px}
+.card-inner{position:relative;width:100%;height:100%;min-height:230px;transition:transform .7s;transform-style:preserve-3d}
+.card-scene.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{
+  position:absolute;
+  inset:0;
+  padding:26px;
+  border-radius:28px;
+  backface-visibility:hidden;
   display:flex;
-  gap:18px;
-  padding:10px 20px;
-  border-radius:99px;
-  background:var(--glass-card);
-  border:1px solid var(--line);
-  box-shadow:0 14px 40px rgba(0,0,0,.15);
-  backdrop-filter:blur(22px);
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:0 12px 30px rgba(122,92,255,.15);
 }
-.dock-item{background:none;border:0;display:flex;flex-direction:column;align-items:center;font:600 11px Poppins;color:var(--mute);cursor:pointer;gap:2px}
-.dock-item.active{color:var(--accent)}
+.card-back{
+  transform:rotateY(180deg);
+  background:linear-gradient(135deg,rgba(240,236,252,.95),rgba(227,246,241,.95));
+  border:1px solid rgba(122,92,255,.3);
+  color:#1E1B2E;
+}
 
-@media(max-width:768px){.targets-grid,.hero-split{grid-template-columns:1fr}}
+/* Feature Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.card{padding:22px;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 16px 36px rgba(122,92,255,.18)}
+.card h3{font-size:16px;margin:8px 0 4px}
+.card p{margin:0;color:var(--mute);font-size:14px}
+
+/* Confetti */
+.conf{position:fixed;top:-20px;width:10px;height:14px;z-index:9999;animation:fall 1.8s linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
+
+select.level-box{
+  background:var(--glass);
+  border:1px solid var(--line);
+  padding:9px 14px;
+  border-radius:12px;
+  font:600 13px Poppins,sans-serif;
+  color:var(--text);
+  outline:none;
+  cursor:pointer;
+}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-top:1px solid var(--line)}
+
+@media(max-width:768px){
+  .hero,.split{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<div class="room-bg"></div>
-<div class="blob b1"></div><div class="blob b2"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
 
-<!-- 1. FULLSCREEN LOGIN SCREEN -->
-<div id="loginScreen">
-  <div class="login-box">
-    <div style="font-size:28px">🌸</div>
-    <h2 style="font-family:Poppins;font-size:24px;margin:4px 0"><span class="grad">Dheeti</span> Sanctuary</h2>
-    <small style="color:var(--mute)">Authenticate to unlock your revision workspace</small>
+<div class="wrap">
 
-    <div class="auth-nav">
-      <div class="auth-tab active" onclick="switchLoginTab('pin', this)">🔢 PIN</div>
-      <div class="auth-tab" onclick="switchLoginTab('pattern', this)">🧩 Pattern</div>
-      <div class="auth-tab" onclick="switchLoginTab('bio', this)">👆 Biometric</div>
-      <div class="auth-tab" onclick="switchLoginTab('pwd', this)">🔑 Password</div>
-    </div>
-
-    <!-- PIN VIEW -->
-    <div class="auth-view active" id="tabPin">
-      <input type="password" maxlength="4" class="input-field" placeholder="• • • •" style="text-align:center;letter-spacing:10px;font-size:22px">
-    </div>
-
-    <!-- PATTERN VIEW -->
-    <div class="auth-view" id="tabPattern">
-      <small style="display:block;margin-bottom:8px;color:var(--mute)">Connect 4 dots</small>
-      <div class="pattern-grid">
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
-        <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
+  <!-- TOP BAR -->
+  <nav>
+    <div class="brand">
+      <!-- Unique Dheeti Intellect Vector Logo -->
+      <div class="logo-box">
+        <div class="logo-glow"></div>
+        <svg width="46" height="46" viewBox="0 0 100 100" fill="none" style="position:relative;z-index:2">
+          <defs>
+            <linearGradient id="dheetiMainGrad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#7A5CFF" />
+              <stop offset="52%" stop-color="#A855F7" />
+              <stop offset="100%" stop-color="#FF7EB0" />
+            </linearGradient>
+            <linearGradient id="dheetiWingGrad" x1="25" y1="30" x2="85" y2="70" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+              <stop offset="100%" stop-color="#E0E7FF" stop-opacity="0.8" />
+            </linearGradient>
+            <linearGradient id="dheetiBeaconGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#7EDCC4" />
+              <stop offset="100%" stop-color="#4DE1D0" />
+            </linearGradient>
+            <linearGradient id="dheetiGlass" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4" />
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <rect x="4" y="4" width="92" height="92" rx="26" fill="url(#dheetiMainGrad)" stroke="rgba(255,255,255,0.45)" stroke-width="2.5" />
+          <rect x="6" y="6" width="88" height="42" rx="24" fill="url(#dheetiGlass)" />
+          <rect x="24" y="23" width="9" height="54" rx="4.5" fill="#FFFFFF" />
+          <path d="M 28 23 H 50 C 69 23, 78 35, 78 50 C 78 65, 69 77, 50 77 H 28 V 68 H 49 C 61 68, 68 60, 68 50 C 68 40, 61 32, 49 32 H 28 Z" fill="url(#dheetiWingGrad)" />
+          <path d="M 37 36 H 48 C 58 36, 62 42, 62 50 C 62 58, 58 64, 48 64 H 37 Z" fill="#FFFFFF" fill-opacity="0.25" />
+          <path d="M 52 42 Q 52 50, 44 50 Q 52 50, 52 58 Q 52 50, 60 50 Q 52 50, 52 42 Z" fill="url(#dheetiBeaconGrad)" />
+          <circle cx="52" cy="50" r="1.8" fill="#FFFFFF" />
+        </svg>
+      </div>
+      <div>
+        <span style="font:800 24px Poppins,sans-serif;letter-spacing:-0.5px;line-height:1;display:block"><span class="grad">Dheeti</span></span>
+        <span style="font-size:10px;font-weight:600;letter-spacing:1px;color:var(--mute);text-transform:uppercase;display:block;margin-top:2px">Aurora Hybrid Revision Studio</span>
       </div>
     </div>
-
-    <!-- BIOMETRIC VIEW -->
-    <div class="auth-view" id="tabBio">
-      <div class="bio-finger" onclick="verifyBio()">👆</div>
-      <small id="bioPrompt" style="color:var(--mute)">Touch sensor for fingerprint / Face ID</small>
-    </div>
-
-    <!-- PASSWORD VIEW -->
-    <div class="auth-view" id="tabPwd">
-      <input type="text" class="input-field" id="loginName" placeholder="Aapka Naam" value="Maitri">
-      <input type="password" class="input-field" placeholder="Enter Account Password">
-    </div>
-
-    <button class="btn" style="width:100%;margin-top:14px;padding:14px" onclick="unlockApp()">Unlock Sanctuary 🚀</button>
-  </div>
-</div>
-
-<!-- 2. MAIN APPLICATION -->
-<div class="wrap" id="mainApp">
-  <!-- NAV -->
-  <nav>
-    <div class="logo"><span class="grad">Dheeti</span></div>
-    
     <div style="display:flex;align-items:center;gap:10px">
+      <button class="btn o" onclick="toggleTheme()" style="padding:8px 14px;font-size:12px" id="themeBtn">🌙 Dark</button>
       <select class="level-box" onchange="updateLevel(this.value)">
         <option value="Foundation">CA Foundation</option>
-        <option value="Inter" selected>CA Intermediate</option>
+        <option value="Inter">CA Intermediate</option>
         <option value="Final">CA Final</option>
       </select>
-      <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
     </div>
   </nav>
 
-  <!-- STEP 1: TOP TIMER & BREAK (SABSE UPAR) -->
-  <div class="top-timer-card glass" id="secSprint">
-    <div class="timer-flex">
-      <div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
-          <button class="mode-btn active" onclick="setTimerMode('focus', 25, this)">⚡ Focus Sprint (25m)</button>
-          <button class="mode-btn" onclick="setTimerMode('deep', 50, this)">🔥 Deep Focus (50m)</button>
-          <button class="mode-btn" onclick="setTimerMode('shortBreak', 5, this)">☕ Short Break (5m)</button>
-          <button class="mode-btn" onclick="setTimerMode('longBreak', 15, this)">🌿 Long Break (15m)</button>
-        </div>
-        <div class="timer-display" id="timeDisplay">25:00</div>
-        <small style="color:var(--mute)" id="timerStatusLabel">Pomodoro sprint active • Calm & focused</small>
-      </div>
-
-      <div style="display:flex;gap:10px">
-        <button class="btn" id="sprintBtn" onclick="toggleTimer()">Start Sprint 🚀</button>
-        <button class="btn o" onclick="resetCurrentMode()">Reset</button>
-      </div>
+  <!-- HERO SECTION -->
+  <div class="hero">
+   <div>
+    <span class="tag glass" id="levelTag">✨ CA Foundation Mode</span>
+    <h1>Padhai <span class="grad">soft</span>, checking <span style="color:var(--red)">strict</span>.</h1>
+    <p>Home aur planner fresh pastel look mein. Answer check karte waqt ICAI-style ledger paper aur red ink correction.</p>
+    <div class="row">
+      <button class="btn" onclick="party()">Start Revision 🚀</button>
+      <a href="#demo" style="text-decoration:none"><button class="btn o">Try Check Answer ↓</button></a>
+      <a href="#flashcards" style="text-decoration:none"><button class="btn o">🃏 Active Recall</button></a>
     </div>
+   </div>
+   <div class="phone glass float">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <small style="color:var(--mute)">Hi Maitri 👋</small>
+      <span style="font-size:10px;font-weight:700;color:#7A5CFF;background:rgba(122,92,255,.15);padding:2px 8px;border-radius:99px">Dheeti OS</span>
+    </div>
+    <h3 style="font-size:16px;margin:4px 0" id="todayProgressTitle">Aaj ka progress</h3>
+    <div class="ring">
+      <svg width="110" height="110">
+        <defs><linearGradient id="g"><stop offset="0" stop-color="#7A5CFF"/><stop offset="1" stop-color="#FF7EB0"/></linearGradient></defs>
+        <circle class="bgc" cx="55" cy="55" r="50"/>
+        <circle class="fg" cx="55" cy="55" r="50"/>
+      </svg>
+      <b>72%</b>
+    </div>
+    <div class="mini glass"><span id="task1">📘 Paper 1: Accounting Basics</span><b style="color:#1c9a6b">✓</b></div>
+    <div class="mini" style="background:linear-gradient(120deg,rgba(255,194,166,.65),rgba(255,158,196,.55));color:#2A2340;font-weight:600">
+      <span><span class="flame">🔥</span> 12 day streak</span><b>Keep going</b>
+    </div>
+   </div>
   </div>
 
-  <!-- STEP 2: TARGETS & LDR PLANNER (UPAR) -->
-  <div class="targets-box glass" id="secVault">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-      <div>
-        <span style="font-size:12px;font-weight:700;color:var(--accent)" id="levelTag">✨ CA Intermediate Mode</span>
-        <h2 style="font-size:22px;margin:2px 0 0;font-family:Poppins" id="plannerHeading">Today's High-Yield Targets</h2>
-      </div>
-      <span style="font-size:13px;font-weight:700;color:var(--accent)" id="completedRatio">2 of 4 Done</span>
+  <!-- INTERACTIVE LEDGER CHECKING SECTION -->
+  <section id="demo" class="split">
+   <div>
+    <div style="font-size:11px;font-weight:700;color:#E4572E;text-transform:uppercase;margin-bottom:4px">Examiner Simulator</div>
+    <h2>Red Ink <span class="grad">Check Answer</span></h2>
+    <p class="sub">Yahan design Ledger style mein badal jaata hai: parchment paper, green border, red pen se correction. Button dabao aur dekho.</p>
+    <div style="display:flex;gap:8px;margin-bottom:16px" id="qBtns">
+      <button class="btn" style="padding:6px 14px;font-size:12px;background:#0F3B33;box-shadow:none" onclick="loadQ(0)">Q1</button>
+      <button class="btn o" style="padding:6px 14px;font-size:12px" onclick="loadQ(1)">Q2</button>
     </div>
-
-    <div class="targets-grid">
-      <div class="task-row done" onclick="toggleTask(this)">
-        <div class="task-box">✓</div>
-        <div>
-          <b>Corporate Law: Sec 96–105 (AGM & Quorum)</b>
-          <small style="display:block;color:var(--mute)">Pass 2 • Notice, Proxy provisions & voting trap list</small>
-        </div>
-      </div>
-
-      <div class="task-row done" onclick="toggleTask(this)">
-        <div class="task-box">✓</div>
-        <div>
-          <b>Adv. Accounting: AS 10 (PPE Valuation)</b>
-          <small style="display:block;color:var(--mute)">Pass 2 • Subsequent Cost Capitalization checks</small>
-        </div>
-      </div>
-
-      <div class="task-row" onclick="toggleTask(this)">
-        <div class="task-box">✓</div>
-        <div>
-          <b>Taxation: Section 16 GST Ineligible Credits</b>
-          <small style="display:block;color:var(--mute)">Pass 1 • Blocked credit rules Sec 17(5)</small>
-        </div>
-      </div>
-
-      <div class="task-row" onclick="toggleTask(this)">
-        <div class="task-box">✓</div>
-        <div>
-          <b>Costing: Standard Costing Variance Formulas</b>
-          <small style="display:block;color:var(--mute)">Pass 1 • Material & Labour Variance drills</small>
-        </div>
-      </div>
+    <button class="btn red" id="cb" onclick="chk()">Check Answer ✍️</button>
+    <button class="btn o" onclick="rst()" style="margin-left:6px">Reset</button>
+   </div>
+   <div class="paper">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h3 id="paperQTitle">Practice · Q1</h3>
+      <span style="font-size:11px;font-weight:700;color:var(--green);background:rgba(15,59,51,.1);padding:2px 8px;border-radius:4px" id="paperQMarks">4 marks</span>
     </div>
-  </div>
+    <div class="q" id="paperQSub">AS 10 / Depreciation · PPE Cost Principles</div>
+    <p class="ans" id="ans">Cost of PPE includes purchase price, <span class="w">selling expenses</span><span class="fix"> import duty & transit insurance</span>, and <span class="w">interest on loan always</span><span class="fix"> directly attributable erection costs</span><span class="tick"> ✓</span></p>
+    <div class="score" id="paperScore">Score: 2 / 4 · Working notes zaroor likho!</div>
+    <div class="note" id="paperNote">← "selling expenses" machine cost mein kabhi capitalise nahi hote!</div>
+   </div>
+  </section>
 
-  <!-- STEP 3: PEHLE WALA EXACT PROGRESS CARD + STRICT RED INK CHECK -->
-  <div class="hero-split">
-    <!-- ORIGINAL PROGRESS CARD -->
-    <div class="phone glass">
-      <small style="color:var(--mute)" id="welcomeName">Hi Maitri 👋</small>
-      <h3 style="font-size:16px;margin:2px 0 4px">Aaj ka progress</h3>
-      <div class="ring">
-        <svg width="115" height="115">
-          <defs><linearGradient id="g"><stop offset="0" stop-color="#7A5CFF"/><stop offset="1" stop-color="#FF7EB0"/></linearGradient></defs>
-          <circle class="bgc" cx="57.5" cy="57.5" r="50"/>
-          <circle class="fg" id="progressRing" cx="57.5" cy="57.5" r="50"/>
-        </svg>
-        <b id="ringPct">50%</b>
-      </div>
-      <div class="mini glass"><span id="taskStatusHeadline">📘 Adv. Accounting Ch 8</span><b>✓</b></div>
-      <div class="mini glass" style="background:linear-gradient(120deg,rgba(255,194,166,.55),rgba(255,158,196,.45))">
-        <span><span class="flame">🔥</span> 12 day streak</span>
-        <b>Keep going</b>
-      </div>
-    </div>
-
-    <!-- STRICT RED INK EVALUATION -->
+  <!-- 3D ACTIVE RECALL FLASHCARD SECTION -->
+  <section id="flashcards">
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:8px">
     <div>
-      <div class="paper">
-        <h3>Practice · Q3</h3>
-        <div class="q">AS 10 · PPE cost · 4 marks</div>
-        <p class="ans" id="ans">Cost of PPE includes purchase price, <span class="w">selling expenses</span><span class="fix"> import duty</span>, and <span class="w">interest on loan always</span><span class="fix"> directly attributable costs</span><span style="color:#1c9a6b;font-weight:700"> ✓</span></p>
-        <div class="score">Score: 2 / 4 · Working notes zaroor likho!</div>
-        <div class="note">← "selling expenses" cost mein nahi aate</div>
+      <h2>Active Recall <span class="grad">Flashcard</span></h2>
+      <p class="sub" style="margin:0">Tap card to test immediate active memory before looking at ICAI suggested answer.</p>
+    </div>
+    <span style="font-size:12px;font-weight:700;color:#7A5CFF;background:rgba(122,92,255,.1);padding:6px 14px;border-radius:99px">👆 Tap to Flip Card</span>
+   </div>
+   <div class="card-scene" onclick="this.classList.toggle('flipped')">
+    <div class="card-inner">
+      <div class="card-face glass">
+        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--mute)">
+          <span id="fcTopic">CA Foundation · Valuation Principle</span>
+          <span style="color:#7A5CFF;font-weight:700">Question Front</span>
+        </div>
+        <h4 style="font-size:17px;font-weight:700;margin:16px 0;line-height:1.5" id="fcQ">
+          Q: Finished goods are expected to sell at or above cost. Replacement cost of raw materials dropped. What is the valuation rule?
+        </h4>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--mute)">
+          <span>Recall in your head, then tap to check!</span>
+          <span style="color:#7A5CFF;font-weight:700">Flip ➔</span>
+        </div>
       </div>
-      <div style="display:flex;gap:8px;justify-content:center;margin-top:14px">
-        <button class="btn red" onclick="chk()">Check Answer ✍️</button>
-        <button class="btn o" onclick="rst()">Reset</button>
+      <div class="card-face card-back">
+        <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:#0F3B33;text-transform:uppercase">
+          <span>ICAI Suggested Model Provision</span>
+          <span style="color:#7A5CFF">Answer Back</span>
+        </div>
+        <p style="font-size:15px;font-weight:600;margin:12px 0;line-height:1.6" id="fcA">
+          Materials and other supplies are NOT written down below cost if the finished products in which they will be incorporated are expected to be sold at or above cost.
+        </p>
+        <div style="font-size:12px;font-weight:700;color:#7A5CFF" id="fcRule">
+          Key: Keep RM at cost, not replacement value!
+        </div>
       </div>
     </div>
-  </div>
+   </div>
+  </section>
 
-  <!-- STEP 4: AI MENTOR / TEACHER -->
-  <div class="ai-box glass" id="secTeacher">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-      <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-pink));display:grid;place-items:center;font-size:18px;color:#fff">🤖</div>
-      <div>
-        <h3 style="margin:0;font-size:16px;font-family:Poppins">CA Dheeti AI Teacher</h3>
-        <small style="color:#22B573;font-weight:600">● Live doubt support & exam traps</small>
-      </div>
-    </div>
+  <!-- MOOD / ARCHITECTURE CARDS -->
+  <section>
+   <h2>Kahan kya use hoga</h2>
+   <p class="sub">Har jagah alag mood, ek hi app mein.</p>
+   <div class="grid">
+    <div class="card glass"><div style="font-size:26px">🏠</div><h3>Home, Planner, Streak</h3><p>Aurora pastel glass look.</p></div>
+    <div class="card glass"><div style="font-size:26px">🃏</div><h3>Flashcards</h3><p>Aurora soft colors, flip effect.</p></div>
+    <div class="card glass" style="background:#F6F0E4;color:#1B2A26"><div style="font-size:26px">📒</div><h3 style="color:#0F3B33">Check Answer</h3><p style="color:#5E6B66">Ledger paper aur red ink.</p></div>
+    <div class="card glass"><div style="font-size:26px">🌙</div><h3>Dark Mode</h3><p>Raat ki padhai ke liye.</p></div>
+   </div>
+  </section>
 
-    <div class="ai-chat" id="chatStream">
-      <div class="msg bot">
-        Namaste Maitri! Today's session is focused on Corporate Law AGM rules & AS 10. Need an instant memory trick or past-exam trap point?
-      </div>
-    </div>
-
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <input type="text" id="aiInput" class="input-field" style="margin:0" placeholder="Type your doubt here..." onkeydown="if(event.key==='Enter') sendAIQuestion()">
-      <button class="btn" onclick="sendAIQuestion()">Ask ⚡</button>
-    </div>
-  </div>
-
-  <!-- STEP 5: BOTTOM REVISION PARAGRAPHS (SABSE NICHE) -->
-  <div class="philosophy-card glass" id="secProfile">
-    <h3>The Dheeti Revision Philosophy</h3>
-    <p>
-      Padhai soft, checking strict. CA examinations demand sustained patience and spaced iterations (धृति). By placing sprint timers and high-yield targets at the very top, cognitive fatigue is minimized while daily momentum stays intact.
-    </p>
-    <p>
-      The classical double-ruled green ledger and red ink corrections simulate rigorous ICAI evaluation, ensuring your exam-day presentation leaves zero room for error.
-    </p>
-  </div>
-
-  <footer style="text-align:center;color:var(--mute);font-size:13px;padding:34px 0 20px">
-    धृति • Dheeti – The Revision Sanctuary
-  </footer>
-</div>
-
-<!-- BOTTOM DOCK NAVIGATION -->
-<div class="app-dock">
-  <button class="dock-item active" onclick="scrollToSec('secSprint', this)"><span>⏱️</span>Sprint</button>
-  <button class="dock-item" onclick="scrollToSec('secVault', this)"><span>📚</span>Targets</button>
-  <button class="dock-item" onclick="scrollToSec('secTeacher', this)"><span>🤖</span>AI Mentor</button>
-  <button class="dock-item" onclick="scrollToSec('secProfile', this)"><span>👤</span>Sanctuary</button>
+  <footer>Design concept · Dheeti (Aurora Hybrid)</footer>
 </div>
 
 <script>
-// LOGIN SCREEN SWITCHER & UNLOCK
-function switchLoginTab(type, el){
-  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.auth-view').forEach(v => v.classList.remove('active'));
-  el.classList.add('active');
+var curLevel = 'Foundation';
+var curQ = 0;
+var isDark = false;
 
-  if(type === 'pin') document.getElementById('tabPin').classList.add('active');
-  else if(type === 'pattern') document.getElementById('tabPattern').classList.add('active');
-  else if(type === 'bio') document.getElementById('tabBio').classList.add('active');
-  else if(type === 'pwd') document.getElementById('tabPwd').classList.add('active');
-}
+var DATA = {
+  Foundation: [
+    { title: "Practice · Q1", marks: "4 marks", topic: "AS 10 / Depreciation · PPE Cost Principles", html: 'Cost of PPE includes purchase price, <span class="w">selling expenses</span><span class="fix"> import duty & transit insurance</span>, and <span class="w">interest on loan always</span><span class="fix"> directly attributable erection costs</span><span class="tick"> ✓</span>', score: "Score: 2 / 4 · Working notes zaroor likho!", note: '← "selling expenses" machine cost mein kabhi capitalise nahi hote!' },
+    { title: "Practice · Q2", marks: "5 marks", topic: "Accounting Process · BRS Adjustments", html: 'While reconciling passbook with bank column, direct credit by customer is <span class="w">ignored until month-end</span><span class="fix"> added to cash book</span>, while bank charges debited by bank must be <span class="w">added as receipt</span><span class="fix"> deducted from cash book balance</span> in cash book adjustment.<span class="tick"> ✓</span>', score: "Score: 3 / 5 · Timing diff vs error clear rakho!", note: '← Direct customer credit se bank balance badhta hai, cash book update karna mandatory hai!' }
+  ],
+  Inter: [
+    { title: "Practice · Q1", marks: "5 marks", topic: "AS 2 · Valuation of Inventories", html: 'Inventories should be valued at lower of cost and net realizable value. Materials are <span class="w">always written down to replacement value</span><span class="fix"> not written down below cost</span>, if finished products are expected to be sold at <span class="w">loss to clear inventory</span><span class="fix"> or above cost</span>.<span class="tick"> ✓</span>', score: "Score: 4 / 5 · Core provision quoted accurately!", note: '← AS 2 paragraph 24 exception: RM tab tak write-down nahi hoti jab tak FG loss par na biken!' },
+    { title: "Practice · Q2", marks: "5 marks", topic: "AS 16 · Borrowing Costs Capitalisation", html: 'Capitalisation of borrowing costs shall cease when <span class="w">final payment to contractor is settled</span><span class="fix"> substantially all activities are complete</span>, and temporary suspension of construction due to normal delay requires <span class="w">immediate cessation of capitalisation</span><span class="fix"> continuation of capitalisation</span>.<span class="tick"> ✓</span>', score: "Score: 3.5 / 5 · Good conceptual clarity!", note: '← Substantial completion par interest capitalisation ruk jaata hai, payment settlement date par nahi!' }
+  ],
+  Final: [
+    { title: "Practice · Q1", marks: "6 marks", topic: "Ind AS 115 · Revenue from Contracts with Customers", html: 'Under 5-step model, transaction price allocation to performance obligations is done based on <span class="w">historical negotiated discount rates</span><span class="fix"> relative standalone selling prices</span>, while variable consideration is estimated using <span class="w">management discretion at period end</span><span class="fix"> expected value or most likely amount method</span>.<span class="tick"> ✓</span>', score: "Score: 5 / 6 · Precise Ind AS terminology!", note: '← Standalone Selling Price (SSP) allocation Ind AS 115 ka cardinal rule hai!' },
+    { title: "Practice · Q2", marks: "6 marks", topic: "Ind AS 116 · Leases (Lessee Accounting)", html: 'At commencement date, lessee measures lease liability at present value of lease payments discounted using <span class="w">borrower current overdraft rate</span><span class="fix"> interest rate implicit in the lease (or IBR)</span>, and initial direct costs incurred are <span class="w">charged off to P&L immediately</span><span class="fix"> included in the initial cost of ROU asset</span>.<span class="tick"> ✓</span>', score: "Score: 4.5 / 6 · Excellent working note presentation!", note: '← Initial direct costs ROU asset mein add hote hain, expensed off nahi!' }
+  ]
+};
 
-function verifyBio(){
-  const p = document.getElementById('bioPrompt');
-  p.innerText = 'Verifying fingerprint...';
-  p.style.color = 'var(--accent)';
-  setTimeout(() => {
-    p.innerText = 'Identity Verified ✓';
-    p.style.color = '#22B573';
-  }, 900);
-}
+var FLASH = {
+  Foundation: { topic: "CA Foundation · NRV Principle", q: "Finished goods are expected to sell at or above cost. Replacement cost of raw materials dropped. What is the valuation rule?", a: "Materials and other supplies are NOT written down below cost if the finished products in which they will be incorporated are expected to be sold at or above cost.", rule: "Key: Keep RM at cost, not replacement value!" },
+  Inter: { topic: "CA Inter · AS 10 Decommissioning", q: "Initial estimate of dismantling and removing the asset and restoring the site—should it be capitalised in PPE cost?", a: "YES. AS 10 mandates that the initial estimate of dismantling & site restoration obligation must be included in the cost of PPE as per AS 29.", rule: "Key: Dr. PPE, Cr. Provision for Decommissioning!" },
+  Final: { topic: "CA Final · Ind AS 109 ECL", q: "When does a financial asset transition from Stage 1 (12-month ECL) to Stage 2 (Lifetime ECL)?", a: "When there is a Significant Increase in Credit Risk (SICR) since initial recognition, even before default occurs (usually 30+ days past due).", rule: "Key: 12-month ECL shifts to Lifetime ECL on SICR!" }
+};
 
-function unlockApp(){
-  const name = document.getElementById('loginName').value.trim();
-  if(name) document.getElementById('welcomeName').innerText = `Hi ${name} 👋`;
-
-  const loginScreen = document.getElementById('loginScreen');
-  loginScreen.style.transition = 'opacity .35s ease';
-  loginScreen.style.opacity = '0';
-
-  setTimeout(() => {
-    loginScreen.style.display = 'none';
-  }, 350);
-}
-
-// SPRINT TIMER & BREAKS
-let timerInterval = null;
-let currentDuration = 25 * 60;
-let timeLeft = currentDuration;
-let isRunning = false;
-
-function setTimerMode(type, min, btn){
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  clearInterval(timerInterval);
-  isRunning = false;
-  currentDuration = min * 60;
-  timeLeft = currentDuration;
-  document.getElementById('sprintBtn').innerText = type.includes('Break') ? 'Start Break' : 'Start Sprint 🚀';
-  renderTime();
-}
-
-function toggleTimer(){
-  const btn = document.getElementById('sprintBtn');
-  if(isRunning){
-    clearInterval(timerInterval);
-    isRunning = false;
-    btn.innerText = 'Resume';
-  } else {
-    isRunning = true;
-    btn.innerText = 'Pause';
-    timerInterval = setInterval(() => {
-      if(timeLeft <= 0){
-        clearInterval(timerInterval);
-        isRunning = false;
-        btn.innerText = 'Completed! 🎉';
-        return;
-      }
-      timeLeft--;
-      renderTime();
-    }, 1000);
-  }
-}
-
-function resetCurrentMode(){
-  clearInterval(timerInterval);
-  isRunning = false;
-  timeLeft = currentDuration;
-  document.getElementById('sprintBtn').innerText = 'Start';
-  renderTime();
-}
-
-function renderTime(){
-  const m = Math.floor(timeLeft / 60);
-  const s = String(timeLeft % 60).padStart(2, '0');
-  document.getElementById('timeDisplay').innerText = `${String(m).padStart(2, '0')}:${s}`;
-}
-
-// TARGETS CHECKLIST & RADIAL PROGRESS
-function toggleTask(el){
-  el.classList.toggle('done');
-  updateProgress();
-}
-
-function updateProgress(){
-  const all = document.querySelectorAll('.task-row').length;
-  const done = document.querySelectorAll('.task-row.done').length;
-  const pct = all === 0 ? 0 : Math.round((done / all) * 100);
-
-  document.getElementById('ringPct').innerText = pct + '%';
-  document.getElementById('completedRatio').innerText = `${done} of ${all} Done`;
-
-  const offset = 314 - (314 * (pct / 100));
-  document.getElementById('progressRing').style.strokeDashoffset = offset;
-}
-
-// AI TEACHER
-function sendAIQuestion(){
-  const input = document.getElementById('aiInput');
-  const txt = input.value.trim();
-  if(!txt) return;
-
-  const chat = document.getElementById('chatStream');
-  const uMsg = document.createElement('div');
-  uMsg.className = 'msg user';
-  uMsg.innerText = txt;
-  chat.appendChild(uMsg);
-  input.value = '';
-
-  setTimeout(() => {
-    const bMsg = document.createElement('div');
-    bMsg.className = 'msg bot';
-    bMsg.innerHTML = `<b>ICAI Examiner Tip:</b> For <i>"${txt}"</i>, keep statutory timelines exact and write working notes clearly to secure full step marks!`;
-    chat.appendChild(bMsg);
-    chat.scrollTop = chat.scrollHeight;
-  }, 700);
-}
-
-// STRICT RED INK EVALUATOR
-function chk(){ document.getElementById('ans').classList.add('checked'); }
-function rst(){ document.getElementById('ans').classList.remove('checked'); }
-
-// LEVEL & NAVIGATION
 function updateLevel(val){
+  curLevel = val;
+  curQ = 0;
+  rst();
   document.getElementById('levelTag').textContent = '✨ CA ' + val + ' Mode';
-  document.getElementById('plannerHeading').textContent = 'Today\'s CA ' + val + ' High-Yield Targets';
-  if(val === 'Foundation') document.getElementById('taskStatusHeadline').innerText = '📘 Accounting Basics';
-  else if(val === 'Inter') document.getElementById('taskStatusHeadline').innerText = '📘 Adv. Accounting Ch 8';
-  else document.getElementById('taskStatusHeadline').innerText = '📘 Financial Reporting Ind AS';
+  document.getElementById('task1').textContent = val === 'Foundation' ? '📘 Paper 1: Accounting Basics' : val === 'Inter' ? '📘 Adv. Accounting Ch 8' : '📘 Paper 1: Financial Reporting';
+  loadQ(0);
+  document.getElementById('fcTopic').textContent = FLASH[val].topic;
+  document.getElementById('fcQ').textContent = 'Q: ' + FLASH[val].q;
+  document.getElementById('fcA').textContent = FLASH[val].a;
+  document.getElementById('fcRule').textContent = FLASH[val].rule;
 }
 
-function scrollToSec(id, btn){
-  document.querySelectorAll('.dock-item').forEach(d => d.classList.remove('active'));
-  btn.classList.add('active');
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth'});
+function loadQ(idx){
+  curQ = idx;
+  rst();
+  var item = DATA[curLevel][idx];
+  document.getElementById('paperQTitle').textContent = item.title;
+  document.getElementById('paperQMarks').textContent = item.marks;
+  document.getElementById('paperQSub').textContent = item.topic;
+  document.getElementById('ans').innerHTML = item.html;
+  document.getElementById('paperScore').textContent = item.score;
+  document.getElementById('paperNote').textContent = item.note;
+  var btns = document.getElementById('qBtns').children;
+  btns[0].className = idx === 0 ? 'btn' : 'btn o';
+  btns[0].style.background = idx === 0 ? '#0F3B33' : '';
+  btns[1].className = idx === 1 ? 'btn' : 'btn o';
+  btns[1].style.background = idx === 1 ? '#0F3B33' : '';
 }
 
 function toggleTheme(){
-  const cur = document.documentElement.getAttribute('data-theme');
-  document.documentElement.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeBtn').textContent = isDark ? '☀️ Light' : '🌙 Dark';
 }
 
-updateProgress();
+function chk(){
+  document.getElementById('ans').classList.add('checked');
+  party();
+}
+
+function rst(){
+  document.getElementById('ans').classList.remove('checked');
+}
+
+function party(){
+  var c=['#7A5CFF','#FF7EB0','#7EDCC4','#FFC2A6','#B7A6FF'];
+  for(var i=0;i<40;i++){
+    var d=document.createElement('div');
+    d.className='conf';
+    d.style.left=Math.random()*100+'vw';
+    d.style.background=c[i%5];
+    d.style.animationDelay=Math.random()*.5+'s';
+    document.body.appendChild(d);
+    setTimeout(function(x){x.remove()},2600,d);
+  }
+}
 </script>
 </body>
 </html>
