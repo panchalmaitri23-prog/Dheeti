@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dheeti – Aurora Hybrid Revision Studio</title>
+<title>Dheeti – Aurora Hybrid CA Sanctuary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -11,13 +11,13 @@
 
 <style>
 :root{
-  --bg:#FBF9FF;
-  --glass:rgba(255,255,255,.76);
+  --bg:#F8F6FD;
+  --glass:rgba(255,255,255,.78);
   --glass-card:rgba(255,255,255,.90);
-  --text:#2A2340;
-  --mute:#75708A;
-  --line:rgba(255,255,255,.92);
-  --border-subtle:rgba(122,92,255,.16);
+  --text:#241E38;
+  --mute:#716B88;
+  --line:rgba(255,255,255,.95);
+  --border-subtle:rgba(122,92,255,.18);
   --paper:#F6F0E4;
   --pline:#E2D8C3;
   --ptext:#1B2A26;
@@ -30,16 +30,18 @@
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
-:root[data-theme="dark"]{
-  --bg:#141026;
-  --glass:rgba(26,20,50,.78);
-  --glass-card:rgba(34,26,64,.90);
-  --text:#F1EDFF;
-  --mute:#A9A3C4;
+
+[data-theme="dark"]{
+  --bg:#120E24;
+  --glass:rgba(26,20,50,.80);
+  --glass-card:rgba(32,25,62,.92);
+  --text:#F3EFFF;
+  --mute:#A59EC0;
   --line:rgba(255,255,255,.14);
   --border-subtle:rgba(183,166,255,.22);
-  --ring-bg:rgba(255,255,255,.1);
+  --ring-bg:rgba(255,255,255,.12);
 }
+
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
   margin:0;
@@ -48,294 +50,174 @@ body{
   font-family:Inter,system-ui,sans-serif;
   overflow-x:hidden;
   line-height:1.5;
-  padding-bottom:100px;
+  padding-bottom:110px;
   transition:background .3s,color .3s;
 }
 h1,h2,h3,h4{font-family:Poppins,sans-serif;margin:0}
 
-/* Soft Study Room Backdrop */
+/* Soft Study Room Textured Backdrop */
 .room-bg{
   position:fixed;
   inset:0;
   z-index:0;
   background:
-    radial-gradient(circle at 12% 18%, rgba(255,215,235,.55) 0%, transparent 45%),
-    radial-gradient(circle at 88% 82%, rgba(215,205,255,.58) 0%, transparent 50%),
-    linear-gradient(180deg, #F9F7FF 0%, #FFF5F9 45%, #F4F7FF 100%);
+    radial-gradient(circle at 10% 20%, rgba(255,225,240,.6) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(220,210,255,.6) 0%, transparent 50%),
+    linear-gradient(180deg, #F8F6FD 0%, #FFF5F9 45%, #F4F7FF 100%);
   pointer-events:none;
 }
 [data-theme="dark"] .room-bg{
   background:
-    radial-gradient(circle at 12% 18%, rgba(122,92,255,.22) 0%, transparent 45%),
-    linear-gradient(180deg, #141026 0%, #1A1333 100%);
+    radial-gradient(circle at 10% 20%, rgba(122,92,255,.25) 0%, transparent 45%),
+    linear-gradient(180deg, #120E24 0%, #1A1333 100%);
 }
 
-/* Ambient Blobs */
-.blob{position:fixed;border-radius:50%;filter:blur(75px);opacity:.48;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
-.b1{width:380px;height:380px;background:#7EDCC4;top:-80px;left:-80px}
-.b2{width:420px;height:420px;background:#B7A6FF;top:140px;right:-120px;animation-delay:-4s}
-.b3{width:340px;height:340px;background:#FFC2A6;bottom:-100px;left:30%;animation-delay:-8s}
-@keyframes float{50%{transform:translate(40px,-50px) scale(1.12)}}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.45;z-index:0;animation:float 14s ease-in-out infinite;pointer-events:none}
+.b1{width:360px;height:360px;background:#7EDCC4;top:-70px;left:-70px}
+.b2{width:400px;height:400px;background:#B7A6FF;top:150px;right:-100px;animation-delay:-4s}
+@keyframes float{50%{transform:translate(35px,-45px) scale(1.1)}}
 
-.wrap{position:relative;z-index:1;max-width:1060px;margin:auto;padding:0 20px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;gap:12px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:auto;padding:0 20px}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:24px;box-shadow:0 12px 34px rgba(122,92,255,.1)}
 
-/* Unique Dheeti Vector Logo */
-.logo-box{
-  position:relative;
-  width:46px;
-  height:46px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  transition:transform .25s ease;
-}
-.logo-box:hover{transform:scale(1.06)}
-.logo-glow{
-  position:absolute;
-  inset:-4px;
-  border-radius:18px;
-  background:linear-gradient(135deg,#7A5CFF 0%,#FF7EB0 50%,#7EDCC4 100%);
-  opacity:0.75;
-  filter:blur(8px);
-  pointer-events:none;
-}
-
-.grad{
-  background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  background-size:200%;
-  animation:bg 5s linear infinite;
-}
+/* Logo & Gradient */
+.logo-box{position:relative;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.logo-glow{position:absolute;inset:-3px;border-radius:18px;background:linear-gradient(135deg,#7A5CFF,#FF7EB0,#7EDCC4);opacity:.7;filter:blur(7px)}
+.grad{background:linear-gradient(90deg,#7A5CFF,#FF7EB0,#FFA06B);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:bg 5s linear infinite}
 @keyframes bg{to{background-position:200%}}
 
-.glass{
-  background:var(--glass);
-  border:1px solid var(--line);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  border-radius:24px;
-  box-shadow:0 12px 34px rgba(122,92,255,.1);
-}
-
+/* Buttons & UI Controls */
 .btn{
-  position:relative;
-  overflow:hidden;
-  border:0;
-  border-radius:14px;
-  padding:12px 22px;
-  font:600 14px Poppins,sans-serif;
-  cursor:pointer;
-  color:#fff;
-  background:linear-gradient(120deg,#7A5CFF,#FF7EB0);
-  box-shadow:0 8px 20px rgba(122,92,255,.32);
-  transition:transform .2s,box-shadow .2s;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+  position:relative;border:0;border-radius:14px;padding:12px 24px;font:600 14px Poppins,sans-serif;
+  cursor:pointer;color:#fff;background:linear-gradient(120deg,#7A5CFF,#FF7EB0);
+  box-shadow:0 8px 20px rgba(122,92,255,.32);transition:transform .2s,box-shadow .2s;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
 }
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(122,92,255,.42)}
 .btn:active{transform:scale(.97)}
-.btn::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-70%;
-  width:50%;
-  height:100%;
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);
-  transform:skewX(-20deg);
-  animation:shine 3s infinite;
-}
-@keyframes shine{60%,100%{left:130%}}
 .btn.o{background:var(--glass);color:var(--text);box-shadow:none;border:1px solid var(--line)}
-.btn.o::after{display:none}
-.btn.red{background:var(--red);box-shadow:0 4px 0 #A83A18}
+.btn.red{background:var(--red);box-shadow:0 6px 16px rgba(228,87,46,.32)}
+.icon-btn{width:42px;height:42px;border-radius:14px;border:1px solid var(--line);background:var(--glass);color:var(--text);font-size:17px;cursor:pointer;display:grid;place-items:center;transition:transform .2s}
+.icon-btn:hover{transform:scale(1.06)}
 
-/* 1. INITIAL LOGIN SCREEN (MODAL) */
+/* 1. TOP NAV WITH MENU DRAWER ICON */
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;gap:12px}
+.nav-left{display:flex;align-items:center;gap:12px}
+.nav-right{display:flex;align-items:center;gap:8px}
+
+/* SIDE DRAWER MENU (MOBILE & DESKTOP) */
+#menuDrawer{
+  position:fixed;top:0;left:-320px;width:300px;height:100%;z-index:999999;
+  background:var(--glass-card);backdrop-filter:blur(24px);border-right:1px solid var(--line);
+  padding:26px 20px;box-shadow:10px 0 40px rgba(0,0,0,.25);transition:left .35s ease;
+}
+#menuDrawer.open{left:0}
+.drawer-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;font:600 14px Poppins;color:var(--text);text-decoration:none;margin-bottom:6px;transition:background .2s}
+.drawer-link:hover{background:var(--border-subtle);color:var(--accent)}
+
+/* 2. TOP SMART FOCUS TIMER BAR (SABSE UPAR) */
+.top-timer-card{padding:22px 26px;border-radius:26px;margin:10px 0 24px}
+.timer-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.timer-display{font:800 clamp(42px,7vw,64px) Poppins;color:var(--accent);letter-spacing:1.5px;line-height:1}
+.mode-btn{border:1px solid var(--border-subtle);background:var(--glass);color:var(--mute);padding:7px 16px;border-radius:99px;font:600 12.5px Poppins;cursor:pointer;transition:.2s}
+.mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 6px 16px rgba(122,92,255,.3)}
+
+/* 3. CA INTERMEDIATE SUBJECT TABS */
+.subject-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:18px;scrollbar-width:none}
+.sub-tab{background:var(--glass);border:1px solid var(--line);padding:9px 18px;border-radius:14px;font:600 13px Poppins;color:var(--mute);cursor:pointer;white-space:nowrap;transition:.2s}
+.sub-tab.active{background:linear-gradient(120deg,var(--accent),var(--accent-pink));color:#fff;border-color:transparent}
+
+/* 4. TARGETS & LDR CHECKLIST (UPAR) */
+.targets-box{padding:24px;border-radius:26px;margin-bottom:28px}
+.targets-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.task-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--glass-card);border:1px solid var(--border-subtle);border-radius:16px;cursor:pointer;transition:transform .15s}
+.task-row:hover{transform:translateX(3px)}
+.task-row.done{opacity:.55;text-decoration:line-through}
+.task-box{width:22px;height:22px;border-radius:7px;border:2px solid var(--accent);display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700}
+.task-row.done .task-box{background:var(--accent)}
+
+/* 5. ORIGINAL HERO & PHONE PROGRESS CARD */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin:32px 0}
+.phone{width:290px;margin:auto;padding:22px;border-radius:36px}
+.float{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.ring{position:relative;width:115px;height:115px;margin:8px auto}
+.ring svg{transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
+.ring .bgc{stroke:var(--ring-bg)}
+.ring .fg{stroke:url(#g);stroke-dasharray:314;stroke-dashoffset:78;transition:stroke-dashoffset .5s ease}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 22px Poppins;color:var(--text)}
+.mini{padding:10px 12px;border-radius:14px;margin-top:8px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.flame{display:inline-block;animation:flick 1.2s infinite alternate}
+@keyframes flick{to{transform:scale(1.2) rotate(-8deg)}}
+
+/* 6. STRICT ICAI RED INK LEDGER */
+.paper{
+  width:100%;max-width:390px;margin:auto;background:var(--paper);color:var(--ptext);
+  border:8px solid var(--green);border-radius:28px;padding:20px;
+  background-image:repeating-linear-gradient(transparent 0 25px,var(--pline) 25px 26px);
+  box-shadow:0 20px 40px rgba(15,59,51,.2);
+}
+.paper h3{color:var(--green);font-size:16px;margin:0}
+.q{font-size:12px;color:#5E6B66;margin:4px 0 8px}
+.ans{font-size:14px;line-height:26px;margin:0}
+.ans .fix{display:none;font-family:Caveat,cursive;font-size:20px;color:var(--red);font-weight:700}
+.checked .w{color:var(--red);text-decoration:line-through;text-decoration-thickness:2px}
+.checked .fix{display:inline}
+.score{display:none;margin-top:12px;background:var(--green);color:#F6F0E4;border-radius:12px;padding:10px;font-size:13px;text-align:center;font-weight:700}
+.checked+.score{display:block}
+.note{font-family:Caveat,cursive;color:var(--red);font-size:18px;display:none;margin-top:4px}
+.checked~.note{display:block}
+
+/* 7. 3D RECALL FLASHCARD */
+.card-scene{width:100%;max-width:540px;margin:20px auto;min-height:210px;cursor:pointer;perspective:1000px}
+.card-inner{position:relative;width:100%;height:100%;min-height:210px;transition:transform .7s;transform-style:preserve-3d}
+.card-scene.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;padding:24px;border-radius:26px;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 12px 30px rgba(122,92,255,.12)}
+.card-back{transform:rotateY(180deg);background:linear-gradient(135deg,rgba(240,236,252,.96),rgba(227,246,241,.96));border:1px solid rgba(122,92,255,.3);color:#1E1B2E}
+
+/* 8. CA DHEETI AI MENTOR CHAT */
+.ai-box{padding:22px;border-radius:26px;margin:26px 0}
+.ai-chat{display:flex;flex-direction:column;gap:8px;max-height:210px;overflow-y:auto;padding-right:4px}
+.msg{padding:10px 14px;border-radius:14px;font-size:13px;max-width:85%}
+.msg.bot{background:var(--glass-card);border:1px solid var(--border-subtle);align-self:flex-start}
+.msg.user{background:var(--accent);color:#fff;align-self:flex-end}
+
+/* 9. BOTTOM PHILOSOPHY PARAGRAPHS */
+.philosophy-card{padding:26px;border-radius:26px;margin-top:30px}
+.philosophy-card h3{font-family:Poppins;font-size:20px;margin:0 0 10px}
+.philosophy-card p{color:var(--mute);font-size:14.5px;line-height:1.65;margin:0 0 12px}
+
+/* FLOATING APP DOCK */
+.app-dock{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:9999;
+  display:flex;gap:18px;padding:10px 22px;border-radius:99px;
+  background:var(--glass-card);border:1px solid var(--line);
+  box-shadow:0 14px 40px rgba(0,0,0,.18);backdrop-filter:blur(22px);
+}
+.dock-item{background:none;border:0;display:flex;flex-direction:column;align-items:center;font:600 11px Poppins;color:var(--mute);cursor:pointer;gap:2px}
+.dock-item.active{color:var(--accent)}
+
+/* INITIAL LOGIN MODAL */
 #loginScreen{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  display:grid;
-  place-items:center;
-  padding:20px;
-  background:rgba(18,14,34,.68);
-  backdrop-filter:blur(18px);
+  position:fixed;inset:0;z-index:9999999;display:grid;place-items:center;padding:20px;
+  background:rgba(18,14,34,.72);backdrop-filter:blur(20px);
 }
-.login-box{
-  width:100%;
-  max-width:410px;
-  padding:32px 24px;
-  background:var(--glass-card);
-  border:1px solid var(--line);
-  border-radius:32px;
-  box-shadow:0 25px 60px rgba(0,0,0,.3);
-  text-align:center;
-}
+.login-box{width:100%;max-width:410px;padding:32px 24px;background:var(--glass-card);border:1px solid var(--line);border-radius:32px;text-align:center}
 .auth-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:18px 0}
 .auth-tab{background:var(--glass);border:1px solid var(--border-subtle);border-radius:12px;padding:8px 4px;font:600 11.5px Poppins;color:var(--mute);cursor:pointer}
 .auth-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .auth-view{display:none}
 .auth-view.active{display:block}
 .input-field{width:100%;padding:13px 15px;border-radius:14px;border:1px solid var(--line);background:var(--glass);color:var(--text);font:inherit;margin-bottom:12px;outline:none}
-
 .pattern-grid{display:grid;grid-template-columns:repeat(3,46px);gap:18px;justify-content:center;margin:14px auto}
 .p-dot{width:46px;height:46px;border-radius:50%;background:var(--glass);border:2px solid var(--border-subtle);cursor:pointer;transition:.2s}
 .p-dot.sel{background:var(--accent);border-color:var(--accent)}
 .bio-finger{width:68px;height:68px;border-radius:50%;border:2px dashed var(--accent);margin:12px auto 6px;display:grid;place-items:center;font-size:32px;cursor:pointer}
 
-/* 2. TOP TIMER & BREAK BAR */
-.top-timer-card{padding:22px 26px;border-radius:26px;margin:10px 0 24px}
-.timer-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.timer-display{font:800 clamp(40px,7vw,62px) Poppins;color:var(--accent);letter-spacing:1px;line-height:1}
-.mode-btn{border:1px solid var(--border-subtle);background:var(--glass);color:var(--mute);padding:6px 14px;border-radius:99px;font:600 12px Poppins;cursor:pointer}
-.mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-
-/* 3. TARGETS & LDR PLANNER */
-.targets-box{padding:24px;border-radius:26px;margin-bottom:26px}
-.targets-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.task-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--glass-card);border:1px solid var(--border-subtle);border-radius:16px;cursor:pointer}
-.task-row.done{opacity:.55;text-decoration:line-through}
-.task-box{width:22px;height:22px;border-radius:7px;border:2px solid var(--accent);display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700}
-.task-row.done .task-box{background:var(--accent)}
-
-/* Hero Section */
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:12px 0 32px}
-.hero h1{font-size:clamp(34px,5vw,52px);line-height:1.12}
-.hero p{color:var(--mute);font-size:16.5px;max-width:480px;margin:14px 0}
-.tag{display:inline-block;padding:6px 16px;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:12px}
-.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-
-/* Phone Widget */
-.phone{width:290px;margin:auto;padding:22px;border-radius:36px}
-.float{animation:bob 5s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-14px)}}
-.ring{position:relative;width:115px;height:115px;margin:12px auto}
-.ring svg{transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:10;stroke-linecap:round}
-.ring .bgc{stroke:var(--ring-bg)}
-.ring .fg{stroke:url(#g);stroke-dasharray:314;stroke-dashoffset:88;transition:stroke-dashoffset .5s ease}
-.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 22px Poppins}
-.mini{padding:10px 12px;border-radius:14px;margin-top:10px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
-.flame{display:inline-block;animation:flick 1s infinite alternate}
-@keyframes flick{to{transform:scale(1.25) rotate(-6deg)}}
-
-/* Interactive Ledger Section */
-section{padding:38px 0;border-top:1px solid var(--line)}
-h2{font-size:28px;margin-bottom:6px}
-.sub{color:var(--mute);margin:0 0 20px;font-size:15px}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
-.paper{
-  width:100%;
-  max-width:440px;
-  margin:auto;
-  background:var(--paper);
-  color:var(--ptext);
-  border:8px solid var(--green);
-  border-radius:30px;
-  padding:22px;
-  background-image:repeating-linear-gradient(transparent 0 25px,var(--pline) 25px 26px);
-  box-shadow:0 20px 40px rgba(15,59,51,.22);
-}
-.paper h3{color:var(--green);font-size:16px}
-.q{font-size:12px;color:#5E6B66;margin:4px 0 10px}
-.ans{font-size:14px;line-height:26px;margin:0}
-.ans .w{position:relative;transition:all .5s}
-.ans .fix{display:none;font-family:Caveat,cursive;font-size:20px;color:var(--red);font-weight:700}
-.checked .w{color:var(--red);text-decoration:line-through;text-decoration-thickness:2.5px}
-.checked .fix{display:inline;animation:pop .5s both}
-@keyframes pop{from{opacity:0;transform:translateY(-6px) rotate(-6deg)}}
-.score{display:none;margin-top:12px;background:var(--green);color:#F6F0E4;border-radius:12px;padding:10px 14px;font-size:13px;text-align:center;font-weight:600}
-.checked+.score{display:block;animation:pop .5s .4s both}
-.tick{color:#1c9a6b;font-weight:700}
-.note{font-family:Caveat,cursive;color:var(--red);font-size:19px;font-weight:600;display:none;margin-top:10px}
-.checked~.note{display:block}
-
-/* 3D Flashcard */
-.card-scene{width:100%;max-width:620px;margin:auto;min-height:230px;cursor:pointer;perspective:1000px}
-.card-inner{position:relative;width:100%;height:100%;min-height:230px;transition:transform .7s;transform-style:preserve-3d}
-.card-scene.flipped .card-inner{transform:rotateY(180deg)}
-.card-face{
-  position:absolute;
-  inset:0;
-  padding:26px;
-  border-radius:28px;
-  backface-visibility:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  box-shadow:0 12px 30px rgba(122,92,255,.15);
-}
-.card-back{
-  transform:rotateY(180deg);
-  background:linear-gradient(135deg,rgba(240,236,252,.95),rgba(227,246,241,.95));
-  border:1px solid rgba(122,92,255,.3);
-  color:#1E1B2E;
-}
-
-/* AI Teacher Mentor Section */
-.ai-box{padding:24px;border-radius:26px;margin:30px 0}
-.ai-chat{display:flex;flex-direction:column;gap:10px;max-height:220px;overflow-y:auto;padding-right:4px}
-.msg{padding:10px 14px;border-radius:14px;font-size:13px;max-width:85%}
-.msg.bot{background:var(--glass-card);border:1px solid var(--border-subtle);align-self:flex-start}
-.msg.user{background:var(--accent);color:#fff;align-self:flex-end}
-
-/* Philosophy Paragraphs */
-.philosophy-card{padding:26px;border-radius:26px;margin-top:30px}
-.philosophy-card h3{font-family:Poppins;font-size:20px;margin:0 0 10px}
-.philosophy-card p{color:var(--mute);font-size:14.5px;line-height:1.65;margin:0 0 12px}
-
-/* Bottom Dock */
-.app-dock{
-  position:fixed;
-  bottom:16px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:99;
-  display:flex;
-  gap:18px;
-  padding:10px 20px;
-  border-radius:99px;
-  background:var(--glass-card);
-  border:1px solid var(--line);
-  box-shadow:0 14px 40px rgba(0,0,0,.15);
-  backdrop-filter:blur(22px);
-}
-.dock-item{background:none;border:0;display:flex;flex-direction:column;align-items:center;font:600 11px Poppins;color:var(--mute);cursor:pointer;gap:2px}
-.dock-item.active{color:var(--accent)}
-
-/* Feature Grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
-.card{padding:22px;transition:transform .3s,box-shadow .3s}
-.card:hover{transform:translateY(-8px);box-shadow:0 16px 36px rgba(122,92,255,.18)}
-.card h3{font-size:16px;margin:8px 0 4px}
-.card p{margin:0;color:var(--mute);font-size:14px}
-
-/* Confetti */
-.conf{position:fixed;top:-20px;width:10px;height:14px;z-index:99999;animation:fall 1.8s linear forwards;pointer-events:none}
+.conf{position:fixed;top:-20px;width:9px;height:13px;z-index:9999999;animation:fall 1.8s linear forwards;pointer-events:none}
 @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
 
-select.level-box{
-  background:var(--glass);
-  border:1px solid var(--line);
-  padding:9px 14px;
-  border-radius:12px;
-  font:600 13px Poppins,sans-serif;
-  color:var(--text);
-  outline:none;
-  cursor:pointer;
-}
-footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-top:1px solid var(--line)}
-
-@media(max-width:768px){
-  .hero,.split,.targets-grid{grid-template-columns:1fr}
-}
+@media(max-width:768px){.targets-grid,.hero-split{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -343,12 +225,27 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
 <div class="room-bg"></div>
 <div class="blob b1"></div>
 <div class="blob b2"></div>
-<div class="blob b3"></div>
+
+<!-- SIDE DRAWER NAVIGATION -->
+<div id="menuDrawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+    <div style="font:800 20px Poppins" class="grad">Dheeti Studio</div>
+    <button class="icon-btn" onclick="toggleMenu()">✕</button>
+  </div>
+  <a href="#secSprint" class="drawer-link" onclick="toggleMenu()">⏱️ Speed Sprints & Breaks</a>
+  <a href="#secVault" class="drawer-link" onclick="toggleMenu()">📚 High-Yield Syllabus Targets</a>
+  <a href="#secRecall" class="drawer-link" onclick="toggleMenu()">✍️ Red-Ink Examiner Sheet</a>
+  <a href="#flashcards" class="drawer-link" onclick="toggleMenu()">🃏 3D Active Recall Cards</a>
+  <a href="#secTeacher" class="drawer-link" onclick="toggleMenu()">🤖 CA Dheeti AI Mentor</a>
+  <hr style="border:0;border-top:1px solid var(--border-subtle);margin:16px 0">
+  <div style="font-size:12px;color:var(--mute);margin-bottom:8px">TARGET ATTEMPT</div>
+  <div style="font:700 14px Poppins;color:var(--accent)">ICAI Intermediate • Nov 2026</div>
+</div>
 
 <!-- 1. FULLSCREEN LOGIN GATEWAY -->
 <div id="loginScreen">
   <div class="login-box">
-    <div style="font-size:28px">🌸</div>
+    <div style="font-size:30px">🌸</div>
     <h2 style="font-family:Poppins;font-size:24px;margin:4px 0"><span class="grad">Dheeti</span> Sanctuary</h2>
     <small style="color:var(--mute)">Authenticate to unlock your revision studio</small>
 
@@ -366,7 +263,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
 
     <!-- PATTERN -->
     <div class="auth-view" id="tabPattern">
-      <small style="display:block;margin-bottom:8px;color:var(--mute)">Connect any 4 dots</small>
+      <small style="display:block;margin-bottom:8px;color:var(--mute)">Connect 4 dots</small>
       <div class="pattern-grid">
         <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
         <div class="p-dot" onclick="this.classList.toggle('sel')"></div>
@@ -396,50 +293,48 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
   </div>
 </div>
 
+<!-- 2. MAIN APPLICATION -->
 <div class="wrap">
-
-  <!-- TOP BAR -->
+  <!-- TOP NAVIGATION BAR -->
   <nav>
-    <div class="brand">
-      <!-- Unique Dheeti Vector Logo Container -->
-      <div class="logo-box">
-        <div class="logo-glow"></div>
-        <svg width="46" height="46" viewBox="0 0 100 100" fill="none" style="position:relative;z-index:2">
-          <defs>
-            <linearGradient id="dheetiMainGrad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#7A5CFF" />
-              <stop offset="52%" stop-color="#A855F7" />
-              <stop offset="100%" stop-color="#FF7EB0" />
-            </linearGradient>
-            <linearGradient id="dheetiWingGrad" x1="25" y1="30" x2="85" y2="70" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
-              <stop offset="100%" stop-color="#E0E7FF" stop-opacity="0.8" />
-            </linearGradient>
-            <linearGradient id="dheetiBeaconGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#7EDCC4" />
-              <stop offset="100%" stop-color="#4DE1D0" />
-            </linearGradient>
-            <linearGradient id="dheetiGlass" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4" />
-              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
-            </linearGradient>
-          </defs>
-          <rect x="4" y="4" width="92" height="92" rx="26" fill="url(#dheetiMainGrad)" stroke="rgba(255,255,255,0.45)" stroke-width="2.5" />
-          <rect x="6" y="6" width="88" height="42" rx="24" fill="url(#dheetiGlass)" />
-          <rect x="24" y="23" width="9" height="54" rx="4.5" fill="#FFFFFF" />
-          <path d="M 28 23 H 50 C 69 23, 78 35, 78 50 C 78 65, 69 77, 50 77 H 28 V 68 H 49 C 61 68, 68 60, 68 50 C 68 40, 61 32, 49 32 H 28 Z" fill="url(#dheetiWingGrad)" />
-          <path d="M 37 36 H 48 C 58 36, 62 42, 62 50 C 62 58, 58 64, 48 64 H 37 Z" fill="#FFFFFF" fill-opacity="0.25" />
-          <path d="M 52 42 Q 52 50, 44 50 Q 52 50, 52 58 Q 52 50, 60 50 Q 52 50, 52 42 Z" fill="url(#dheetiBeaconGrad)" />
-          <circle cx="52" cy="50" r="1.8" fill="#FFFFFF" />
-        </svg>
-      </div>
-      <div>
-        <span style="font:800 24px Poppins,sans-serif;letter-spacing:-0.5px;line-height:1;display:block"><span class="grad">Dheeti</span></span>
-        <span style="font-size:10px;font-weight:600;letter-spacing:1px;color:var(--mute);text-transform:uppercase;display:block;margin-top:2px">Aurora Hybrid Revision Studio</span>
+    <div class="nav-left">
+      <button class="icon-btn" onclick="toggleMenu()" title="Open Navigation Menu">☰</button>
+      
+      <div class="brand" style="display:flex;align-items:center;gap:10px">
+        <div class="logo-box">
+          <div class="logo-glow"></div>
+          <svg width="42" height="42" viewBox="0 0 100 100" fill="none" style="position:relative;z-index:2">
+            <defs>
+              <linearGradient id="dheetiMainGrad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#7A5CFF" />
+                <stop offset="52%" stop-color="#A855F7" />
+                <stop offset="100%" stop-color="#FF7EB0" />
+              </linearGradient>
+              <linearGradient id="dheetiWingGrad" x1="25" y1="30" x2="85" y2="70" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="#E0E7FF" stop-opacity="0.8" />
+              </linearGradient>
+              <linearGradient id="dheetiBeaconGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7EDCC4" />
+                <stop offset="100%" stop-color="#4DE1D0" />
+              </linearGradient>
+            </defs>
+            <rect x="4" y="4" width="92" height="92" rx="26" fill="url(#dheetiMainGrad)" />
+            <rect x="24" y="23" width="9" height="54" rx="4.5" fill="#FFFFFF" />
+            <path d="M 28 23 H 50 C 69 23, 78 35, 78 50 C 78 65, 69 77, 50 77 H 28 V 68 H 49 C 61 68, 68 60, 68 50 C 68 40, 61 32, 49 32 H 28 Z" fill="url(#dheetiWingGrad)" />
+            <path d="M 52 42 Q 52 50, 44 50 Q 52 50, 52 58 Q 52 50, 60 50 Q 52 50, 52 42 Z" fill="url(#dheetiBeaconGrad)" />
+          </svg>
+        </div>
+        <div>
+          <span style="font:800 22px Poppins,sans-serif;line-height:1;display:block"><span class="grad">Dheeti</span></span>
+          <span style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--mute);text-transform:uppercase">Revision Studio</span>
+        </div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <button class="btn o" onclick="toggleTheme()" style="padding:8px 14px;font-size:12px" id="themeBtn">🌙 Dark</button>
+
+    <div class="nav-right">
+      <button class="icon-btn" onclick="alert('Notification: Nov 2026 RTP Digest updated!')" title="Alerts">🔔</button>
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme" id="themeBtn">🌓</button>
       <select class="level-box" onchange="updateLevel(this.value)">
         <option value="Foundation">CA Foundation</option>
         <option value="Inter" selected>CA Intermediate</option>
@@ -469,8 +364,16 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
     </div>
   </div>
 
-  <!-- STEP 2: TARGETS & LDR PLANNER (UPAR) -->
+  <!-- STEP 2: CA SUBJECT TABS & HIGH-YIELD TARGETS (UPAR) -->
   <div class="targets-box glass" id="secVault">
+    <!-- SUBJECT SELECTOR BAR -->
+    <div class="subject-tabs">
+      <button class="sub-tab active" onclick="switchSubject('Corporate Law', this)">⚖️ Paper 2: Corporate Law</button>
+      <button class="sub-tab" onclick="switchSubject('Adv Accounting', this)">📊 Paper 1: Adv. Accounting</button>
+      <button class="sub-tab" onclick="switchSubject('Taxation', this)">📑 Paper 3: Taxation (GST+DT)</button>
+      <button class="sub-tab" onclick="switchSubject('Costing', this)">📈 Paper 4: Cost Management</button>
+    </div>
+
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
       <div>
         <span style="font-size:12px;font-weight:700;color:var(--accent)" id="plannerLevelBadge">✨ CA Intermediate Mode</span>
@@ -479,7 +382,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
       <span style="font-size:13px;font-weight:700;color:var(--accent)" id="completedRatio">2 of 4 Done</span>
     </div>
 
-    <div class="targets-grid">
+    <div class="targets-grid" id="tasksContainer">
       <div class="task-row done" onclick="toggleTask(this)">
         <div class="task-box">✓</div>
         <div>
@@ -491,8 +394,16 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
       <div class="task-row done" onclick="toggleTask(this)">
         <div class="task-box">✓</div>
         <div>
+          <b>Corporate Law: Sec 123–127 (Dividend Rules)</b>
+          <small style="display:block;color:var(--mute)">Pass 2 • Unpaid dividend account & penalty provisions</small>
+        </div>
+      </div>
+
+      <div class="task-row" onclick="toggleTask(this)">
+        <div class="task-box">✓</div>
+        <div>
           <b>Adv. Accounting: AS 10 (PPE Valuation)</b>
-          <small style="display:block;color:var(--mute)">Pass 2 • Subsequent Cost Capitalization checks</small>
+          <small style="display:block;color:var(--mute)">Pass 1 • Subsequent Cost Capitalization checks</small>
         </div>
       </div>
 
@@ -503,84 +414,68 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
           <small style="display:block;color:var(--mute)">Pass 1 • Blocked credit rules Sec 17(5)</small>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="task-row" onclick="toggleTask(this)">
-        <div class="task-box">✓</div>
+  <!-- STEP 3: PEHLE WALA EXACT PHONE PROGRESS CARD + RED INK CHECK -->
+  <div class="hero-split">
+    <!-- ORIGINAL PROGRESS CARD -->
+    <div class="phone glass float">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <small style="color:var(--mute)" id="welcomeName">Hi Maitri 👋</small>
+        <span style="font-size:10px;font-weight:700;color:#7A5CFF;background:rgba(122,92,255,.15);padding:2px 8px;border-radius:99px">Dheeti OS</span>
+      </div>
+      <h3 style="font-size:16px;margin:4px 0" id="todayProgressTitle">Aaj ka progress</h3>
+      <div class="ring">
+        <svg width="115" height="115">
+          <defs><linearGradient id="g"><stop offset="0" stop-color="#7A5CFF"/><stop offset="1" stop-color="#FF7EB0"/></linearGradient></defs>
+          <circle class="bgc" cx="57.5" cy="57.5" r="50"/>
+          <circle class="fg" id="progressRing" cx="57.5" cy="57.5" r="50"/>
+        </svg>
+        <b id="ringPct">50%</b>
+      </div>
+      <div class="mini glass"><span id="task1">📘 Adv. Accounting Ch 8</span><b style="color:#1c9a6b">✓</b></div>
+      <div class="mini" style="background:linear-gradient(120deg,rgba(255,194,166,.65),rgba(255,158,196,.55));color:#2A2340;font-weight:600">
+        <span><span class="flame">🔥</span> 14 day streak</span><b>Keep going</b>
+      </div>
+    </div>
+
+    <!-- STRICT RED INK EVALUATION (Q1/Q2 SWITCHER) -->
+    <div id="secRecall">
+      <div class="paper">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 id="paperQTitle">Practice · Q1</h3>
+          <span style="font-size:11px;font-weight:700;color:var(--green);background:rgba(15,59,51,.1);padding:2px 8px;border-radius:4px" id="paperQMarks">5 marks</span>
+        </div>
+        <div class="q" id="paperQSub">AS 2 · Valuation of Inventories</div>
+        <p class="ans" id="ans">Inventories should be valued at lower of cost and net realizable value. Materials are <span class="w">always written down to replacement value</span><span class="fix"> not written down below cost</span>, if finished products are expected to be sold at <span class="w">loss to clear inventory</span><span class="fix"> or above cost</span>.<span class="tick"> ✓</span></p>
+        <div class="score" id="paperScore">Score: 4 / 5 · Core provision quoted accurately!</div>
+        <div class="note" id="paperNote">← AS 2 paragraph 24 exception: RM tab tak write-down nahi hoti jab tak FG loss par na biken!</div>
+      </div>
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:8px">
+        <div style="display:flex;gap:6px" id="qBtns">
+          <button class="btn" style="padding:6px 14px;font-size:12px;background:#0F3B33;box-shadow:none" onclick="loadQ(0)">Q1</button>
+          <button class="btn o" style="padding:6px 14px;font-size:12px" onclick="loadQ(1)">Q2</button>
+        </div>
         <div>
-          <b>Costing: Standard Costing Variance Formulas</b>
-          <small style="display:block;color:var(--mute)">Pass 1 • Material & Labour Variance drills</small>
+          <button class="btn red" onclick="chk()">Check Answer ✍️️</button>
+          <button class="btn o" onclick="rst()">Reset</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- HERO SECTION (WITH ORIGINAL PHONE PROGRESS RING) -->
-  <div class="hero">
-   <div>
-    <span class="tag glass" id="levelTag">✨ CA Intermediate Mode</span>
-    <h1>Padhai <span class="grad">soft</span>, checking <span style="color:var(--red)">strict</span>.</h1>
-    <p>Home aur planner fresh pastel look mein. Answer check karte waqt ICAI-style ledger paper aur red ink correction.</p>
-    <div class="row">
-      <button class="btn" onclick="party()">Start Revision 🚀</button>
-      <a href="#demo" style="text-decoration:none"><button class="btn o">Try Check Answer ↓</button></a>
-      <a href="#flashcards" style="text-decoration:none"><button class="btn o">🃏 Active Recall</button></a>
-    </div>
-   </div>
-   <div class="phone glass float">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <small style="color:var(--mute)" id="welcomeName">Hi Maitri 👋</small>
-      <span style="font-size:10px;font-weight:700;color:#7A5CFF;background:rgba(122,92,255,.15);padding:2px 8px;border-radius:99px">Dheeti OS</span>
-    </div>
-    <h3 style="font-size:16px;margin:4px 0" id="todayProgressTitle">Aaj ka progress</h3>
-    <div class="ring">
-      <svg width="115" height="115">
-        <defs><linearGradient id="g"><stop offset="0" stop-color="#7A5CFF"/><stop offset="1" stop-color="#FF7EB0"/></linearGradient></defs>
-        <circle class="bgc" cx="57.5" cy="57.5" r="50"/>
-        <circle class="fg" id="progressRing" cx="57.5" cy="57.5" r="50"/>
-      </svg>
-      <b id="ringPct">50%</b>
-    </div>
-    <div class="mini glass"><span id="task1">📘 Adv. Accounting Ch 8</span><b style="color:#1c9a6b">✓</b></div>
-    <div class="mini" style="background:linear-gradient(120deg,rgba(255,194,166,.65),rgba(255,158,196,.55));color:#2A2340;font-weight:600">
-      <span><span class="flame">🔥</span> 12 day streak</span><b>Keep going</b>
-    </div>
-   </div>
-  </div>
-
-  <!-- INTERACTIVE LEDGER CHECKING SECTION (Q1/Q2 SWITCHER INTACT) -->
-  <section id="demo" class="split">
-   <div>
-    <div style="font-size:11px;font-weight:700;color:#E4572E;text-transform:uppercase;margin-bottom:4px">Examiner Simulator</div>
-    <h2>Red Ink <span class="grad">Check Answer</span></h2>
-    <p class="sub">Yahan design Ledger style mein badal jaata hai: parchment paper, green border, red pen se correction. Button dabao aur dekho.</p>
-    <div style="display:flex;gap:8px;margin-bottom:16px" id="qBtns">
-      <button class="btn" style="padding:6px 14px;font-size:12px;background:#0F3B33;box-shadow:none" onclick="loadQ(0)">Q1</button>
-      <button class="btn o" style="padding:6px 14px;font-size:12px" onclick="loadQ(1)">Q2</button>
-    </div>
-    <button class="btn red" id="cb" onclick="chk()">Check Answer ✍️</button>
-    <button class="btn o" onclick="rst()" style="margin-left:6px">Reset</button>
-   </div>
-   <div class="paper">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <h3 id="paperQTitle">Practice · Q1</h3>
-      <span style="font-size:11px;font-weight:700;color:var(--green);background:rgba(15,59,51,.1);padding:2px 8px;border-radius:4px" id="paperQMarks">5 marks</span>
-    </div>
-    <div class="q" id="paperQSub">AS 2 · Valuation of Inventories</div>
-    <p class="ans" id="ans">Inventories should be valued at lower of cost and net realizable value. Materials are <span class="w">always written down to replacement value</span><span class="fix"> not written down below cost</span>, if finished products are expected to be sold at <span class="w">loss to clear inventory</span><span class="fix"> or above cost</span>.<span class="tick"> ✓</span></p>
-    <div class="score" id="paperScore">Score: 4 / 5 · Core provision quoted accurately!</div>
-    <div class="note" id="paperNote">← AS 2 paragraph 24 exception: RM tab tak write-down nahi hoti jab tak FG loss par na biken!</div>
-   </div>
-  </section>
-
-  <!-- 3D ACTIVE RECALL FLASHCARD SECTION -->
-  <section id="flashcards">
-   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:8px">
+  <!-- STEP 4: 3D RECALL FLASHCARD -->
+  <section id="flashcards" style="padding:24px 0;border-top:1px solid var(--line)">
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
     <div>
       <h2>Active Recall <span class="grad">Flashcard</span></h2>
-      <p class="sub" style="margin:0">Tap card to test immediate active memory before looking at ICAI suggested answer.</p>
+      <p style="color:var(--mute);margin:0;font-size:14px">Tap card to test immediate active memory before checking ICAI suggested answer.</p>
     </div>
-    <span style="font-size:12px;font-weight:700;color:#7A5CFF;background:rgba(122,92,255,.1);padding:6px 14px;border-radius:99px">👆 Tap to Flip Card</span>
+    <span style="font-size:12px;font-weight:700;color:#7A5CFF;background:rgba(122,92,255,.1);padding:6px 14px;border-radius:99px">👆 Tap to Flip</span>
    </div>
+
    <div class="card-scene" onclick="this.classList.toggle('flipped')">
     <div class="card-inner">
       <div class="card-face glass">
@@ -612,7 +507,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
    </div>
   </section>
 
-  <!-- AI TEACHER / DOUBT ASSISTANT -->
+  <!-- STEP 5: CA DHEETI AI MENTOR -->
   <div class="ai-box glass" id="secTeacher">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
       <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-pink));display:grid;place-items:center;font-size:18px;color:#fff">🤖</div>
@@ -634,9 +529,9 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
     </div>
   </div>
 
-  <!-- ARCHITECTURE & PHILOSOPHY PARAGRAPHS (NICHE) -->
+  <!-- STEP 6: BOTTOM REVISION PARAGRAPHS (SABSE NICHE) -->
   <section class="philosophy-card glass" id="secProfile">
-    <h3>The Dheeti Revision Sanctuary</h3>
+    <h3>The Dheeti Revision Philosophy</h3>
     <p>
       Padhai soft, checking strict. CA examinations demand sustained patience and spaced iterations (धृति). By placing sprint timers and high-yield targets at the very top, cognitive fatigue is minimized while daily momentum stays intact.
     </p>
@@ -645,13 +540,16 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:36px 0;border-
     </p>
   </section>
 
-  <footer>Design concept · Dheeti (Aurora Hybrid)</footer>
+  <footer style="text-align:center;color:var(--mute);font-size:13px;padding:36px 0 20px">
+    धृति • Dheeti – The Revision Sanctuary
+  </footer>
 </div>
 
 <!-- BOTTOM FLOATING DOCK -->
 <div class="app-dock">
   <button class="dock-item active" onclick="scrollToSec('secSprint', this)"><span>⏱️</span>Sprint</button>
   <button class="dock-item" onclick="scrollToSec('secVault', this)"><span>📚</span>Targets</button>
+  <button class="dock-item" onclick="scrollToSec('secRecall', this)"><span>✍️</span>Ledger</button>
   <button class="dock-item" onclick="scrollToSec('flashcards', this)"><span>🃏</span>Recall</button>
   <button class="dock-item" onclick="scrollToSec('secTeacher', this)"><span>🤖</span>AI Mentor</button>
 </div>
@@ -682,7 +580,12 @@ var FLASH = {
   Final: { topic: "CA Final · Ind AS 109 ECL", q: "When does a financial asset transition from Stage 1 (12-month ECL) to Stage 2 (Lifetime ECL)?", a: "When there is a Significant Increase in Credit Risk (SICR) since initial recognition, even before default occurs (usually 30+ days past due).", rule: "Key: 12-month ECL shifts to Lifetime ECL on SICR!" }
 };
 
-// LOGIN CONTROLS
+// DRAWER MENU
+function toggleMenu(){
+  document.getElementById('menuDrawer').classList.toggle('open');
+}
+
+// LOGIN SCREEN
 function switchLoginTab(type, el){
   document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.auth-view').forEach(v => v.classList.remove('active'));
@@ -718,7 +621,7 @@ function unlockApp(){
   }, 350);
 }
 
-// SPRINT TIMER
+// TOP SPRINT TIMER & SOUND BELL
 let timerInterval = null;
 let currentDuration = 25 * 60;
 let timeLeft = currentDuration;
@@ -732,6 +635,13 @@ function setTimerMode(type, min, btn){
   currentDuration = min * 60;
   timeLeft = currentDuration;
   document.getElementById('sprintBtn').innerText = type.includes('Break') ? 'Start Break' : 'Start Sprint 🚀';
+  
+  const label = document.getElementById('timerStatusLabel');
+  if(type === 'focus') label.innerText = 'Pomodoro sprint active • Calm & focused';
+  else if(type === 'deep') label.innerText = 'Deep Focus Block • 50-minute marathon';
+  else if(type === 'shortBreak') label.innerText = 'Short Refreshment Break • Eye rest';
+  else if(type === 'longBreak') label.innerText = 'Long Rest Block • Hydrate & walk';
+
   renderTime();
 }
 
@@ -749,6 +659,7 @@ function toggleTimer(){
         clearInterval(timerInterval);
         isRunning = false;
         btn.innerText = 'Completed! 🎉';
+        playBell();
         party();
         return;
       }
@@ -772,7 +683,22 @@ function renderTime(){
   document.getElementById('timeDisplay').innerText = `${String(m).padStart(2, '0')}:${s}`;
 }
 
-// TARGETS & CHECKLIST
+function playBell(){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 659.25;
+    gain.gain.setValueAtTime(.25, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.2);
+    osc.start();
+    osc.stop(ctx.currentTime + 1.2);
+  } catch(e){}
+}
+
+// TARGETS & CHECKLIST PROGRESS
 function toggleTask(el){
   el.classList.toggle('done');
   updateProgress();
@@ -790,12 +716,18 @@ function updateProgress(){
   document.getElementById('progressRing').style.strokeDashoffset = offset;
 }
 
+// SUBJECT SWITCHER
+function switchSubject(name, btn){
+  document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('plannerHeading').innerText = `${name} – High-Yield Targets`;
+}
+
 // LEVEL UPDATE
 function updateLevel(val){
   curLevel = val;
   curQ = 0;
   rst();
-  document.getElementById('levelTag').textContent = '✨ CA ' + val + ' Mode';
   document.getElementById('plannerLevelBadge').textContent = '✨ CA ' + val + ' Mode';
   document.getElementById('plannerHeading').textContent = 'Today\'s CA ' + val + ' High-Yield Targets';
   document.getElementById('task1').textContent = val === 'Foundation' ? '📘 Paper 1: Accounting Basics' : val === 'Inter' ? '📘 Adv. Accounting Ch 8' : '📘 Paper 1: Financial Reporting';
@@ -826,7 +758,7 @@ function loadQ(idx){
 function toggleTheme(){
   isDark = !isDark;
   document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  document.getElementById('themeBtn').textContent = isDark ? '☀️ Light' : '🌙 Dark';
+  document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌓';
 }
 
 function chk(){
@@ -838,7 +770,7 @@ function rst(){
   document.getElementById('ans').classList.remove('checked');
 }
 
-// AI TEACHER
+// AI TEACHER MENTOR
 function sendAIQuestion(){
   const input = document.getElementById('aiInput');
   const txt = input.value.trim();
